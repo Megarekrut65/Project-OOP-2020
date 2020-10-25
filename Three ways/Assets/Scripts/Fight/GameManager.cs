@@ -7,11 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    public GameObject playerPrefab;
+    public GameObject[] playerPrefabs;
     void Start()
     {
-        Vector3 pos = new Vector3(0f, 0f, 0f);
-        PhotonNetwork.Instantiate(playerPrefab.name, pos, Quaternion.identity);
+        Vector3 pos = Vector3.zero;
+        string playerName = "Person";
+        if(PhotonNetwork.CurrentRoom != null
+    && PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        playerName = playerPrefabs[2].name;
+        else playerName = playerPrefabs[1].name;
+        PhotonNetwork.Instantiate(playerName, pos, Quaternion.identity);
     }
 
     void Update()

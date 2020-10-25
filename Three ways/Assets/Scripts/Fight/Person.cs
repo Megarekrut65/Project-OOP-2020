@@ -9,17 +9,16 @@ public class Person : MonoBehaviour
     void Start()
     {
         photonView = GetComponent<PhotonView>();
-        if (PhotonNetwork.CurrentRoom != null
-    && PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        if (photonView.IsMine)
         {
-            transform.position = new Vector3(-7f, -5f, 0f);
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.position = new Vector3(-5.5f, -5f, 0f);
+            transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         }
         else
         {
-            transform.position = new Vector3(7f, -5f, 0f);     
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        }       
+            transform.position = new Vector3(5.5f, -5f, 0f);     
+            transform.localScale = new Vector3(-0.7f, 0.7f, 0.7f);
+        }              
     }
 
     // Update is called once per frame
