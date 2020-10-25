@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class Person : MonoBehaviour
+public class Person : MonoBehaviour, IPunObservable
 {
     private PhotonView photonView;
     public string infoPath = "player-info.txt";
@@ -13,6 +13,21 @@ public class Person : MonoBehaviour
     private Text rightNickName;
     private Slider leftHP;
     private Slider rightHP;
+    public bool isTrue;
+    private GameEvent gameEvent;
+    private GameObject attackControler;
+    private GameObject mainCamera;
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.IsWriting)
+        {
+            stream.SendNext(gameEvent.isSelected );
+        }
+        else
+        {
+            gameEvent.isSelected  = (bool) stream.ReceiveNext();
+        }
+    }
     void SetPlayer()
     {
         if (photonView.IsMine)
@@ -29,22 +44,44 @@ public class Person : MonoBehaviour
     }
     void Start()
     {
+        gameEvent = new GameEvent();
         leftNickName = GameObject.Find("LeftNickName").GetComponent<Text>();
         rightNickName = GameObject.Find("RightNickName").GetComponent<Text>();
-        
+        isTrue = false;
         photonView = GetComponent<PhotonView>();
+        attackControler = GameObject.Find("AttackControler");
+        mainCamera = GameObject.Find("Main Camera");     
+        gameEvent.isSelected = false;
         SetPlayer();
     }
 
     void ReadPlayer()
     {
+        CorrectPathes.MakeCorrect(ref infoPath);
         player = new PlayerInfo(infoPath);
-        if(player.correctRead) Debug.Log("Correct");
-        else Debug.Log("Error");
         leftNickName.text = player.nickName;
     }
     void Update()
     {
-        
+        if(!photonView.IsMine)
+        {
+            mainCamera.GetComponent<EventHandler>().rightSelected = gameEvent.isSelected;
+            return;
+        } 
+        if(attackControler.GetComponent<SelectedWay>().isSelected)
+        {
+            gameEvent.isSelected = true;
+            gameEvent.attackIndex = attackControler.GetComponent<SelectedWay>().index;
+            mainCamera.GetComponent<EventHandler>().leftSelected = true;
+        }
     }
+}
+public class GameEvent
+{
+    public bool isSelected;
+    public int indexOfAvatar;
+    public string nickName;
+    public int attackIndex;//1-top, 2-centre, 3-botton
+    public int protectionIndex;
+    public int hp;
 }

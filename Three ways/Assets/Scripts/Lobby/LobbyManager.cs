@@ -12,8 +12,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public string infoPath = "player-info.txt";
     void Start()
     {
+        CorrectPathes.MakeCorrect(ref infoPath);
         player = new PlayerInfo(infoPath);
-        PhotonNetwork.NickName = player.nickName;
+        if(player.correctRead) PhotonNetwork.NickName = player.nickName;
+        else PhotonNetwork.NickName = "Player0";
         Log("Create player " + PhotonNetwork.NickName);
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = "1";

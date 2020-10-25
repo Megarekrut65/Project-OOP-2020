@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logText: {fileID: 1973121865}
   roomCode: {fileID: 1787596900}
+  infoPath: player-info.txt
 --- !u!4 &345963936
 Transform:
   m_ObjectHideFlags: 0
@@ -1238,7 +1239,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 200
+    m_MaxSize: 50
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1

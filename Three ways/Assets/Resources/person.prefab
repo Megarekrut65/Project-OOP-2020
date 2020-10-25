@@ -800,9 +800,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 0
+  m_SynchronizeScale: 0
 --- !u!114 &5452768981499039523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e7d1c6c27fc8b49bdac5f8f7b6cfc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoPath: infoPath.txt
 --- !u!1 &8350064285288401728
 GameObject:
   m_ObjectHideFlags: 0

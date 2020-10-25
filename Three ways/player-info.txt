@@ -1,7 +1,0 @@
-NickName=Mega
-Password=1111
-EMail=bandalak28@gmail.com
-Coins=0
-Points=10
-Avatar=1
-PurchasedAvatars=1,
