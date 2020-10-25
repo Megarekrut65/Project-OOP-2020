@@ -8,9 +8,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 {
     public Text logText;
     public InputField roomCode;
+    private PlayerInfo player;
+    public string infoPath = "player-info.txt";
     void Start()
     {
-        PhotonNetwork.NickName = "Player " + Random.Range(1000, 9999);
+        player = new PlayerInfo(infoPath);
+        PhotonNetwork.NickName = player.nickName;
         Log("Create player " + PhotonNetwork.NickName);
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = "1";

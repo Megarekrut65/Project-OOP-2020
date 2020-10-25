@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e7d1c6c27fc8b49bdac5f8f7b6cfc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoPath: player-info.txt
 --- !u!114 &-6762861977424613890
 MonoBehaviour:
   m_ObjectHideFlags: 0
