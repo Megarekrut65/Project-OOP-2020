@@ -13,19 +13,21 @@ public class Person : MonoBehaviour, IPunObservable
     private Text rightNickName;
     private Slider leftHP;
     private Slider rightHP;
-    public bool isTrue;
+    public bool twoSelectings = false;
     private GameEvent gameEvent;
     private GameObject attackControler;
+    private GameObject protectControler;
     private GameObject mainCamera;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if(stream.IsWriting)
         {
-            stream.SendNext(gameEvent.isSelected );
+            stream.SendNext(twoSelectings );
         }
         else
         {
-            gameEvent.isSelected  = (bool) stream.ReceiveNext();
+            twoSelectings  = (bool) stream.ReceiveNext();
         }
     }
     void SetPlayer()
@@ -47,31 +49,39 @@ public class Person : MonoBehaviour, IPunObservable
         gameEvent = new GameEvent();
         leftNickName = GameObject.Find("LeftNickName").GetComponent<Text>();
         rightNickName = GameObject.Find("RightNickName").GetComponent<Text>();
-        isTrue = false;
         photonView = GetComponent<PhotonView>();
-        attackControler = GameObject.Find("AttackControler");
-        mainCamera = GameObject.Find("Main Camera");     
-        gameEvent.isSelected = false;
         SetPlayer();
+        mainCamera = GameObject.Find("Main Camera"); 
+        attackControler = mainCamera.GetComponent<EventHandler>().attackControler;
+        protectControler = mainCamera.GetComponent<EventHandler>().protectControler;
+        gameEvent.isSelected = false;
     }
 
     void ReadPlayer()
     {
         CorrectPathes.MakeCorrect(ref infoPath);
         player = new PlayerInfo(infoPath);
-        leftNickName.text = player.nickName;
+        if(player.correctRead)
+        {
+            leftNickName.text = player.nickName;
+        }
+        else
+        {
+            leftNickName.text = "Player0";
+        }        
     }
     void Update()
     {
         if(!photonView.IsMine)
         {
-            mainCamera.GetComponent<EventHandler>().rightSelected = gameEvent.isSelected;
+            mainCamera.GetComponent<EventHandler>().rightSelected = twoSelectings;
             return;
         } 
-        if(attackControler.GetComponent<SelectedWay>().isSelected)
+        if(attackControler.GetComponent<SelectedWay>().isSelected&&
+        protectControler.GetComponent<SelectedWay>().isSelected)
         {
-            gameEvent.isSelected = true;
-            gameEvent.attackIndex = attackControler.GetComponent<SelectedWay>().index;
+            twoSelectings = true;
+            //gameEvent.attackIndex = attackControler.GetComponent<SelectedWay>().index;
             mainCamera.GetComponent<EventHandler>().leftSelected = true;
         }
     }

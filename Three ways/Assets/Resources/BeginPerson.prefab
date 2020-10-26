@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoPath: player-info.txt
-  isTrue: 0
+  twoSelectings: 0
 --- !u!114 &-6762861977424613890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +321,8 @@ MonoBehaviour:
   observableSearch: 2
   Synchronization: 3
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 1799066555025369645}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

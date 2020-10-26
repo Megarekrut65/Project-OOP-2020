@@ -18,10 +18,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         string playerName = "Person";
         if(player.correctRead) 
             playerName = playerPrefabs[player.currentIndexOfAvatar].name;
-       /* if(PhotonNetwork.CurrentRoom != null
-    && PhotonNetwork.CurrentRoom.PlayerCount == 1)
-        playerName = playerPrefabs[2].name;
-        else playerName = playerPrefabs[1].name;*/
         PhotonNetwork.Instantiate(playerName, pos, Quaternion.identity);
     }
 

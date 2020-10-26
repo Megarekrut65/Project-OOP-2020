@@ -6,6 +6,9 @@ public class SelectedWay : MonoBehaviour
 {
     public int index;
     public bool isSelected;
+    public GameObject nextSelect;
+    public bool needNext = false;
+
     void Start()
     {
         index = 0;
@@ -15,6 +18,12 @@ public class SelectedWay : MonoBehaviour
     {
         this.index = index;
         isSelected = true;
+        if(needNext)
+        {
+            nextSelect.SetActive(true);
+            nextSelect.GetComponent<SelectedWay>().Refresh();
+        }
+        gameObject.SetActive(false);
     }
     public void Refresh()
     {

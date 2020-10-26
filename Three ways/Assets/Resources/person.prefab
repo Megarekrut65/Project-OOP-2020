@@ -785,6 +785,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 8088165855368017817}
+  - {fileID: 5452768981499039523}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -816,6 +817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoPath: infoPath.txt
+  twoSelectings: 0
 --- !u!1 &8350064285288401728
 GameObject:
   m_ObjectHideFlags: 0

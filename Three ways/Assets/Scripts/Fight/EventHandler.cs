@@ -8,13 +8,22 @@ public class EventHandler : MonoBehaviour
 {
     public bool leftSelected;
     public bool rightSelected;
+    public GameObject attackControler;
+    public GameObject protectControler;
+    IEnumerator ShowControlers()
+    {
+        yield return new WaitForSeconds(2f);
+        attackControler.SetActive(true);
+        attackControler.GetComponent<SelectedWay>().Refresh();
+        StopCoroutine("ShowControlers");
+    }
     void Start()
     {
         leftSelected = false;
         rightSelected = false;
+        StartCoroutine("ShowControlers");
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(leftSelected && rightSelected) Debug.Log("Attack!");
