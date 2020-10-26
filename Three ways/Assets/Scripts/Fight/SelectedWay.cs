@@ -8,6 +8,7 @@ public class SelectedWay : MonoBehaviour
     public bool isSelected;
     public GameObject nextSelect;
     public bool needNext = false;
+    public GameObject gameCanvas;
 
     void Start()
     {
@@ -22,6 +23,10 @@ public class SelectedWay : MonoBehaviour
         {
             nextSelect.SetActive(true);
             nextSelect.GetComponent<SelectedWay>().Refresh();
+        }
+        else
+        {
+            gameCanvas.GetComponent<Canvas>().sortingOrder = 0;
         }
         gameObject.SetActive(false);
     }

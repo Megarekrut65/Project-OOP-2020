@@ -10,9 +10,11 @@ public class EventHandler : MonoBehaviour
     public bool rightSelected;
     public GameObject attackControler;
     public GameObject protectControler;
+    public GameObject gameCanvas;
     IEnumerator ShowControlers()
     {
         yield return new WaitForSeconds(2f);
+        gameCanvas.GetComponent<Canvas>().sortingOrder = 20;
         attackControler.SetActive(true);
         attackControler.GetComponent<SelectedWay>().Refresh();
         StopCoroutine("ShowControlers");
@@ -20,12 +22,17 @@ public class EventHandler : MonoBehaviour
     void Start()
     {
         leftSelected = false;
-        rightSelected = false;
+        rightSelected = false;       
+    }
+    public void Begin()
+    {
         StartCoroutine("ShowControlers");
     }
-
     void Update()
     {
-        if(leftSelected && rightSelected) Debug.Log("Attack!");
+        if(leftSelected && rightSelected)
+        {
+            StartCoroutine("ShowControlers");
+        }
     }
 }

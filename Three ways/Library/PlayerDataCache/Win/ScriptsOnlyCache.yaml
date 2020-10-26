@@ -593,7 +593,7 @@ ScriptsOnlyBuild:
     className: ConnectAndJoinRandomLb
   - hash:
       serializedVersion: 2
-      Hash: a459c5d3d6a3b196c769c7e4e9b7fbd4
+      Hash: bae69e86c2f4968fdcdbfe1463486db6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SelectedWay
@@ -761,7 +761,7 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: 985d0dbb16fd7fca9e5dd889206835ff
+      Hash: 1b5fd5008ed32994c981b6673e22fd6e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EventHandler

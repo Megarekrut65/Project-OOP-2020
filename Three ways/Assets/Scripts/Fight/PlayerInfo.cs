@@ -20,7 +20,7 @@ public class PlayerInfo
         eMail = "";
         coins = 0;
         points = 0;
-        currentIndexOfAvatar = -1;
+        currentIndexOfAvatar = 0;
         indexesOfPurchasedAvatars = new List<int>();
         correctRead = false;
     }
@@ -31,8 +31,9 @@ public class PlayerInfo
         this.eMail = eMail;
         coins = 0;
         points = 100;
-        currentIndexOfAvatar = -1;
+        currentIndexOfAvatar = 1;
         indexesOfPurchasedAvatars = new List<int>();
+        indexesOfPurchasedAvatars.Add(currentIndexOfAvatar);
         correctRead = false;
     }
     PlayerInfo(string nickName, string password, string eMail,
@@ -102,11 +103,8 @@ public class PlayerInfo
         StreamReader reader = new StreamReader(file);
         reader.Close();
     }
-    void ReadPlayerFromFile(string path)
+    void ReadPlayer(ref StreamReader reader)
     {
-        correctRead = false;
-        FileStream file = new FileStream(path, FileMode.OpenOrCreate);
-        StreamReader reader = new StreamReader(file);
         if (reader.EndOfStream) return;
         nickName = reader.ReadLine().Substring(9);
         if (reader.EndOfStream) return;
@@ -121,8 +119,15 @@ public class PlayerInfo
         currentIndexOfAvatar = Convert.ToInt32(reader.ReadLine().Substring(7));
         if (reader.EndOfStream) return;
         StringToList(reader.ReadLine());
-        reader.Close();
         correctRead = true;
+    }
+    void ReadPlayerFromFile(string path)
+    {
+        correctRead = false;
+        FileStream file = new FileStream(path, FileMode.OpenOrCreate);
+        StreamReader reader = new StreamReader(file);
+        ReadPlayer(ref reader);
+        reader.Close();
     }
     public void EditPlayerInPlayersFile(string path, string newPath, string infoPath)
     {

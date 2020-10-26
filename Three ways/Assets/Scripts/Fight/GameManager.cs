@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] playerPrefabs;
     private PlayerInfo player;
     public string infoPath = "player-info.txt";
-    void Start()
+    public bool isTwoPlayers;
+    private GameObject mainCamera;
+    void SetPlayer()
     {
         Vector3 pos = Vector3.zero;
         CorrectPathes.MakeCorrect(ref infoPath);
@@ -20,10 +22,23 @@ public class GameManager : MonoBehaviourPunCallbacks
             playerName = playerPrefabs[player.currentIndexOfAvatar].name;
         PhotonNetwork.Instantiate(playerName, pos, Quaternion.identity);
     }
+    void Start()
+    {
+        isTwoPlayers = false;
+        mainCamera = GameObject.Find("Main Camera");
+        SetPlayer();
+    }
 
     void Update()
     {
-        
+        if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            if(!isTwoPlayers)
+            {
+                mainCamera.GetComponent<EventHandler>().Begin();
+            }
+            isTwoPlayers = true;
+        }
     }
     public void Leave()
     {

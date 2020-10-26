@@ -627,6 +627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoPath: player-info.txt
+  twoSelectings: 0
 --- !u!114 &-9207964107183858586
 MonoBehaviour:
   m_ObjectHideFlags: 0

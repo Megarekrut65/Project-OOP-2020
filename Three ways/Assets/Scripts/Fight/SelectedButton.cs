@@ -9,12 +9,12 @@ IPointerDownHandler, IPointerUpHandler
     public int index;
     public GameObject controler;
     public void OnPointerDown(PointerEventData eventData)
-    {
-        controler.GetComponent<SelectedWay>().Select(index);
+    {   
         transform.localScale = 1.1f * transform.localScale;
     }
     public void OnPointerUp(PointerEventData eventData)
     {
         transform.localScale = transform.localScale / 1.1f;
+        controler.GetComponent<SelectedWay>().Select(index);
     }
 }
