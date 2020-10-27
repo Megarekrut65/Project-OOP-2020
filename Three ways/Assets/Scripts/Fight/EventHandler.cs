@@ -4,19 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class EventHandler : MonoBehaviour
+public class EventHandler : MonoBehaviour, IPunObservable
 {
-    public bool leftSelected;
-    public bool rightSelected;
     public GameObject attackControler;
     public GameObject protectControler;
     public GameObject gameCanvas;
-    private int leftAttack;
-    private int rightAttack;
-    private int leftProtect;
-    private int rightProtect;
+    public GameEvent left;
+    public GameEvent right;
     public Slider leftHP;
     public Slider rightHP;
+    private PhotonView photonView;
     IEnumerator ShowControlers()
     {
         yield return new WaitForSeconds(4f);
@@ -25,26 +22,26 @@ public class EventHandler : MonoBehaviour
         attackControler.GetComponent<SelectedWay>().Refresh();
         StopCoroutine("ShowControlers");
     }
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.IsWriting)
+        {
+            stream.SendNext(left);               
+        }
+        else
+        {
+            right = (GameEvent)stream.ReceiveNext();
+        }
+    }
     void Start()
     {
-        leftSelected = false;
-        rightSelected = false;   
+        left = new GameEvent("Player1");
+        right = new GameEvent("Player2");   
+        photonView = GetComponent<PhotonView>();
     }
     public void Begin()
     {
         StartCoroutine("ShowControlers");
-    }
-    public void SetLeft(bool isSelect, int attack, int protect)
-    {
-        leftSelected = isSelect;
-        leftAttack = attack;
-        leftProtect = protect;
-    }
-    public void SetRight(bool isSelect, int attack, int protect)
-    {
-        rightSelected = isSelect;
-        rightAttack = attack;
-        rightProtect = protect;
     }
     void Fight(int enemyAttack, int protect, ref Slider hp)
     {
@@ -55,13 +52,37 @@ public class EventHandler : MonoBehaviour
     }
     void Update()
     {
-        if(leftSelected && rightSelected)
+        if(attackControler.GetComponent<SelectedWay>().isSelected &&
+        protectControler.GetComponent<SelectedWay>().isSelected)
         {
-            Fight(rightAttack,leftProtect, ref leftHP);
-            Fight(leftAttack,rightProtect, ref rightHP);
-            leftSelected = false;
-            rightSelected = false;   
+            attackControler.GetComponent<SelectedWay>().isSelected = false;
+            protectControler.GetComponent<SelectedWay>().isSelected = false;
+            left.isSelected = true;
+            left.attackIndex = attackControler.GetComponent<SelectedWay>().index;
+            left.protectIndex = protectControler.GetComponent<SelectedWay>().index;
+        }
+        if(left.isSelected && right.isSelected)
+        {
+            Fight(right.attackIndex,left.protectIndex, ref leftHP);
+            Fight(left.attackIndex,right.protectIndex, ref rightHP);
+            left.isSelected = false;
+            right.isSelected = false;   
             StartCoroutine("ShowControlers");
         }
+    }
+}
+public struct GameEvent
+{
+    public bool isSelected;
+    public string nickName;
+    public int attackIndex;//1-top, 2-centre, 3-botton
+    public int protectIndex;
+
+    public GameEvent(string nickName = "")
+    {
+        isSelected = false;
+        this.nickName = nickName;
+        attackIndex = 0;
+        protectIndex = 0;
     }
 }

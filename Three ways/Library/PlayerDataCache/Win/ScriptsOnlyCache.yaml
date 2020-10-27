@@ -113,8 +113,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13516}
     - Class: 114
-      Script: {instanceID: 13698}
-    - Class: 114
       Script: {instanceID: 14262}
     - Class: 114
       Script: {instanceID: 14844}
@@ -761,7 +759,7 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: bd51a3b5dbc21dbde668ff89b5aa321b
+      Hash: 0a858f83bd467838dc92280e4a93f706
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EventHandler

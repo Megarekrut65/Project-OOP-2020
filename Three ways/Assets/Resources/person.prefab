@@ -711,7 +711,6 @@ GameObject:
   - component: {fileID: 5668246621213301089}
   - component: {fileID: 5762899967208794929}
   - component: {fileID: 8943116774062645662}
-  - component: {fileID: 8088165855368017817}
   - component: {fileID: 5452768981499039523}
   m_Layer: 0
   m_Name: Person
@@ -784,26 +783,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 8088165855368017817}
+  - {fileID: 0}
   - {fileID: 5452768981499039523}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &8088165855368017817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8193952276489361126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 0
-  m_SynchronizeRotation: 0
-  m_SynchronizeScale: 0
 --- !u!114 &5452768981499039523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,7 +801,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoPath: infoPath.txt
-  twoSelectings: 0
 --- !u!1 &8350064285288401728
 GameObject:
   m_ObjectHideFlags: 0
