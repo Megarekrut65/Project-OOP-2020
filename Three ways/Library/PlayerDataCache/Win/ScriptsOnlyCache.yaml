@@ -44,10 +44,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -182,6 +180,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14844}
     - Class: 114
+      Script: {instanceID: 15434}
+    - Class: 114
       Script: {instanceID: 15566}
     - Class: 115
       Script: {instanceID: 0}
@@ -287,7 +287,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 15608}
     - Class: 114
-      Script: {instanceID: 25124}
+      Script: {instanceID: 22320}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -893,7 +893,7 @@ ScriptsOnlyBuild:
     className: CurrentRoomPlayerTtlProperty
   - hash:
       serializedVersion: 2
-      Hash: 2ea79198cac5fbc2b08e2db91fa1a707
+      Hash: 45499190e5a646d86f7e55494a7b4b5b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LobbyManager
@@ -1535,7 +1535,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: e54d957f2d8ce0c51862edbd403bb44c
+      Hash: 64499356ac5cf3450ba4e6e984d3c9a7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1730,4 +1730,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Main.unity
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Fight.unity
-  playerPath: C:/Users/User81/source/repos/Megarekrut65/Project-OOP-2020/Three ways/com.BOA.ThreeWays.exe
+  playerPath: C:/Users/User81/source/repos/Megarekrut65/Project-OOP-2020/Three ways/Three
+    Ways.exe

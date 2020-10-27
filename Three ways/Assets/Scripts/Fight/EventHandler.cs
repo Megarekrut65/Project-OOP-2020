@@ -13,7 +13,7 @@ public class EventHandler : MonoBehaviour
     public GameObject gameCanvas;
     IEnumerator ShowControlers()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         gameCanvas.GetComponent<Canvas>().sortingOrder = 20;
         attackControler.SetActive(true);
         attackControler.GetComponent<SelectedWay>().Refresh();
@@ -32,6 +32,8 @@ public class EventHandler : MonoBehaviour
     {
         if(leftSelected && rightSelected)
         {
+            leftSelected = false;
+            rightSelected = false;   
             StartCoroutine("ShowControlers");
         }
     }

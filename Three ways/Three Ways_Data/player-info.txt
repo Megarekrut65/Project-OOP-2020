@@ -1,0 +1,7 @@
+NickName=Player9317
+Password=1111
+EMail=@gmail.com
+Coins=0
+Points=100
+Avatar=1
+PurchasedAvatars=1,

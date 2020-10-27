@@ -75,14 +75,18 @@ public class Person : MonoBehaviour, IPunObservable
         if(!photonView.IsMine)
         {
             mainCamera.GetComponent<EventHandler>().rightSelected = twoSelectings;
+            if(twoSelectings) twoSelectings = false;
             return;
         } 
         if(attackControler.GetComponent<SelectedWay>().isSelected&&
         protectControler.GetComponent<SelectedWay>().isSelected)
         {
+            attackControler.GetComponent<SelectedWay>().isSelected = false;
+            protectControler.GetComponent<SelectedWay>().isSelected = false;
             twoSelectings = true;
             //gameEvent.attackIndex = attackControler.GetComponent<SelectedWay>().index;
             mainCamera.GetComponent<EventHandler>().leftSelected = true;
+            if(twoSelectings) twoSelectings = false;
         }
     }
 }
