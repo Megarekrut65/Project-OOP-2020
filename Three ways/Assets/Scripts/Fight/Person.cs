@@ -9,10 +9,7 @@ public class Person : MonoBehaviour, IPunObservable
     private PhotonView photonView;
     public string infoPath = "player-info.txt";
     private PlayerInfo player;
-    private Text leftNickName;
-    private Text rightNickName;
-    private Slider leftHP;
-    private Slider rightHP;
+    private Text nickNameText;
     private GameEvent gameEvent;
     private GameObject attackControler;
     private GameObject protectControler;
@@ -33,6 +30,7 @@ public class Person : MonoBehaviour, IPunObservable
     {
         if (photonView.IsMine)
         {
+            nickNameText = GameObject.Find("LeftNickName").GetComponent<Text>();
             transform.position = new Vector3(-5.5f, -5f, 0f);
             transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             ReadPlayer();
@@ -40,6 +38,7 @@ public class Person : MonoBehaviour, IPunObservable
         }
         else
         {
+            nickNameText = GameObject.Find("RightNickName").GetComponent<Text>();
             transform.position = new Vector3(5.5f, -5f, 0f);     
             transform.localScale = new Vector3(-0.7f, 0.7f, 0.7f);
             gameEvent = new GameEvent();
@@ -47,8 +46,6 @@ public class Person : MonoBehaviour, IPunObservable
     }
     void Start()
     {
-        leftNickName = GameObject.Find("LeftNickName").GetComponent<Text>();
-        rightNickName = GameObject.Find("RightNickName").GetComponent<Text>();
         photonView = GetComponent<PhotonView>();
         SetPlayer();
         mainCamera = GameObject.Find("Main Camera"); 
@@ -62,35 +59,37 @@ public class Person : MonoBehaviour, IPunObservable
         player = new PlayerInfo(infoPath);
         if(player.correctRead)
         {
-            leftNickName.text = player.nickName;
+            nickNameText.text = player.nickName;
         }
         else
         {
-            leftNickName.text = "Player0";
+            nickNameText.text = "Player0";
         }        
     }
     void Update()
     {
-        if(!photonView.IsMine)
+        if(!photonView.IsMine && !mainCamera.GetComponent<EventHandler>().rightSelected)
         {
-            rightNickName.text = gameEvent.nickName;
+            nickNameText.text = gameEvent.nickName;
             mainCamera.GetComponent<EventHandler>().SetRight(gameEvent.isSelected, gameEvent.attackIndex, gameEvent.protectIndex);
             return;
         } 
-        if(attackControler.GetComponent<SelectedWay>().isSelected&&
-        protectControler.GetComponent<SelectedWay>().isSelected)
+        if(photonView.IsMine && 
+        attackControler.GetComponent<SelectedWay>().isSelected &&
+        protectControler.GetComponent<SelectedWay>().isSelected && 
+        !mainCamera.GetComponent<EventHandler>().leftSelected)
         {
             attackControler.GetComponent<SelectedWay>().isSelected = false;
             protectControler.GetComponent<SelectedWay>().isSelected = false;
             gameEvent.isSelected = true;
             gameEvent.attackIndex = attackControler.GetComponent<SelectedWay>().index;
             gameEvent.protectIndex = protectControler.GetComponent<SelectedWay>().index;
+            mainCamera.GetComponent<EventHandler>().SetLeft(gameEvent.isSelected, gameEvent.attackIndex, gameEvent.protectIndex);
         }
         else
         {
             gameEvent.isSelected = false;
         }
-        mainCamera.GetComponent<EventHandler>().SetLeft(gameEvent.isSelected, gameEvent.attackIndex, gameEvent.protectIndex);
     }
 }
 public struct GameEvent
