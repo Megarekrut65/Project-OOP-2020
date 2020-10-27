@@ -1,4 +1,4 @@
-NickName=Player9317
+NickName=Player5339
 Password=1111
 EMail=@gmail.com
 Coins=0

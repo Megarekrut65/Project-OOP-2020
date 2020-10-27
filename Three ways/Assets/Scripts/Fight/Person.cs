@@ -13,7 +13,6 @@ public class Person : MonoBehaviour, IPunObservable
     private Text rightNickName;
     private Slider leftHP;
     private Slider rightHP;
-    public bool twoSelectings = false;
     private GameEvent gameEvent;
     private GameObject attackControler;
     private GameObject protectControler;
@@ -23,11 +22,11 @@ public class Person : MonoBehaviour, IPunObservable
     {
         if(stream.IsWriting)
         {
-            stream.SendNext(twoSelectings );
+            stream.SendNext(gameEvent);
         }
         else
         {
-            twoSelectings  = (bool) stream.ReceiveNext();
+            gameEvent = (GameEvent)stream.ReceiveNext();
         }
     }
     void SetPlayer()
@@ -37,16 +36,17 @@ public class Person : MonoBehaviour, IPunObservable
             transform.position = new Vector3(-5.5f, -5f, 0f);
             transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             ReadPlayer();
+            gameEvent = new GameEvent(player.nickName);
         }
         else
         {
             transform.position = new Vector3(5.5f, -5f, 0f);     
             transform.localScale = new Vector3(-0.7f, 0.7f, 0.7f);
+            gameEvent = new GameEvent();
         }          
     }
     void Start()
     {
-        gameEvent = new GameEvent();
         leftNickName = GameObject.Find("LeftNickName").GetComponent<Text>();
         rightNickName = GameObject.Find("RightNickName").GetComponent<Text>();
         photonView = GetComponent<PhotonView>();
@@ -54,7 +54,6 @@ public class Person : MonoBehaviour, IPunObservable
         mainCamera = GameObject.Find("Main Camera"); 
         attackControler = mainCamera.GetComponent<EventHandler>().attackControler;
         protectControler = mainCamera.GetComponent<EventHandler>().protectControler;
-        gameEvent.isSelected = false;
     }
 
     void ReadPlayer()
@@ -74,8 +73,8 @@ public class Person : MonoBehaviour, IPunObservable
     {
         if(!photonView.IsMine)
         {
-            mainCamera.GetComponent<EventHandler>().rightSelected = twoSelectings;
-            if(twoSelectings) twoSelectings = false;
+            rightNickName.text = gameEvent.nickName;
+            mainCamera.GetComponent<EventHandler>().SetRight(gameEvent.isSelected, gameEvent.attackIndex, gameEvent.protectIndex);
             return;
         } 
         if(attackControler.GetComponent<SelectedWay>().isSelected&&
@@ -83,19 +82,29 @@ public class Person : MonoBehaviour, IPunObservable
         {
             attackControler.GetComponent<SelectedWay>().isSelected = false;
             protectControler.GetComponent<SelectedWay>().isSelected = false;
-            twoSelectings = true;
-            //gameEvent.attackIndex = attackControler.GetComponent<SelectedWay>().index;
-            mainCamera.GetComponent<EventHandler>().leftSelected = true;
-            if(twoSelectings) twoSelectings = false;
+            gameEvent.isSelected = true;
+            gameEvent.attackIndex = attackControler.GetComponent<SelectedWay>().index;
+            gameEvent.protectIndex = protectControler.GetComponent<SelectedWay>().index;
         }
+        else
+        {
+            gameEvent.isSelected = false;
+        }
+        mainCamera.GetComponent<EventHandler>().SetLeft(gameEvent.isSelected, gameEvent.attackIndex, gameEvent.protectIndex);
     }
 }
-public class GameEvent
+public struct GameEvent
 {
     public bool isSelected;
-    public int indexOfAvatar;
     public string nickName;
     public int attackIndex;//1-top, 2-centre, 3-botton
-    public int protectionIndex;
-    public int hp;
+    public int protectIndex;
+
+    public GameEvent(string nickName = "")
+    {
+        isSelected = false;
+        this.nickName = nickName;
+        attackIndex = 0;
+        protectIndex = 0;
+    }
 }

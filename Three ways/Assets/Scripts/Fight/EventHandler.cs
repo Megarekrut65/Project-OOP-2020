@@ -6,11 +6,15 @@ using Photon.Pun;
 
 public class EventHandler : MonoBehaviour
 {
-    public bool leftSelected;
-    public bool rightSelected;
+    private bool leftSelected;
+    private bool rightSelected;
     public GameObject attackControler;
     public GameObject protectControler;
     public GameObject gameCanvas;
+    private int leftAttack;
+    private int rightAttack;
+    private int leftProtect;
+    private int rightProtect;
     IEnumerator ShowControlers()
     {
         yield return new WaitForSeconds(4f);
@@ -27,6 +31,18 @@ public class EventHandler : MonoBehaviour
     public void Begin()
     {
         StartCoroutine("ShowControlers");
+    }
+    public void SetLeft(bool isSelect, int attack, int protect)
+    {
+        leftSelected = isSelect;
+        leftAttack = attack;
+        leftProtect = protect;
+    }
+    public void SetRight(bool isSelect, int attack, int protect)
+    {
+        rightSelected = isSelect;
+        rightAttack = attack;
+        rightProtect = protect;
     }
     void Update()
     {
