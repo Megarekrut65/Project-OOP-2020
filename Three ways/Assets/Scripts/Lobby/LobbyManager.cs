@@ -31,10 +31,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = "1";
     }
-    public override void OnConnected()
-    {
-
-    }
     private PlayerInfo CreateAccount()
     {
         PlayerInfo newPlayer = new PlayerInfo(
@@ -48,7 +44,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         isConnect = true;
         statusText.color = new Color(0, 100, 0);
-        statusText.text = "Conected!";
+        statusText.text = "Connected!";
         numberOfRoom = Random.Range(1000,9999);
         roomCodeText.text = "Room code: " + numberOfRoom.ToString();
         Debug.Log("Connected to Master");   

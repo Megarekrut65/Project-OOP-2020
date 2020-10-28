@@ -58,17 +58,25 @@ public class Person : MonoBehaviour, IPunObservable
         photonView = GetComponent<PhotonView>();
         mainCamera = GameObject.Find("Main Camera");
         SetPlayer();
+        StartCoroutine("EventExchange");
     }
-    void Update()
+    IEnumerator EventExchange()
     {
-        if(photonView.IsMine)
+        while(true)
         {
-            gameEvent = mainCamera.GetComponent<EventHandler>().left;
-        }
-        else
-        {
-            nickNameText.text = gameEvent.nickName;
-            mainCamera.GetComponent<EventHandler>().right = gameEvent;
-        }
+            if(photonView.IsMine)
+            {
+                gameEvent = mainCamera.GetComponent<EventHandler>().left;
+            }
+            else
+            {
+                nickNameText.text = gameEvent.nickName;
+                mainCamera.GetComponent<EventHandler>().right = gameEvent;
+            }
+            if(mainCamera.GetComponent<EventHandler>().right.isSelected
+            && mainCamera.GetComponent<EventHandler>().left.isSelected)
+            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(0.01f);
+        }       
     }
 }

@@ -40,6 +40,10 @@ public class EventHandler : MonoBehaviour
     }
     void Update()
     {
+        if(left.isSelected) selectedLeft.text = "+";
+        else selectedLeft.text = "-";
+        if(right.isSelected) selectedRight.text = "+";
+        else selectedRight.text = "-";
         if(attackControler.GetComponent<SelectedWay>().isSelected &&
         protectControler.GetComponent<SelectedWay>().isSelected)
         {
