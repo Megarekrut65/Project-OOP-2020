@@ -113,8 +113,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13516}
     - Class: 114
-      Script: {instanceID: 13698}
-    - Class: 114
       Script: {instanceID: 14262}
     - Class: 114
       Script: {instanceID: 14844}
@@ -287,7 +285,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 15608}
     - Class: 114
-      Script: {instanceID: 22320}
+      Script: {instanceID: 23368}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -761,7 +759,7 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: 1b5fd5008ed32994c981b6673e22fd6e
+      Hash: 3ba9016f78a06ce562dc92f7f60260e8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EventHandler
@@ -893,7 +891,7 @@ ScriptsOnlyBuild:
     className: CurrentRoomPlayerTtlProperty
   - hash:
       serializedVersion: 2
-      Hash: 45499190e5a646d86f7e55494a7b4b5b
+      Hash: ed12bbae31a0422c3503ced51d258de1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LobbyManager
@@ -929,7 +927,7 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: bf6ad3f6eb2b4405cb306dabcb00b3a0
+      Hash: 8f1615e79c52fa55518416850c5034bb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Person

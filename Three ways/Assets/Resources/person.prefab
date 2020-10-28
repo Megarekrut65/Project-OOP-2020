@@ -783,7 +783,6 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
   - {fileID: 5452768981499039523}
   viewIdField: 0
   InstantiationId: 0
@@ -801,6 +800,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoPath: infoPath.txt
+  startPostion: {x: 0, y: 0}
+  endPosition: {x: 0, y: 0}
+  minePostion: {x: 0, y: 0}
+  enemyPosition: {x: 0, y: 0}
+  step: 0.05
 --- !u!1 &8350064285288401728
 GameObject:
   m_ObjectHideFlags: 0

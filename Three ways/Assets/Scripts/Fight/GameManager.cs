@@ -66,8 +66,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         result.isSelected = BitConverter.ToBoolean(data, 0);
         result.attackIndex = BitConverter.ToInt32(data, 1);
         result.protectIndex = BitConverter.ToInt32(data, 5);
-        int nameSize = BitConverter.ToInt32(data, 9);
-        result.nickName = BitConverter.ToString(data, 13, nameSize);
+        result.hp = BitConverter.ToInt32(data, 9);
+        int nameSize = BitConverter.ToInt32(data, 13);
+        result.nickName = BitConverter.ToString(data, 17, nameSize);
 
         return result;
     }
@@ -75,13 +76,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         GameEvent gameEvent = (GameEvent)obj;
         int nameSize = gameEvent.nickName.Length;
-        byte[] result = new byte[nameSize + 1 + 4 + 4 + 4];
+        byte[] result = new byte[nameSize + 1 + 4 + 4 + 4 + 4];
         BitConverter.GetBytes(gameEvent.isSelected).CopyTo(result, 0);
         BitConverter.GetBytes(gameEvent.attackIndex).CopyTo(result, 1);
         BitConverter.GetBytes(gameEvent.protectIndex).CopyTo(result, 5);
-        BitConverter.GetBytes(nameSize).CopyTo(result, 9);
+        BitConverter.GetBytes(gameEvent.hp).CopyTo(result, 9);
+        BitConverter.GetBytes(nameSize).CopyTo(result, 13);
         char[] name = gameEvent.nickName.ToCharArray();
-        Encoding.UTF8.GetBytes(name).CopyTo(result, 13);
+        Encoding.UTF8.GetBytes(name).CopyTo(result, 17);
 
         return result;
     }
