@@ -52,7 +52,7 @@ public class EventHandler : MonoBehaviour
         } 
         else
         {
-            rightPerson.GetComponent<Person>().Hitting(left.attackIndex);
+            rightPerson.GetComponent<Person>().Hitting();
             wasFight = true;
         }
     }
@@ -74,7 +74,7 @@ public class EventHandler : MonoBehaviour
         if(!needWait&&left.isSelected && right.isSelected)
         {
             wasFight = false;
-            leftPerson.GetComponent<Person>().Hitting(right.attackIndex); 
+            leftPerson.GetComponent<Person>().Hitting(); 
             needWait = true; 
         }
     }

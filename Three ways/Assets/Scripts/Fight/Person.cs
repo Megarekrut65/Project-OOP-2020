@@ -13,7 +13,6 @@ public class Person : MonoBehaviour, IPunObservable
     private Text nickNameText;
     private Slider hpSlider;
     private Text hpText;
-    private int enemyAttack;
     private GameObject mainCamera;
     private Animator animator;
     public Vector2 startPostion;
@@ -83,23 +82,36 @@ public class Person : MonoBehaviour, IPunObservable
         }  
         mainCamera.GetComponent<EventHandler>().left = new GameEvent(player.nickName);       
     }
-    public void Hitting(int enemyAttack)
+    public void Hitting()
     {
-        this.enemyAttack = enemyAttack;
         startPostion = minePostion;
         endPosition = enemyPosition;
         progress = 0;
         isRun = true;
         wasHit = false;
     }
-    public void Fight()
+    public void GetHit(int enemyAttack)
     {
         if(enemyAttack != gameEvent.protectIndex)
         {
-            gameEvent.hp--;
-            hpSlider.value = gameEvent.hp;
-            hpText.text = gameEvent.hp.ToString();
+            if(photonView.IsMine)
+            { 
+                mainCamera.GetComponent<EventHandler>().left.hp--; 
+                hpSlider.value = mainCamera.GetComponent<EventHandler>().left.hp;
+                hpText.text = mainCamera.GetComponent<EventHandler>().left.hp.ToString();
+            }
+            else
+            {
+                hpSlider.value = gameEvent.hp - 1;
+                hpText.text = (gameEvent.hp - 1).ToString();
+            }
         }
+    }
+    public void Fight()
+    {
+        if(photonView.IsMine) 
+        mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().GetHit(gameEvent.attackIndex);
+        else  mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().GetHit(gameEvent.attackIndex);
     }
     public void StopHit()
     {
