@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
 
-public class EventHandler : MonoBehaviour, IPunObservable
+public class EventHandler : MonoBehaviour
 {
     public GameObject attackControler;
     public GameObject protectControler;
@@ -13,7 +12,8 @@ public class EventHandler : MonoBehaviour, IPunObservable
     public GameEvent right;
     public Slider leftHP;
     public Slider rightHP;
-    private PhotonView photonView;
+    public Text selectedLeft;
+    public Text selectedRight;
     IEnumerator ShowControlers()
     {
         yield return new WaitForSeconds(4f);
@@ -22,22 +22,10 @@ public class EventHandler : MonoBehaviour, IPunObservable
         attackControler.GetComponent<SelectedWay>().Refresh();
         StopCoroutine("ShowControlers");
     }
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if(stream.IsWriting)
-        {
-            stream.SendNext(left);               
-        }
-        else
-        {
-            right = (GameEvent)stream.ReceiveNext();
-        }
-    }
     void Start()
     {
         left = new GameEvent("Player1");
         right = new GameEvent("Player2");   
-        photonView = GetComponent<PhotonView>();
     }
     public void Begin()
     {

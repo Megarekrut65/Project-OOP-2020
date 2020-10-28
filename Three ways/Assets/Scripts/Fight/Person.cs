@@ -63,12 +63,12 @@ public class Person : MonoBehaviour, IPunObservable
     {
         if(photonView.IsMine)
         {
-            //gameEvent = mainCamera.GetComponent<EventHandler>().left;
+            gameEvent = mainCamera.GetComponent<EventHandler>().left;
         }
         else
         {
             nickNameText.text = gameEvent.nickName;
-            //mainCamera.GetComponent<EventHandler>().right = gameEvent;
+            mainCamera.GetComponent<EventHandler>().right = gameEvent;
         }
     }
 }
