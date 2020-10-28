@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fight.unity
     guid: e512e7b94b7a012419e54b8aae8bf334
+  - enabled: 1
+    path: Assets/Scenes/EndFight.unity
+    guid: adb3c6f825cfed64bbde16b4ff94191d
   m_configObjects: {}

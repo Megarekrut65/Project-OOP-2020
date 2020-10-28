@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public override void OnLeftRoom()//call when current player left the room
     {
-        SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene("EndFight");
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {

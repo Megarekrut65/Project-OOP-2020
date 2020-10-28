@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EventHandler : MonoBehaviour
 {
@@ -90,8 +91,16 @@ public class EventHandler : MonoBehaviour
             left.protectIndex = protectControler.GetComponent<SelectedWay>().index;
         }
     }
+    void CheckHealth()
+    {
+        if(left.hp <= 0 || right.hp <= 0)
+        {
+            SceneManager.LoadScene("EndFight");
+        }
+    }
     void Update()
     {
+        CheckHealth();
         SetTemp();
         CheckSelectings();
         CheckFight();
@@ -105,7 +114,7 @@ public struct GameEvent
     public int attackIndex;//1-top, 2-centre, 3-botton
     public int protectIndex;
 
-    public GameEvent(string nickName = "", int hp = 20)
+    public GameEvent(string nickName = "", int hp = 2)
     {
         isSelected = false;
         this.nickName = nickName;

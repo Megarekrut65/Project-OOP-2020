@@ -40,6 +40,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
             return newPlayer;
     }
+    public override void OnLeftRoom()
+    {
+        Debug.Log("Left Room");
+    }
     public override void OnConnectedToMaster()
     {
         isConnect = true;
