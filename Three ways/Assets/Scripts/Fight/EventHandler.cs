@@ -10,10 +10,10 @@ public class EventHandler : MonoBehaviour
     public GameObject gameCanvas;
     public GameEvent left;
     public GameEvent right;
-    public Slider leftHP;
-    public Slider rightHP;
-    public Text selectedLeft;
-    public Text selectedRight;
+    private Slider leftHP;
+    private Slider rightHP;
+    private Text selectedLeft;
+    private Text selectedRight;
     IEnumerator ShowControlers()
     {
         yield return new WaitForSeconds(4f);
@@ -25,7 +25,11 @@ public class EventHandler : MonoBehaviour
     void Start()
     {
         left = new GameEvent("Player1");
-        right = new GameEvent("Player2");   
+        right = new GameEvent("Player2");  
+        leftHP = GameObject.Find("LeftHP").GetComponent<Slider>();
+        rightHP = GameObject.Find("RightHP").GetComponent<Slider>();
+        selectedLeft = GameObject.Find("LeftCheck").GetComponent<Text>();
+        selectedRight = GameObject.Find("RightCheck").GetComponent<Text>();
     }
     public void Begin()
     {

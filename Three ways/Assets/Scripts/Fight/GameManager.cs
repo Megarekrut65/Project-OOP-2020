@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 mainCamera.GetComponent<EventHandler>().Begin();
             }
             isTwoPlayers = true;
-        }
+        }         
     }
     public void Leave()
     {
