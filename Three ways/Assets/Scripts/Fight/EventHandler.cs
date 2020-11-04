@@ -14,6 +14,7 @@ public class EventHandler : MonoBehaviour
     private Text selectedLeft;
     private Text selectedRight;
     private float waitForNext = 4f;
+    public int maxHP = 5;
     private bool needWait;
     private bool wasFight;
     public GameObject leftPerson;
@@ -31,8 +32,8 @@ public class EventHandler : MonoBehaviour
     }
     void SetObjects()
     {
-        left = new GameEvent("Player1");
-        right = new GameEvent("Player2");  
+        left = new GameEvent(maxHP);
+        right = new GameEvent(maxHP);  
         selectedLeft = GameObject.Find("LeftCheck").GetComponent<Text>();
         selectedRight = GameObject.Find("RightCheck").GetComponent<Text>();
     }
@@ -109,15 +110,13 @@ public class EventHandler : MonoBehaviour
 public struct GameEvent
 {
     public bool isSelected;
-    public string nickName;
     public int hp;
     public int attackIndex;//1-top, 2-centre, 3-botton
     public int protectIndex;
 
-    public GameEvent(string nickName = "", int hp = 2)
+    public GameEvent(int hp = 5)
     {
         isSelected = false;
-        this.nickName = nickName;
         this.hp = hp;
         attackIndex = 0;
         protectIndex = 0;

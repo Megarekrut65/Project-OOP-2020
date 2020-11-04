@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using System;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
+    private string roomPath = "room-code.txt";
     public Text statusText;
     public Text roomCodeText;
     public Text nickNameText;
@@ -18,9 +20,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private bool needConnect;
     void Start()
     {
+        PhotonNetwork.Disconnect();
         isConnect = false;
         needConnect = true;
-        CorrectPathes.MakeCorrect(ref infoPath);
+        CorrectPathes.MakeCorrect(ref infoPath, ref roomPath);
         player = new PlayerInfo(infoPath);
         if(!player.correctRead)
         {       
@@ -28,13 +31,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         } 
         PhotonNetwork.NickName = player.nickName;
         nickNameText.text += PhotonNetwork.NickName;
-        PhotonNetwork.AutomaticallySyncScene = true;
+        //PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = "1";
     }
     private PlayerInfo CreateAccount()
     {
         PlayerInfo newPlayer = new PlayerInfo(
-            "Player" + Random.Range(1000,9999).ToString(),
+            "Player" + UnityEngine.Random.Range(1000,9999).ToString(),
             "1111", "@gmail.com");
             newPlayer.CreateInfoFile(infoPath);
 
@@ -49,8 +52,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         isConnect = true;
         statusText.color = new Color(0, 100, 0);
         statusText.text = "Connected!";
-        numberOfRoom = Random.Range(1000,9999);
+        numberOfRoom = UnityEngine.Random.Range(1000,9999);
         roomCodeText.text = "Room code: " + numberOfRoom.ToString();
+        RoomCode roomCode = new RoomCode(roomPath);
+        roomCode.EditCode(numberOfRoom);
         Debug.Log("Connected to Master");   
     }
     public void CreateRoom()
@@ -72,7 +77,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if(!isConnect) return;
         Debug.Log("Joining...");
         if(roomCode.text.Length == 0) OnJoinRoomFailed(32758, " Game does not exist");
-        else PhotonNetwork.JoinRoom(roomCode.text);
+        else 
+        {
+            RoomCode code = new RoomCode(roomPath);
+            code.EditCode(Convert.ToInt32(roomCode.text));
+            PhotonNetwork.JoinRoom(roomCode.text);
+        }
     }
     public override void OnJoinedRoom()
     {
@@ -101,8 +111,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if(needConnect && !isConnect) 
         {
-                needConnect = false;
-                PhotonNetwork.ConnectUsingSettings();
+            needConnect = false;
+            PhotonNetwork.ConnectUsingSettings();
         }
     }
 }

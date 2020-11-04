@@ -37,19 +37,18 @@ public class Person : MonoBehaviour, IPunObservable
     void SetMinePlayer()
     {
         minePostion = new Vector3(-5.5f, -5f, 0f);
-        enemyPosition = new Vector3(5.5f, -5f, 0f); 
+        enemyPosition = new Vector3(5f, -5f, 0f); 
         transform.position = minePostion;
         transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         nickNameText = GameObject.Find("LeftNickName").GetComponent<Text>();
         hpSlider = GameObject.Find("LeftHP").GetComponent<Slider>();
-        hpText = GameObject.Find("LeftHPText").GetComponent<Text>();
-        ReadPlayer();
+        hpText = GameObject.Find("LeftHPText").GetComponent<Text>();  
         mainCamera.GetComponent<EventHandler>().leftPerson = gameObject;
     }
     void SetOtherPlayer()
     {
         minePostion = new Vector3(5.5f, -5f, 0f); 
-        enemyPosition = new Vector3(-5.5f, -5f, 0f);
+        enemyPosition = new Vector3(-5f, -5f, 0f);
         transform.position = minePostion;     
         transform.localScale = new Vector3(-0.7f, 0.7f, 0.7f);
         nickNameText = GameObject.Find("RightNickName").GetComponent<Text>();
@@ -58,7 +57,7 @@ public class Person : MonoBehaviour, IPunObservable
         mainCamera.GetComponent<EventHandler>().rightPerson = gameObject;
     }
     void SetPlayer()
-    {
+    {  
         if (photonView.IsMine)
         {
             SetMinePlayer();
@@ -66,21 +65,10 @@ public class Person : MonoBehaviour, IPunObservable
         else
         {
             SetOtherPlayer();
-        }          
-    }
-    void ReadPlayer()
-    {
-        CorrectPathes.MakeCorrect(ref infoPath);
-        player = new PlayerInfo(infoPath);
-        if(player.correctRead)
-        {
-            nickNameText.text = player.nickName;
-        }
-        else
-        {
-            nickNameText.text = "Player0";
         }  
-        mainCamera.GetComponent<EventHandler>().left = new GameEvent(player.nickName);       
+        hpSlider.maxValue = mainCamera.GetComponent<EventHandler>().maxHP;
+        hpSlider.value = mainCamera.GetComponent<EventHandler>().maxHP;
+        nickNameText.text = photonView.Owner.NickName;        
     }
     public void Hitting()
     {
@@ -153,7 +141,6 @@ public class Person : MonoBehaviour, IPunObservable
             }
             else
             {
-                nickNameText.text = gameEvent.nickName;
                 mainCamera.GetComponent<EventHandler>().right = gameEvent;
             }
             yield return new WaitForSeconds(0.01f);

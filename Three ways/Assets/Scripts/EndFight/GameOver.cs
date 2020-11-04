@@ -7,10 +7,10 @@ public class GameOver : MonoBehaviour
 {
     void Start()
     {
-        
+
     }
     public void ClckNext()
-    {
+    {  
         SceneManager.LoadScene("Lobby");
     }
 }

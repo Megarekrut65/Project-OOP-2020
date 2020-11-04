@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
@@ -13,12 +14,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] playerPrefabs;
     private PlayerInfo player;
     public string infoPath = "player-info.txt";
+    private string roomPath = "room-code.txt";
     public bool isTwoPlayers;
     private GameObject mainCamera;
+    public Text roomCodeText;
     void SetPlayer()
     {
-        Vector3 pos = Vector3.zero;
-        CorrectPathes.MakeCorrect(ref infoPath);
+        Vector3 pos = Vector3.zero;   
         player = new PlayerInfo(infoPath);
         string playerName = "Person";
         if(player.correctRead) 
@@ -27,9 +29,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     void Start()
     {
+        CorrectPathes.MakeCorrect(ref infoPath, ref roomPath);
         PhotonPeer.RegisterType(typeof(GameEvent), 100, SerializeGameEvent, DeserializeGameEvent);
         isTwoPlayers = false;
         mainCamera = GameObject.Find("Main Camera");
+        RoomCode roomCode = new RoomCode(roomPath);
+        roomCodeText.text = "Room: " + roomCode.GetCode().ToString();
         SetPlayer();
     }
 
@@ -67,23 +72,17 @@ public class GameManager : MonoBehaviourPunCallbacks
         result.attackIndex = BitConverter.ToInt32(data, 1);
         result.protectIndex = BitConverter.ToInt32(data, 5);
         result.hp = BitConverter.ToInt32(data, 9);
-        int nameSize = BitConverter.ToInt32(data, 13);
-        result.nickName = BitConverter.ToString(data, 17, nameSize);
 
         return result;
     }
     public static byte[] SerializeGameEvent(object obj)
     {
         GameEvent gameEvent = (GameEvent)obj;
-        int nameSize = gameEvent.nickName.Length;
-        byte[] result = new byte[nameSize + 1 + 4 + 4 + 4 + 4];
+        byte[] result = new byte[ 1 + 4 + 4 + 4];
         BitConverter.GetBytes(gameEvent.isSelected).CopyTo(result, 0);
         BitConverter.GetBytes(gameEvent.attackIndex).CopyTo(result, 1);
         BitConverter.GetBytes(gameEvent.protectIndex).CopyTo(result, 5);
         BitConverter.GetBytes(gameEvent.hp).CopyTo(result, 9);
-        BitConverter.GetBytes(nameSize).CopyTo(result, 13);
-        char[] name = gameEvent.nickName.ToCharArray();
-        Encoding.UTF8.GetBytes(name).CopyTo(result, 17);
 
         return result;
     }
