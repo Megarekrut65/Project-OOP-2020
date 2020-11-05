@@ -37,9 +37,8 @@ public class Person : MonoBehaviour, IPunObservable
     void SetMinePlayer()
     {
         minePostion = new Vector3(-5.5f, -5f, 0f);
-        enemyPosition = new Vector3(5f, -5f, 0f); 
-        transform.position = minePostion;
-        transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+        enemyPosition = new Vector3(4f, -5f, 0f); 
+        transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
         nickNameText = GameObject.Find("LeftNickName").GetComponent<Text>();
         hpSlider = GameObject.Find("LeftHP").GetComponent<Slider>();
         hpText = GameObject.Find("LeftHPText").GetComponent<Text>();  
@@ -48,27 +47,25 @@ public class Person : MonoBehaviour, IPunObservable
     void SetOtherPlayer()
     {
         minePostion = new Vector3(5.5f, -5f, 0f); 
-        enemyPosition = new Vector3(-5f, -5f, 0f);
-        transform.position = minePostion;     
-        transform.localScale = new Vector3(-0.7f, 0.7f, 0.7f);
+        enemyPosition = new Vector3(-4f, -5f, 0f);
+        transform.localScale = new Vector3(-0.6f, 0.6f, 0.6f);
         nickNameText = GameObject.Find("RightNickName").GetComponent<Text>();
         hpSlider = GameObject.Find("RightHP").GetComponent<Slider>();
         hpText = GameObject.Find("RightHPText").GetComponent<Text>();
         mainCamera.GetComponent<EventHandler>().rightPerson = gameObject;
     }
+    void SetSame()
+    {
+        transform.position = minePostion;
+        hpSlider.maxValue = mainCamera.GetComponent<EventHandler>().maxHP;
+        hpText.text = hpSlider.maxValue.ToString();
+        nickNameText.text = photonView.Owner.NickName;   
+    }
     void SetPlayer()
     {  
-        if (photonView.IsMine)
-        {
-            SetMinePlayer();
-        }
-        else
-        {
-            SetOtherPlayer();
-        }  
-        hpSlider.maxValue = mainCamera.GetComponent<EventHandler>().maxHP;
-        hpSlider.value = mainCamera.GetComponent<EventHandler>().maxHP;
-        nickNameText.text = photonView.Owner.NickName;        
+        if (photonView.IsMine) SetMinePlayer();
+        else SetOtherPlayer();
+        SetSame(); 
     }
     public void Hitting()
     {
@@ -76,6 +73,7 @@ public class Person : MonoBehaviour, IPunObservable
         endPosition = enemyPosition;
         progress = 0;
         isRun = true;
+        animator.SetBool("run", isRun );
         wasHit = false;
     }
     public void GetHit(int enemyAttack)
@@ -103,7 +101,7 @@ public class Person : MonoBehaviour, IPunObservable
     }
     public void StopHit()
     {
-        animator.SetBool("hit", false);
+        animator.SetBool("run", false );
         wasHit = true;
         startPostion = enemyPosition;
         endPosition = minePostion;
@@ -127,7 +125,10 @@ public class Person : MonoBehaviour, IPunObservable
         if(transform.position.x == endPosition.x)
         {
             isRun = false;
-            if(!wasHit) animator.SetBool("hit", true);
+            if(!wasHit)
+            {
+                animator.SetInteger("hit", gameEvent.attackIndex);
+            } 
             else mainCamera.GetComponent<EventHandler>().NextPerson();
         }
     }

@@ -31,7 +31,7 @@ public class PlayerInfo
         this.eMail = eMail;
         coins = 0;
         points = 100;
-        currentIndexOfAvatar = 1;
+        currentIndexOfAvatar = 0;
         indexesOfPurchasedAvatars = new List<int>();
         indexesOfPurchasedAvatars.Add(currentIndexOfAvatar);
         correctRead = false;

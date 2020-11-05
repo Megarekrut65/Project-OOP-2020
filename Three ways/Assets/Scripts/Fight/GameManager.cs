@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool isTwoPlayers;
     private GameObject mainCamera;
     public Text roomCodeText;
+    
     void SetPlayer()
     {
         Vector3 pos = Vector3.zero;   
