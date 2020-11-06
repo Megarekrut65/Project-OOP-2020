@@ -102,6 +102,7 @@ public class Person : MonoBehaviour, IPunObservable
     public void StopHit()
     {
         animator.SetBool("run", false );
+        animator.SetInteger("hit", 0);
         wasHit = true;
         startPostion = enemyPosition;
         endPosition = minePostion;
