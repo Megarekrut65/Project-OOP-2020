@@ -3,5 +3,5 @@ Password=1111
 EMail=bandalak28@gmail.com
 Coins=0
 Points=10
-Avatar=0
+Avatar=2
 PurchasedAvatars=0,2,

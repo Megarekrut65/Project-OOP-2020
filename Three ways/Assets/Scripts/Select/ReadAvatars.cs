@@ -16,7 +16,7 @@ public class ReadAvatars : MonoBehaviour
     public Text avatarName;
     private int currentIndex = 0;
     private int minIndex = 0;
-    private int maxIndex = 1;
+    private int maxIndex = 2;
     public string infoPath = "player-info.txt";
 
     public void SaveAvatar()
