@@ -17,7 +17,14 @@ public class ReadAvatars : MonoBehaviour
     private int currentIndex = 0;
     private int minIndex = 0;
     private int maxIndex = 1;
+    public string infoPath = "player-info.txt";
 
+    public void SaveAvatar()
+    {
+        CorrectPathes.MakeCorrect(ref infoPath);
+        player.currentIndexOfAvatar = currentIndex;
+        player.CreateInfoFile(infoPath);
+    }
     void Start()
     {
         CorrectPathes.MakeCorrect(ref accountPath);
