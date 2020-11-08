@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eab3071df08a9842bb2cfbf4a05cfed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameOfScene: Lobby
+  nameOfScene: SelectingAvatars
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

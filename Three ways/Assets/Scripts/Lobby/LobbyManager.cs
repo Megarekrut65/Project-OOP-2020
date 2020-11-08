@@ -9,28 +9,40 @@ using System;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     private string roomPath = "room-code.txt";
-    public Text statusText;
     public Text roomCodeText;
-    public Text nickNameText;
+    public InputField maxHP;
     public InputField roomCode;
     private PlayerInfo player;
     public string infoPath = "player-info.txt";
     private int numberOfRoom;
     private bool isConnect;
     private bool needConnect;
+    public GameObject waiting;
+    public GameObject creating;
+    public GameObject joining;
+    public GameObject creatButton;
+    public GameObject joinButton;
+
     void Start()
     {
         PhotonNetwork.Disconnect();
         isConnect = false;
         needConnect = true;
         CorrectPathes.MakeCorrect(ref infoPath, ref roomPath);
+        PlayerSetting();
+        SettingPhoton();
+    }
+    void PlayerSetting()
+    {
         player = new PlayerInfo(infoPath);
         if(!player.correctRead)
         {       
             player = CreateAccount();
         } 
+    }
+    void SettingPhoton()
+    {
         PhotonNetwork.NickName = player.nickName;
-        nickNameText.text += PhotonNetwork.NickName;
         //PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = "1";
     }
@@ -50,12 +62,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         isConnect = true;
-        statusText.color = new Color(0, 100, 0);
-        statusText.text = "Connected!";
         numberOfRoom = UnityEngine.Random.Range(1000,9999);
         roomCodeText.text = "Room code: " + numberOfRoom.ToString();
         RoomCode roomCode = new RoomCode(roomPath);
         roomCode.EditCode(numberOfRoom);
+        waiting.SetActive(false);
         Debug.Log("Connected to Master");   
     }
     public void CreateRoom()
@@ -70,7 +81,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        Debug.Log("Error"+returnCode.ToString() + ": " + message);  
+        Debug.Log("Error" + returnCode.ToString() + ": " + message);  
     }
     public void JoinToRoom()
     {
@@ -102,17 +113,36 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         isConnect = false;
         needConnect = true;
         Debug.Log("Disconnected from Master: " + cause.ToString());
-        if(statusText == null) return;
-        statusText.color = new Color(255, 0, 0);
-        statusText.text = "Disconnected!";
-        roomCodeText.text = "Room code: xxxx";
+        roomCodeText.text = "Room code: XXXX";
     }
     void Update()
     {
         if(needConnect && !isConnect) 
         {
+            waiting.SetActive(true);
             needConnect = false;
             PhotonNetwork.ConnectUsingSettings();
         }
+    }
+    void ButtonFalse()
+    {
+        creatButton.SetActive(false);
+        joinButton.SetActive(false);
+    }
+    public void Creating()
+    {
+        ButtonFalse();
+        creating.SetActive(true);
+        maxHP.text = "20";
+    }
+    public void Joining()
+    {
+        ButtonFalse();
+        joining.SetActive(true);
+    }
+    public void ExitFromLobby()
+    {
+        PhotonNetwork.Disconnect();
+
     }
 }
