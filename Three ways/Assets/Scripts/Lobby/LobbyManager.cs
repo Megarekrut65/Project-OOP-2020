@@ -18,19 +18,24 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private bool isConnect;
     private bool needConnect;
     public GameObject waiting;
+    public Text waitingText;
+    public GameObject errorsBoard;
     public GameObject creating;
     public GameObject joining;
-    public GameObject creatButton;
-    public GameObject joinButton;
+    public GameObject lobbyMenu;
 
     void Start()
+    {
+        SetDisconnect();
+        CorrectPathes.MakeCorrect(ref infoPath, ref roomPath);
+        PlayerSetting();
+        SettingPhoton();
+    }
+    public void SetDisconnect()
     {
         PhotonNetwork.Disconnect();
         isConnect = false;
         needConnect = true;
-        CorrectPathes.MakeCorrect(ref infoPath, ref roomPath);
-        PlayerSetting();
-        SettingPhoton();
     }
     void PlayerSetting()
     {
@@ -72,22 +77,29 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void CreateRoom()
     {
         if(!isConnect) return;
+        waiting.SetActive(true);
+        waitingText.text = "Creating...";
         Debug.Log("Creating...");  
         PhotonNetwork.CreateRoom(numberOfRoom.ToString(), new Photon.Realtime.RoomOptions{MaxPlayers = 2});
     }
     public override void OnCreatedRoom()
     {
+        waiting.SetActive(false);
         Debug.Log("Created!");
     }
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
+        errorsBoard.SetActive(true);
+        errorsBoard.GetComponent<Errors>().SetError("Error" + ": " + message);
         Debug.Log("Error" + returnCode.ToString() + ": " + message);  
     }
     public void JoinToRoom()
     {
         if(!isConnect) return;
+        waiting.SetActive(true);
+        waitingText.text = "Joining...";
         Debug.Log("Joining...");
-        if(roomCode.text.Length == 0) OnJoinRoomFailed(32758, " Game does not exist");
+        if(roomCode.text.Length == 0) OnJoinRoomFailed(32758, " Room code is too short");
         else 
         {
             RoomCode code = new RoomCode(roomPath);
@@ -97,11 +109,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
+        waiting.SetActive(false);
         Debug.Log("Joined the room");
         PhotonNetwork.LoadLevel("Fight"); 
     }
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
+        errorsBoard.SetActive(true);
+        errorsBoard.GetComponent<Errors>().SetError("Error" + ": " + message);
         Debug.Log("Error"+returnCode.ToString() + ": " + message);  
     }
     public override void OnLeftLobby()
@@ -120,29 +135,24 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if(needConnect && !isConnect) 
         {
             waiting.SetActive(true);
+            waitingText.text = "Connecting...";
             needConnect = false;
             PhotonNetwork.ConnectUsingSettings();
         }
     }
-    void ButtonFalse()
-    {
-        creatButton.SetActive(false);
-        joinButton.SetActive(false);
-    }
     public void Creating()
     {
-        ButtonFalse();
+        lobbyMenu.SetActive(false);
         creating.SetActive(true);
         maxHP.text = "20";
     }
     public void Joining()
     {
-        ButtonFalse();
+        lobbyMenu.SetActive(false);
         joining.SetActive(true);
     }
     public void ExitFromLobby()
     {
         PhotonNetwork.Disconnect();
-
     }
 }
