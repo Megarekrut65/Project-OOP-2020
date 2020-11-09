@@ -3,5 +3,5 @@ Password=1111
 EMail=@gmail.com
 Coins=0
 Points=100
-Avatar=0
+Avatar=1
 PurchasedAvatars=0,

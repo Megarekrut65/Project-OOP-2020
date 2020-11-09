@@ -1,2 +1,2 @@
-Room code=7811
-Max hp=7811
+Room code=5383
+Max hp=5383

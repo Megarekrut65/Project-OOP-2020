@@ -1,2 +1,2 @@
-Room code=5714
-Max hp=5714
+Room code=6468
+Max hp=6468

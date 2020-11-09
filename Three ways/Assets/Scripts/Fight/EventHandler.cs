@@ -21,6 +21,8 @@ public class EventHandler : MonoBehaviour
     public GameObject rightPerson;
     public Text roomCodeText;
     private string roomPath = "room-info.txt";
+    private Slider leftHP;
+    private Slider rightHP;
 
     IEnumerator ShowControlers()
     {
@@ -37,6 +39,8 @@ public class EventHandler : MonoBehaviour
     {
         left = new GameEvent(maxHP);
         right = new GameEvent(maxHP);  
+        leftHP = GameObject.Find("LeftHP").GetComponent<Slider>();
+        rightHP = GameObject.Find("RightHP").GetComponent<Slider>();
         selectedLeft = GameObject.Find("LeftCheck").GetComponent<Text>();
         selectedRight = GameObject.Find("RightCheck").GetComponent<Text>();
     }
@@ -102,11 +106,18 @@ public class EventHandler : MonoBehaviour
             left.protectIndex = protectControler.GetComponent<SelectedWay>().index;
         }
     }
+    IEnumerator FightEnd()
+    {
+        StopCoroutine("ShowControlers");
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("EndFight");
+        StopCoroutine("FightEnd");
+    }
     void CheckHealth()
     {
-        if(left.hp <= 0 || right.hp <= 0)
+        if(leftHP.value <= 0 || rightHP.value <= 0)
         {
-            SceneManager.LoadScene("EndFight");
+            StartCoroutine("FightEnd");
         }
     }
     void Update()
