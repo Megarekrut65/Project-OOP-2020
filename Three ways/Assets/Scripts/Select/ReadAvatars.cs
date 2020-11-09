@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ReadAvatars : MonoBehaviour
 {
     private PlayerInfo player;
-    public string accountPath;
     public GameObject[] objects;
     public Image[] attacks; 
     public Image[] protects; 
@@ -18,17 +17,29 @@ public class ReadAvatars : MonoBehaviour
     private int minIndex = 0;
     private int maxIndex = 2;
     public string infoPath = "player-info.txt";
+    
+    private PlayerInfo CreateAccount()
+    {
+        PlayerInfo newPlayer = new PlayerInfo(
+            "Player" + UnityEngine.Random.Range(1000,9999).ToString(),
+            "1111", "@gmail.com");
+            newPlayer.CreateInfoFile(infoPath);
 
+            return newPlayer;
+    }
     public void SaveAvatar()
     {
-        CorrectPathes.MakeCorrect(ref infoPath);
         player.currentIndexOfAvatar = currentIndex;
         player.CreateInfoFile(infoPath);
     }
     void Start()
     {
-        CorrectPathes.MakeCorrect(ref accountPath);
-        player = new PlayerInfo(accountPath);
+        CorrectPathes.MakeCorrect(ref infoPath);
+        player = new PlayerInfo(infoPath);
+        if(!player.correctRead)
+        {       
+            player = CreateAccount();
+        } 
         EditAvatars();
     }
     void EditAvatars()

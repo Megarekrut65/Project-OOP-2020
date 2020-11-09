@@ -600,7 +600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.10453595, y: 0.3362695}
   m_AnchorMax: {x: 0.26958823, y: 0.6632695}
-  m_AnchoredPosition: {x: -1.5000305, y: 0}
+  m_AnchoredPosition: {x: -1.5, y: 0}
   m_SizeDelta: {x: -1, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &161944657
@@ -871,7 +871,6 @@ MonoBehaviour:
   - {fileID: 3558499281582417549, guid: e3145520ae685af479d9597d0e3becf9, type: 3}
   infoPath: player-info.txt
   isTwoPlayers: 0
-  roomCodeText: {fileID: 1484446376}
 --- !u!1 &282661880
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,6 +2910,7 @@ MonoBehaviour:
   maxHP: 5
   leftPerson: {fileID: 0}
   rightPerson: {fileID: 0}
+  roomCodeText: {fileID: 1484446376}
 --- !u!1 &1964434776
 GameObject:
   m_ObjectHideFlags: 0

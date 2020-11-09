@@ -13,12 +13,15 @@ public class EventHandler : MonoBehaviour
     public GameEvent right;
     private Text selectedLeft;
     private Text selectedRight;
-    private float waitForNext = 4f;
+    private float waitForNext = 3f;
     public int maxHP = 5;
     private bool needWait;
     private bool wasFight;
     public GameObject leftPerson;
     public GameObject rightPerson;
+    public Text roomCodeText;
+    private string roomPath = "room-info.txt";
+
     IEnumerator ShowControlers()
     {
         yield return new WaitForSeconds(waitForNext);
@@ -37,9 +40,16 @@ public class EventHandler : MonoBehaviour
         selectedLeft = GameObject.Find("LeftCheck").GetComponent<Text>();
         selectedRight = GameObject.Find("RightCheck").GetComponent<Text>();
     }
+    void SetRoom()
+    {
+        CorrectPathes.MakeCorrect(ref roomPath);
+        RoomInfo roomCode = new RoomInfo(roomPath);
+        roomCodeText.text = "Room: " + roomCode.GetCode().ToString();
+    }
     void Start()
     {
         SetObjects();
+        SetRoom();
         needWait = false;
     }
     public void Begin()

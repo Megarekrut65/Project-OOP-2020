@@ -14,10 +14,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] playerPrefabs;
     private PlayerInfo player;
     public string infoPath = "player-info.txt";
-    private string roomPath = "room-code.txt";
     public bool isTwoPlayers;
     private GameObject mainCamera;
-    public Text roomCodeText;
     
     void SetPlayer()
     {
@@ -30,12 +28,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     void Start()
     {
-        CorrectPathes.MakeCorrect(ref infoPath, ref roomPath);
+        CorrectPathes.MakeCorrect(ref infoPath);
         PhotonPeer.RegisterType(typeof(GameEvent), 100, SerializeGameEvent, DeserializeGameEvent);
         isTwoPlayers = false;
         mainCamera = GameObject.Find("Main Camera");
-        RoomCode roomCode = new RoomCode(roomPath);
-        roomCodeText.text = "Room: " + roomCode.GetCode().ToString();
         SetPlayer();
     }
 

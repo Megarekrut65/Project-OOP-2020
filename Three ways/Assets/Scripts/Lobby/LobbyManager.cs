@@ -8,7 +8,7 @@ using System;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    private string roomPath = "room-code.txt";
+    private string roomPath = "room-info.txt";
     public Text roomCodeText;
     public InputField maxHP;
     public InputField roomCode;
@@ -69,7 +69,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         isConnect = true;
         numberOfRoom = UnityEngine.Random.Range(1000,9999);
         roomCodeText.text = "Room code: " + numberOfRoom.ToString();
-        RoomCode roomCode = new RoomCode(roomPath);
+        RoomInfo roomCode = new RoomInfo(roomPath);
         roomCode.EditCode(numberOfRoom);
         waiting.SetActive(false);
         Debug.Log("Connected to Master");   
@@ -102,7 +102,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if(roomCode.text.Length == 0) OnJoinRoomFailed(32758, " Room code is too short");
         else 
         {
-            RoomCode code = new RoomCode(roomPath);
+            RoomInfo code = new RoomInfo(roomPath);
             code.EditCode(Convert.ToInt32(roomCode.text));
             PhotonNetwork.JoinRoom(roomCode.text);
         }
@@ -128,7 +128,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         isConnect = false;
         needConnect = true;
         Debug.Log("Disconnected from Master: " + cause.ToString());
-        roomCodeText.text = "Room code: XXXX";
+        if(roomCodeText != null) roomCodeText.text = "Room code: XXXX";
     }
     void Update()
     {
