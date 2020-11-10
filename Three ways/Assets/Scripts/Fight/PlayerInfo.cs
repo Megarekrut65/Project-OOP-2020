@@ -9,7 +9,7 @@ public class PlayerInfo
     private string password;
     public string eMail;
     private int coins;
-    private int points;
+    public int points;
     public int currentIndexOfAvatar;
     public List<int> indexesOfPurchasedAvatars;
     public bool correctRead;

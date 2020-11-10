@@ -14,6 +14,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public InputField roomCode;
     private PlayerInfo player;
     public string infoPath = "player-info.txt";
+    public string gamePath = "game-info.txt";
     private int numberOfRoom;
     private bool isConnect;
     private bool needConnect;
@@ -27,7 +28,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     void Start()
     {
         SetDisconnect();
-        CorrectPathes.MakeCorrect(ref infoPath, ref roomPath);
+        CorrectPathes.MakeCorrect(ref infoPath, ref roomPath, ref gamePath);
         PlayerSetting();
         SettingPhoton();
     }
@@ -44,6 +45,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         {       
             player = CreateAccount();
         } 
+        GameInfo gameInfo = new GameInfo(player.currentIndexOfAvatar, player.points);
+        gameInfo.CreateInfoFile(gamePath); 
     }
     void SettingPhoton()
     {

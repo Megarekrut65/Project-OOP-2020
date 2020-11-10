@@ -12,39 +12,46 @@ using ExitGames.Client.Photon;
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public GameObject[] playerPrefabs;
-    private PlayerInfo player;
-    public string infoPath = "player-info.txt";
     public bool isTwoPlayers;
     private GameObject mainCamera;
-    
+    public GameObject leftBoard;
+    public GameObject rightBoard;
+    public GameObject waitRoom;
+    public GameObject gameRoom;
+    public GameObject playerInfo;
+    private Vector3 pos = Vector3.zero;   
     void SetPlayer()
     {
-        Vector3 pos = Vector3.zero;   
-        player = new PlayerInfo(infoPath);
-        string playerName = "Person";
-        if(player.correctRead) 
-            playerName = playerPrefabs[player.currentIndexOfAvatar].name;
+        int index = leftBoard.GetComponent<InfoBoard>().info.indexOfAvatar;
+        string playerName = playerPrefabs[index].name;
         PhotonNetwork.Instantiate(playerName, pos, Quaternion.identity);
     }
     void Start()
     {
-        CorrectPathes.MakeCorrect(ref infoPath);
         PhotonPeer.RegisterType(typeof(GameEvent), 100, SerializeGameEvent, DeserializeGameEvent);
+        PhotonPeer.RegisterType(typeof(GameInfo), 101, SerializeGameInfo, DeserializeGameInfo);
         isTwoPlayers = false;
+        PhotonNetwork.Instantiate(playerInfo.name, pos, Quaternion.identity);
         mainCamera = GameObject.Find("Main Camera");
-        SetPlayer();
     }
-
     void Update()
     {
-        if(PhotonNetwork.CurrentRoom!= null && PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        /*if(PhotonNetwork.CurrentRoom!= null && PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             if(!isTwoPlayers)
             {
                 mainCamera.GetComponent<EventHandler>().Begin();
             }
             isTwoPlayers = true;
-        }         
+        } */
+        if(leftBoard.GetComponent<InfoBoard>().info.isReady &&
+        rightBoard.GetComponent<InfoBoard>().info.isReady)
+        {
+            leftBoard.GetComponent<InfoBoard>().info.isReady = false;
+            waitRoom.SetActive(false);
+            gameRoom.SetActive(true);
+            SetPlayer();
+        }
     }
     public void Leave()
     {
@@ -62,6 +69,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         Debug.LogFormat("Player {0} left room", otherPlayer.NickName);
     }
+    //serializes and deserializes
     public static object DeserializeGameEvent(byte[] data)
     {
         GameEvent result = new GameEvent();
@@ -80,6 +88,25 @@ public class GameManager : MonoBehaviourPunCallbacks
         BitConverter.GetBytes(gameEvent.attackIndex).CopyTo(result, 1);
         BitConverter.GetBytes(gameEvent.protectIndex).CopyTo(result, 5);
         BitConverter.GetBytes(gameEvent.hp).CopyTo(result, 9);
+
+        return result;
+    }
+    public static object DeserializeGameInfo(byte[] data)
+    {
+        GameInfo result = new GameInfo();
+        result.isReady = BitConverter.ToBoolean(data, 0);
+        result.indexOfAvatar = BitConverter.ToInt32(data, 1);
+        result.points = BitConverter.ToInt32(data, 5);
+
+        return result;
+    }
+    public static byte[] SerializeGameInfo(object obj)
+    {
+        GameInfo gameEvent = (GameInfo)obj;
+        byte[] result = new byte[ 1 + 4 + 4];
+        BitConverter.GetBytes(gameEvent.isReady).CopyTo(result, 0);
+        BitConverter.GetBytes(gameEvent.indexOfAvatar).CopyTo(result, 1);
+        BitConverter.GetBytes(gameEvent.points).CopyTo(result, 5);
 
         return result;
     }

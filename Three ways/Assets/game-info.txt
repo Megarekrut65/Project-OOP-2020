@@ -1,0 +1,2 @@
+Avatar=2
+Points=100

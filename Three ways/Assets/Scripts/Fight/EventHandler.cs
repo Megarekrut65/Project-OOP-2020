@@ -17,6 +17,7 @@ public class EventHandler : MonoBehaviour
     public int maxHP = 5;
     private bool needWait;
     private bool wasFight;
+    private bool isSeted;
     public GameObject leftPerson;
     public GameObject rightPerson;
     public Text roomCodeText;
@@ -51,12 +52,14 @@ public class EventHandler : MonoBehaviour
     }
     void Start()
     {
-        SetObjects();
-        SetRoom();
-        needWait = false;
+        isSeted = false;
     }
     public void Begin()
     {
+        SetObjects();
+        SetRoom();
+        needWait = false;
+        isSeted = true;
         StartCoroutine("ShowControlers");
     }
     public void NextPerson()
@@ -121,6 +124,7 @@ public class EventHandler : MonoBehaviour
     }
     void Update()
     {
+        if(!isSeted) return;
         CheckHealth();
         SetTemp();
         CheckSelectings();
