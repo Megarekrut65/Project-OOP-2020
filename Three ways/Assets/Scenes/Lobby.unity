@@ -159,7 +159,7 @@ RectTransform:
   m_AnchorMin: {x: 0.25100002, y: 0.6438561}
   m_AnchorMax: {x: 0.75123924, y: 0.80053604}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0.000008000143}
+  m_SizeDelta: {x: 0, y: 20.290062}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &24553292
 MonoBehaviour:
@@ -749,10 +749,10 @@ RectTransform:
   m_Father: {fileID: 1178964468}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -7.209999}
-  m_SizeDelta: {x: 0, y: 3.6260872}
+  m_AnchorMin: {x: 0, y: 0.08388553}
+  m_AnchorMax: {x: 1, y: 0.9328916}
+  m_AnchoredPosition: {x: 0, y: -0.12000084}
+  m_SizeDelta: {x: 0, y: 0.8376045}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &579606511
 MonoBehaviour:
@@ -781,15 +781,13 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 200
-    m_Alignment: 4
+    m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Create room
-
-'
+  m_Text: Create
 --- !u!222 &579606512
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -951,10 +949,10 @@ RectTransform:
   m_Father: {fileID: 1132909303}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -40.2}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0.40829623, y: 0.28473204}
+  m_AnchorMax: {x: 0.5921481, y: 0.38200003}
+  m_AnchoredPosition: {x: 0, y: -0.05999756}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &777934905
 Animator:
@@ -1052,10 +1050,10 @@ RectTransform:
   m_Father: {fileID: 548655085}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.36926803, y: 0.268268}
-  m_AnchorMax: {x: 0.63336605, y: 0.40873206}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0.0000019024374}
+  m_AnchorMin: {x: 0.42726803, y: 0.26500002}
+  m_AnchorMax: {x: 0.57736605, y: 0.40873206}
+  m_AnchoredPosition: {x: -0.5, y: 0.5}
+  m_SizeDelta: {x: 0.6355896, y: 17.065107}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &822574475
 MonoBehaviour:
@@ -1163,7 +1161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 1
-  m_AspectRatio: 3.7603643
+  m_AspectRatio: 2.1519606
 --- !u!1 &908397778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,10 +1737,10 @@ RectTransform:
   m_Father: {fileID: 1535025269}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.37100002, y: 0.07553595}
-  m_AnchorMax: {x: 0.63736606, y: 0.21280393}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.0000038146973, y: 0.00000103004}
+  m_AnchorMin: {x: 0.42063403, y: 0.07553595}
+  m_AnchorMax: {x: 0.58173203, y: 0.21280393}
+  m_AnchoredPosition: {x: -0.55999756, y: 0}
+  m_SizeDelta: {x: 0.98124695, y: 17.601038}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1178964469
 MonoBehaviour:
@@ -1764,11 +1762,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 1, g: 0.95496154, b: 0, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.90924674, b: 0.3537736, a: 1}
+    m_PressedColor: {r: 1, g: 0.909804, b: 0.3529412, a: 1}
+    m_SelectedColor: {r: 1, g: 0.909804, b: 0.3529412, a: 1}
+    m_DisabledColor: {r: 1, g: 0.9568628, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1850,7 +1848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 1
-  m_AspectRatio: 3.880964
+  m_AspectRatio: 2.3705647
 --- !u!1 &1224908882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2364,7 +2362,7 @@ RectTransform:
   m_AnchorMin: {x: 0.46563402, y: 0.516268}
   m_AnchorMax: {x: 0.557366, y: 0.601}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.0000009536743, y: 0.0000055660475}
+  m_SizeDelta: {x: 0.0000009536743, y: 10.9727955}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1643434683
 MonoBehaviour:
@@ -2730,7 +2728,7 @@ RectTransform:
   m_AnchorMin: {x: 0.25263402, y: 0.565}
   m_AnchorMax: {x: 0.746366, y: 0.69600004}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0.0000049514783}
+  m_SizeDelta: {x: 0, y: 16.96451}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1787596902
 MonoBehaviour:
@@ -2816,10 +2814,10 @@ RectTransform:
   m_Father: {fileID: 822574474}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -9.099998}
-  m_SizeDelta: {x: 0, y: 10.878273}
+  m_AnchorMin: {x: 0, y: 0.082}
+  m_AnchorMax: {x: 1, y: 0.95085764}
+  m_AnchoredPosition: {x: 0, y: -0.35000038}
+  m_SizeDelta: {x: 0, y: -0.61292267}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1821413380
 MonoBehaviour:
@@ -2854,9 +2852,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Join to room
-
-'
+  m_Text: Join
 --- !u!222 &1821413381
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2996,7 +2992,7 @@ RectTransform:
   m_AnchorMin: {x: 0.266, y: 0.516268}
   m_AnchorMax: {x: 0.46563402, y: 0.601}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.0000076293945, y: 0.000003658699}
+  m_SizeDelta: {x: -0.0000076293945, y: 10.972799}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1952382064
 MonoBehaviour:

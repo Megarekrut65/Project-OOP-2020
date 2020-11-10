@@ -1,2 +1,2 @@
-Room code=5383
-Max hp=5383
+Room code=3450
+Max hp=3450

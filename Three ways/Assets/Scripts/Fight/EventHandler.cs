@@ -26,9 +26,8 @@ public class EventHandler : MonoBehaviour
 
     IEnumerator ShowControlers()
     {
-        yield return new WaitForSeconds(waitForNext);
         left.isSelected = false;
-        right.isSelected = false; 
+        yield return new WaitForSeconds(waitForNext); 
         gameCanvas.GetComponent<Canvas>().sortingOrder = 20;
         attackControler.SetActive(true);
         attackControler.GetComponent<SelectedWay>().Refresh();
@@ -109,7 +108,7 @@ public class EventHandler : MonoBehaviour
     IEnumerator FightEnd()
     {
         StopCoroutine("ShowControlers");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("EndFight");
         StopCoroutine("FightEnd");
     }

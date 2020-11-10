@@ -1,2 +1,2 @@
-Room code=6468
-Max hp=6468
+Room code=1594
+Max hp=1594

@@ -76,10 +76,16 @@ public class Person : MonoBehaviour, IPunObservable
         animator.SetBool("run", isRun );
         wasHit = false;
     }
+    public void SetIdle()
+    {
+        animator.SetBool("block", false );
+        animator.SetBool("damage", false );
+    }
     public void GetHit(int enemyAttack)
     {
         if(enemyAttack != gameEvent.protectIndex)
         {
+            animator.SetBool("damage", true );
             if(photonView.IsMine)
             { 
                 mainCamera.GetComponent<EventHandler>().left.hp--; 
@@ -91,6 +97,10 @@ public class Person : MonoBehaviour, IPunObservable
                 hpSlider.value = gameEvent.hp - 1;
                 hpText.text = (gameEvent.hp - 1).ToString();
             }
+        }
+        else
+        {
+            animator.SetBool("block", true );
         }
     }
     public void Fight()
