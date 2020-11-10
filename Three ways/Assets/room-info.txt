@@ -1,2 +1,2 @@
-Room code=1594
-Max hp=1594
+Room code=7213
+Max hp=7213
