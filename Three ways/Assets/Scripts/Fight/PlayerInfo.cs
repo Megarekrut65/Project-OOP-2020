@@ -13,6 +13,12 @@ public class PlayerInfo
     public int currentIndexOfAvatar;
     public List<int> indexesOfPurchasedAvatars;
     public bool correctRead;
+
+    public void AddResult(GameResult result)
+    {
+        points += result.newPoints;
+        coins += result.coins;
+    }
     public PlayerInfo()
     {
         nickName = "Player1";

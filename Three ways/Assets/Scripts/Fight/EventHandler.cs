@@ -22,6 +22,9 @@ public class EventHandler : MonoBehaviour
     public GameObject rightPerson;
     private Slider leftHP;
     private Slider rightHP;
+    private string resultPath = "result-info.txt";
+    public int minePoints = 0;
+    public int otherPoints = 0;
 
     IEnumerator ShowControlers()
     {
@@ -44,6 +47,7 @@ public class EventHandler : MonoBehaviour
     }
     void Start()
     {
+        CorrectPathes.MakeCorrect(ref resultPath);
         isSeted = false;
     }
     public void Begin()
@@ -99,10 +103,31 @@ public class EventHandler : MonoBehaviour
             left.protectIndex = protectControler.GetComponent<SelectedWay>().index;
         }
     }
+    void Win()
+    {
+        GameResult result = GameResult.CountWin(minePoints, otherPoints);
+        result.WriteResult(resultPath);
+    }
+    void Lose()
+    {
+        GameResult result = GameResult.CountLose(minePoints, otherPoints);
+        result.WriteResult(resultPath);
+    }
+    void CheckWiner()
+    {
+        if(leftHP.value <= 0 && rightHP.value <= 0) 
+        {
+            Win();
+            return;
+        }
+        if(leftHP.value <= 0) Lose();
+        if(rightHP.value <= 0) Win();
+    }
     IEnumerator FightEnd()
     {
         StopCoroutine("ShowControlers");
         yield return new WaitForSeconds(3f);
+        CheckWiner();
         SceneManager.LoadScene("EndFight");
         StopCoroutine("FightEnd");
     }

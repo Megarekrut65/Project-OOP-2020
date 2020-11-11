@@ -25,8 +25,6 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
-    PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -906,13 +904,13 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: 24cf49a6a922107bdf7f00c14c24fedb
+      Hash: c37826d78ffa501efe34e340e5de9e0d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EventHandler
   - hash:
       serializedVersion: 2
-      Hash: 6059f9b8098f6840886604f9b0dd54d7
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SyncPlayersInfo
@@ -924,7 +922,7 @@ ScriptsOnlyBuild:
     className: PhotonRigidbody2DView
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: fd5d448b1d5f79b4e754708bed4462f9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameOver

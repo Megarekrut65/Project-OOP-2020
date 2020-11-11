@@ -1,0 +1,2 @@
+New points=12
+Coins=8

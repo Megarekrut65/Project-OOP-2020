@@ -1,0 +1,2 @@
+New points=3
+Coins=1
