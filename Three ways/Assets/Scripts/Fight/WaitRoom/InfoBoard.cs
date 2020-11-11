@@ -7,6 +7,7 @@ using System.IO;
 
 public class InfoBoard : MonoBehaviour
 {
+    public GameObject mainCamera;
     public GameObject waiting;
     public GameObject data;
     public Text nickNameText;
@@ -14,6 +15,21 @@ public class InfoBoard : MonoBehaviour
     public Text points;
     public GameInfo info;
     public bool isSeted;
+    public Text roomCodeText;
+    private string roomPath = "room-info.txt"; 
+    public RoomInfo roomCode;
+
+    public void SetRoom()
+    {   
+        roomCodeText.text = "Room: " + roomCode.code.ToString();
+        mainCamera.GetComponent<EventHandler>().maxHP = roomCode.maxHP; 
+    }
+    public void ReadRoom()
+    {
+        CorrectPathes.MakeCorrect(ref roomPath);
+        roomCode = new RoomInfo();
+        roomCode.ReadInfo(roomPath);
+    }
     void Start()
     {
         info = new GameInfo();
@@ -61,6 +77,7 @@ public struct GameInfo
     public int indexOfAvatar;
     public int points;
     public bool isReady;
+
     public GameInfo(int indexOfAvatar = 0, int points = 0)
     {
         this.indexOfAvatar = indexOfAvatar;

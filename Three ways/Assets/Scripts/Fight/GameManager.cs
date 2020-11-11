@@ -19,13 +19,15 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject waitRoom;
     public GameObject gameRoom;
     public GameObject playerInfo;
-    private Vector3 pos = Vector3.zero;   
+    private Vector3 pos = Vector3.zero;  
+
     void SetPlayer()
     {
         int index = leftBoard.GetComponent<InfoBoard>().info.indexOfAvatar;
         string playerName = playerPrefabs[index].name;
         PhotonNetwork.Instantiate(playerName, pos, Quaternion.identity);
     }
+
     void Start()
     {
         PhotonPeer.RegisterType(typeof(GameEvent), 100, SerializeGameEvent, DeserializeGameEvent);
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             waitRoom.SetActive(false);
             gameRoom.SetActive(true);
             SetPlayer();
+            mainCamera.GetComponent<EventHandler>().Begin();
         }
     }
     public void Leave()

@@ -1601,12 +1601,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8e33beb0e6b2640925592a07592d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1940780372}
   waiting: {fileID: 387516294}
   data: {fileID: 585225049}
   nickNameText: {fileID: 1202157608}
   avatar: {fileID: 1286504892}
   points: {fileID: 500152627}
   isSeted: 0
+  roomCodeText: {fileID: 1484446376}
 --- !u!1 &512269865
 GameObject:
   m_ObjectHideFlags: 0
@@ -4581,12 +4583,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8e33beb0e6b2640925592a07592d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1940780372}
   waiting: {fileID: 1628369902}
   data: {fileID: 1859932491}
   nickNameText: {fileID: 936190637}
   avatar: {fileID: 868684141}
   points: {fileID: 1302609850}
   isSeted: 0
+  roomCodeText: {fileID: 1484446376}
 --- !u!1 &1901562559
 GameObject:
   m_ObjectHideFlags: 0
@@ -4865,7 +4869,6 @@ MonoBehaviour:
   maxHP: 5
   leftPerson: {fileID: 0}
   rightPerson: {fileID: 0}
-  roomCodeText: {fileID: 1484446376}
 --- !u!1 &1964434776
 GameObject:
   m_ObjectHideFlags: 0

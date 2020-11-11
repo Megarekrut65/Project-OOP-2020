@@ -3,10 +3,10 @@ using System.IO;
 
 public class RoomInfo
 {
-    private string path;
-    private int code;
-    private int maxHP;
-    private void WriteInfo()
+    public int code;
+    public int maxHP;
+
+    public void WriteInfo(string path)
     {
         FileStream file = new FileStream(path, FileMode.OpenOrCreate);
         StreamWriter writer = new StreamWriter(file);
@@ -14,7 +14,7 @@ public class RoomInfo
         writer.WriteLine("Max hp=" + code.ToString());
         writer.Close();
     }
-    private void ReadInfo()
+    public void ReadInfo(string path)
     {
         FileStream file = new FileStream(path, FileMode.OpenOrCreate);
         StreamReader reader = new StreamReader(file);
@@ -24,18 +24,9 @@ public class RoomInfo
         else maxHP = Convert.ToInt32(reader.ReadLine().Substring(7));
         reader.Close();
     }
-    public RoomInfo(string path)
+    public RoomInfo(int code = 1111, int maxHP = 0)
     {
-        this.path = path;
-        ReadInfo();
-    }
-    public int GetCode()
-    {
-        return code;
-    }
-    public void EditCode(int newCode)
-    {
-        code = newCode;
-        WriteInfo();
+        this.code = code;
+        this.maxHP = maxHP;
     }
 }

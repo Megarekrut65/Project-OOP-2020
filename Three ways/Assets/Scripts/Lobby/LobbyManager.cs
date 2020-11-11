@@ -72,8 +72,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         isConnect = true;
         numberOfRoom = UnityEngine.Random.Range(1000,9999);
         roomCodeText.text = "Room code: " + numberOfRoom.ToString();
-        RoomInfo roomCode = new RoomInfo(roomPath);
-        roomCode.EditCode(numberOfRoom);
         waiting.SetActive(false);
         Debug.Log("Connected to Master");   
     }
@@ -82,6 +80,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if(!isConnect) return;
         waiting.SetActive(true);
         waitingText.text = "Creating...";
+        RoomInfo roomCode = new RoomInfo(numberOfRoom, Convert.ToInt32(maxHP.text));
+        roomCode.WriteInfo(roomPath);
         Debug.Log("Creating...");  
         PhotonNetwork.CreateRoom(numberOfRoom.ToString(), new Photon.Realtime.RoomOptions{MaxPlayers = 2});
     }
@@ -105,8 +105,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if(roomCode.text.Length == 0) OnJoinRoomFailed(32758, " Room code is too short");
         else 
         {
-            RoomInfo code = new RoomInfo(roomPath);
-            code.EditCode(Convert.ToInt32(roomCode.text));
             PhotonNetwork.JoinRoom(roomCode.text);
         }
     }
