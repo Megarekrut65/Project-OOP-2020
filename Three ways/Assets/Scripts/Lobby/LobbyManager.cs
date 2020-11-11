@@ -80,8 +80,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if(!isConnect) return;
         waiting.SetActive(true);
         waitingText.text = "Creating...";
-        RoomInfo roomCode = new RoomInfo(numberOfRoom, Convert.ToInt32(maxHP.text));
-        roomCode.WriteInfo(roomPath);
+        RoomInfo roomInfo = new RoomInfo(numberOfRoom, Convert.ToInt32(maxHP.text));
+        roomInfo.WriteInfo(roomPath);
         Debug.Log("Creating...");  
         PhotonNetwork.CreateRoom(numberOfRoom.ToString(), new Photon.Realtime.RoomOptions{MaxPlayers = 2});
     }
@@ -105,6 +105,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if(roomCode.text.Length == 0) OnJoinRoomFailed(32758, " Room code is too short");
         else 
         {
+            RoomInfo roomInfo = new RoomInfo();
+            roomInfo.WriteInfo(roomPath, false);
             PhotonNetwork.JoinRoom(roomCode.text);
         }
     }

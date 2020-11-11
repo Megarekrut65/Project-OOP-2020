@@ -16,19 +16,11 @@ public class InfoBoard : MonoBehaviour
     public GameInfo info;
     public bool isSeted;
     public Text roomCodeText;
-    private string roomPath = "room-info.txt"; 
-    public RoomInfo roomCode;
 
-    public void SetRoom()
+    public void SetRoom(RoomInfo roomInfo)
     {   
-        roomCodeText.text = "Room: " + roomCode.code.ToString();
-        mainCamera.GetComponent<EventHandler>().maxHP = roomCode.maxHP; 
-    }
-    public void ReadRoom()
-    {
-        CorrectPathes.MakeCorrect(ref roomPath);
-        roomCode = new RoomInfo();
-        roomCode.ReadInfo(roomPath);
+        roomCodeText.text = "Room: " + roomInfo.code.ToString();
+        mainCamera.GetComponent<EventHandler>().maxHP = roomInfo.maxHP; 
     }
     void Start()
     {
@@ -57,9 +49,16 @@ public class InfoBoard : MonoBehaviour
         waiting.SetActive(false);
         data.SetActive(true);
     }
+    public void PlayerLeave()
+    {
+        isSeted = false;
+        data.SetActive(false);
+        waiting.SetActive(true);
+    }
     public void Ready()
     {
-        info.isReady = true;
+        if(info.isReady) info.isReady = false;
+        else info.isReady = true;
     }
     void Update()
     {

@@ -13,6 +13,7 @@ ScriptsOnlyBuild:
     - ReadAvatars
     - SelectedButton
     - SelectedWay
+    - StartingGame
     - SyncPlayersInfo
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
@@ -185,6 +186,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15450}
     - Class: 114
       Script: {instanceID: 15582}
+    - Class: 114
+      Script: {instanceID: 62902}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1707,7 +1710,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: b189925fcab38bc534317c9a9cf8668b
+      Hash: b12b4e3783d2afe9d45cf9f0b4363fd4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1909,6 +1912,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: adeef9e9239f46b50a885d9abaed5173
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StartingGame
   platform: 5
   scenePathNames:
   - Assets/Scenes/Main.unity

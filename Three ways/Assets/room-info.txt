@@ -1,2 +1,4 @@
-Room code=3007
-Max hp=3007
+Status=other
+Room code=0
+Max hp=0
+0

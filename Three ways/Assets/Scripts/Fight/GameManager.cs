@@ -12,11 +12,11 @@ using ExitGames.Client.Photon;
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public GameObject[] playerPrefabs;
-    public bool isTwoPlayers;
     private GameObject mainCamera;
     public GameObject leftBoard;
     public GameObject rightBoard;
     public GameObject waitRoom;
+    public GameObject startingGame;
     public GameObject gameRoom;
     public GameObject playerInfo;
     private Vector3 pos = Vector3.zero;  
@@ -28,41 +28,35 @@ public class GameManager : MonoBehaviourPunCallbacks
         string playerName = playerPrefabs[index].name;
         PhotonNetwork.Instantiate(playerName, pos, Quaternion.identity);
     }
-
+    void RegisterMyTypes()
+    {
+        PhotonPeer.RegisterType(typeof(GameEvent), 100, SerializeGameEvent, DeserializeGameEvent);
+        PhotonPeer.RegisterType(typeof(GameInfo), 101, SerializeGameInfo, DeserializeGameInfo);
+        PhotonPeer.RegisterType(typeof(RoomInfo), 102, SerializeRoomInfo, DeserializeRoomInfo);
+    }
     void Start()
     {
         isStarted = false;
-        PhotonPeer.RegisterType(typeof(GameEvent), 100, SerializeGameEvent, DeserializeGameEvent);
-        PhotonPeer.RegisterType(typeof(GameInfo), 101, SerializeGameInfo, DeserializeGameInfo);
-        isTwoPlayers = false;
+        RegisterMyTypes();
         PhotonNetwork.Instantiate(playerInfo.name, pos, Quaternion.identity);
         mainCamera = GameObject.Find("Main Camera");
     }
     void Update()
     {
-        /*if(PhotonNetwork.CurrentRoom!= null && PhotonNetwork.CurrentRoom.PlayerCount == 2)
-        {
-            if(!isTwoPlayers)
-            {
-                mainCamera.GetComponent<EventHandler>().Begin();
-            }
-            isTwoPlayers = true;
-        } */
         if(!isStarted&&leftBoard.GetComponent<InfoBoard>().info.isReady &&
         rightBoard.GetComponent<InfoBoard>().info.isReady)
         {
             isStarted = true;
-            StartCoroutine("StartGame");
+            startingGame.SetActive(true);
+            waitRoom.SetActive(false);
+            startingGame.GetComponent<StartingGame>().Game();
         }
     }
-    IEnumerator StartGame()
+    public void StartGame()
     {
-        yield return new WaitForSeconds(1f);
-        waitRoom.SetActive(false);
         gameRoom.SetActive(true);
         SetPlayer();
         mainCamera.GetComponent<EventHandler>().Begin();
-        StopCoroutine("StartGame");
     }
     public void Leave()
     {
@@ -113,11 +107,30 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public static byte[] SerializeGameInfo(object obj)
     {
-        GameInfo gameEvent = (GameInfo)obj;
+        GameInfo gameInfo = (GameInfo)obj;
         byte[] result = new byte[ 1 + 4 + 4];
-        BitConverter.GetBytes(gameEvent.isReady).CopyTo(result, 0);
-        BitConverter.GetBytes(gameEvent.indexOfAvatar).CopyTo(result, 1);
-        BitConverter.GetBytes(gameEvent.points).CopyTo(result, 5);
+        BitConverter.GetBytes(gameInfo.isReady).CopyTo(result, 0);
+        BitConverter.GetBytes(gameInfo.indexOfAvatar).CopyTo(result, 1);
+        BitConverter.GetBytes(gameInfo.points).CopyTo(result, 5);
+
+        return result;
+    }
+    public static object DeserializeRoomInfo(byte[] data)
+    {
+        RoomInfo result = new RoomInfo();
+        result.isHost = BitConverter.ToBoolean(data, 0);
+        result.code = BitConverter.ToInt32(data, 1);
+        result.maxHP = BitConverter.ToInt32(data, 5);
+
+        return result;
+    }
+    public static byte[] SerializeRoomInfo(object obj)
+    {
+        RoomInfo roomInfo = (RoomInfo)obj;
+        byte[] result = new byte[ 1 + 4 + 4];
+        BitConverter.GetBytes(roomInfo.isHost).CopyTo(result, 0);
+        BitConverter.GetBytes(roomInfo.code).CopyTo(result, 1);
+        BitConverter.GetBytes(roomInfo.maxHP).CopyTo(result, 5);
 
         return result;
     }

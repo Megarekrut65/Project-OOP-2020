@@ -1,2 +1,3 @@
-Room code=7225
-Max hp=7225
+Status=host
+Room code=7166
+Max hp=7
