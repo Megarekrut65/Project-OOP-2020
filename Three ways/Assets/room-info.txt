@@ -1,2 +1,2 @@
-Room code=4886
-Max hp=4886
+Room code=4624
+Max hp=4624

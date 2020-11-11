@@ -1,2 +1,2 @@
-Room code=7572
-Max hp=7572
+Room code=5358
+Max hp=5358

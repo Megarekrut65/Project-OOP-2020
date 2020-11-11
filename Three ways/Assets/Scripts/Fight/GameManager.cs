@@ -50,11 +50,17 @@ public class GameManager : MonoBehaviourPunCallbacks
         rightBoard.GetComponent<InfoBoard>().info.isReady)
         {
             leftBoard.GetComponent<InfoBoard>().info.isReady = false;
-            waitRoom.SetActive(false);
-            gameRoom.SetActive(true);
-            SetPlayer();
-            mainCamera.GetComponent<EventHandler>().Begin();
+            StartCoroutine("StartGame");
         }
+    }
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(1f);
+        waitRoom.SetActive(false);
+        gameRoom.SetActive(true);
+        SetPlayer();
+        mainCamera.GetComponent<EventHandler>().Begin();
+        StopCoroutine("StartGame");
     }
     public void Leave()
     {
