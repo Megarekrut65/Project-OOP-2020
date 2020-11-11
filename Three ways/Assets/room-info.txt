@@ -1,2 +1,2 @@
-Room code=4624
-Max hp=4624
+Room code=3007
+Max hp=3007

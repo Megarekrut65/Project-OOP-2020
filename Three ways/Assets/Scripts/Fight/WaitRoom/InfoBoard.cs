@@ -65,7 +65,7 @@ public class InfoBoard : MonoBehaviour
     {
         if(info.isReady)
         {
-            GetComponent<Image>().color = new Color(124,252,0,255);//124, 252, 0
+            GetComponent<Image>().color = new Color(0,255,0,255);//124, 252, 0
         }
         else
         {

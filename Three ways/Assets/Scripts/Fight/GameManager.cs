@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject gameRoom;
     public GameObject playerInfo;
     private Vector3 pos = Vector3.zero;  
+    private bool isStarted;
 
     void SetPlayer()
     {
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        isStarted = false;
         PhotonPeer.RegisterType(typeof(GameEvent), 100, SerializeGameEvent, DeserializeGameEvent);
         PhotonPeer.RegisterType(typeof(GameInfo), 101, SerializeGameInfo, DeserializeGameInfo);
         isTwoPlayers = false;
@@ -46,10 +48,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             isTwoPlayers = true;
         } */
-        if(leftBoard.GetComponent<InfoBoard>().info.isReady &&
+        if(!isStarted&&leftBoard.GetComponent<InfoBoard>().info.isReady &&
         rightBoard.GetComponent<InfoBoard>().info.isReady)
         {
-            leftBoard.GetComponent<InfoBoard>().info.isReady = false;
+            isStarted = true;
             StartCoroutine("StartGame");
         }
     }
