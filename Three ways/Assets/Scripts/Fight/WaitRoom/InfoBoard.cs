@@ -75,11 +75,17 @@ public struct GameInfo
     public int indexOfAvatar;
     public int points;
     public bool isReady;
+    public int code;
+    public int maxHP;
+    public bool isHost;
 
-    public GameInfo(int indexOfAvatar = 0, int points = 0)
+    public GameInfo(int indexOfAvatar = 0, int points = 0, int code = 1000, int maxHP = 20, bool isHost = false)
     {
         this.indexOfAvatar = indexOfAvatar;
         this.points = points;
+        this.code = code;
+        this.maxHP = maxHP;
+        this.isHost = isHost;
         isReady = false;
     }
     public GameInfo(string path)
@@ -87,6 +93,9 @@ public struct GameInfo
         indexOfAvatar = 0;
         points = 0;
         isReady = false;
+        code = 1000;
+        maxHP = 0;
+        isHost = false;
         ReadInfoFromFile(path);
     }
     public void CreateInfoFile(string path)
@@ -95,7 +104,17 @@ public struct GameInfo
         StreamWriter writer = new StreamWriter(file);
         writer.WriteLine("Avatar=" + indexOfAvatar);
         writer.WriteLine("Points=" + points);
+        writer.WriteLine("Room code=" + code.ToString());
+        writer.WriteLine("Max hp=" + maxHP.ToString());
+        string status = "host";
+        if(!isHost) status = "other";
+        writer.WriteLine("Status=" + status);   
         writer.Close();
+    }
+    bool CheckHost(string status)
+    {
+        if(status == "host")  return true;
+        return false;
     }
     void ReadInfoFromFile(string path)
     {
@@ -105,6 +124,12 @@ public struct GameInfo
         indexOfAvatar = Convert.ToInt32(reader.ReadLine().Substring(7));
         if (reader.EndOfStream) return;
         points = Convert.ToInt32(reader.ReadLine().Substring(7));
+        if(reader.EndOfStream) code = 0;
+        else code = Convert.ToInt32(reader.ReadLine().Substring(10));
+        if(reader.EndOfStream) maxHP = 20;
+        else maxHP = Convert.ToInt32(reader.ReadLine().Substring(7));
+        if(reader.EndOfStream) isHost = false;
+        else isHost = CheckHost(reader.ReadLine().Substring(7));
         reader.Close();
     }
 }

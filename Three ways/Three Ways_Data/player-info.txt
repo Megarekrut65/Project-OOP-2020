@@ -1,7 +1,7 @@
-NickName=Player6165
+NickName=Player2854
 Password=1111
 EMail=@gmail.com
-Coins=22
+Coins=38
 Points=164
-Avatar=1
+Avatar=2
 PurchasedAvatars=0,

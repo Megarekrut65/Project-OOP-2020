@@ -32,12 +32,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PlayerSetting();
         SettingPhoton();
     }
-    public void SetDisconnect()
-    {
-        PhotonNetwork.Disconnect();
-        isConnect = false;
-        needConnect = true;
-    }
     void PlayerSetting()
     {
         player = new PlayerInfo(infoPath);
@@ -45,8 +39,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         {       
             player = CreateAccount();
         } 
-        GameInfo gameInfo = new GameInfo(player.currentIndexOfAvatar, player.points);
-        gameInfo.CreateInfoFile(gamePath); 
+    }
+    public void SetDisconnect()
+    {
+        PhotonNetwork.Disconnect();
+        isConnect = false;
+        needConnect = true;
     }
     void SettingPhoton()
     {
@@ -75,13 +73,17 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         waiting.SetActive(false);
         Debug.Log("Connected to Master");   
     }
+    void CreateGameInfo(int code, bool isHost)
+    {
+        GameInfo gameInfo = new GameInfo(player.currentIndexOfAvatar, player.points, code, Convert.ToInt32(maxHP.text), isHost);
+        gameInfo.CreateInfoFile(gamePath); 
+    }
     public void CreateRoom()
     {
         if(!isConnect) return;
         waiting.SetActive(true);
         waitingText.text = "Creating...";
-        RoomInfo roomInfo = new RoomInfo(numberOfRoom, Convert.ToInt32(maxHP.text));
-        roomInfo.WriteInfo(roomPath);
+        CreateGameInfo(numberOfRoom, true);
         Debug.Log("Creating...");  
         PhotonNetwork.CreateRoom(numberOfRoom.ToString(), new Photon.Realtime.RoomOptions{MaxPlayers = 2});
     }
@@ -105,8 +107,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if(roomCode.text.Length == 0) OnJoinRoomFailed(32758, " Room code is too short");
         else 
         {
-            RoomInfo roomInfo = new RoomInfo(numberOfRoom);
-            roomInfo.WriteInfo(roomPath, false);
+            CreateGameInfo(Convert.ToInt32(roomCode.text),false);
             PhotonNetwork.JoinRoom(roomCode.text);
         }
     }

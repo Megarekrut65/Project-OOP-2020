@@ -10,15 +10,8 @@ public class SyncPlayersInfo : MonoBehaviour, IPunObservable
     private GameObject board;
     private GameObject mainCamera;
     private PhotonView photonView;
-    private string roomPath = "room-info.txt"; 
     private string path = "game-info.txt";
     
-    void ReadRoom()
-    {
-        CorrectPathes.MakeCorrect(ref roomPath);
-        roomInfo = new RoomInfo();
-        roomInfo.ReadInfo(roomPath);
-    }
     void SetMine()
     {
         board = GameObject.Find("LeftBoard");
@@ -35,25 +28,22 @@ public class SyncPlayersInfo : MonoBehaviour, IPunObservable
         photonView = GetComponent<PhotonView>();
         if(photonView.IsMine) SetMine();
         else SetOther();
-        ReadRoom();
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if(stream.IsWriting)
         {
             stream.SendNext(gameInfo);
-            stream.SendNext(roomInfo);
         }
         else
         {
             gameInfo = (GameInfo)stream.ReceiveNext();
-            roomInfo = (RoomInfo)stream.ReceiveNext();
         }
     }
     void Update()
     {
-        if(roomInfo.isHost) mainCamera.GetComponent<EventHandler>().maxHP = roomInfo.maxHP; 
-        board.GetComponent<InfoBoard>().SetRoom(roomInfo.code);
+        if(gameInfo.isHost) mainCamera.GetComponent<EventHandler>().maxHP = gameInfo.maxHP; 
+        board.GetComponent<InfoBoard>().SetRoom(gameInfo.code);
         board.GetComponent<InfoBoard>().SetData(photonView.Owner.NickName, gameInfo);
         if(photonView.IsMine)
         {

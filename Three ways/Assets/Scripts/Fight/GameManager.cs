@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         PhotonPeer.RegisterType(typeof(GameEvent), 100, SerializeGameEvent, DeserializeGameEvent);
         PhotonPeer.RegisterType(typeof(GameInfo), 101, SerializeGameInfo, DeserializeGameInfo);
-        PhotonPeer.RegisterType(typeof(RoomInfo), 102, SerializeRoomInfo, DeserializeRoomInfo);
     }
     void Start()
     {
@@ -102,35 +101,22 @@ public class GameManager : MonoBehaviourPunCallbacks
         result.isReady = BitConverter.ToBoolean(data, 0);
         result.indexOfAvatar = BitConverter.ToInt32(data, 1);
         result.points = BitConverter.ToInt32(data, 5);
+        result.code = BitConverter.ToInt32(data, 9);
+        result.maxHP = BitConverter.ToInt32(data, 13);
+        result.isHost = BitConverter.ToBoolean(data, 17);
 
         return result;
     }
     public static byte[] SerializeGameInfo(object obj)
     {
         GameInfo gameInfo = (GameInfo)obj;
-        byte[] result = new byte[ 1 + 4 + 4];
+        byte[] result = new byte[ 1 + 4 + 4 + 4 + 4 + 1];
         BitConverter.GetBytes(gameInfo.isReady).CopyTo(result, 0);
         BitConverter.GetBytes(gameInfo.indexOfAvatar).CopyTo(result, 1);
         BitConverter.GetBytes(gameInfo.points).CopyTo(result, 5);
-
-        return result;
-    }
-    public static object DeserializeRoomInfo(byte[] data)
-    {
-        RoomInfo result = new RoomInfo();
-        result.isHost = BitConverter.ToBoolean(data, 0);
-        result.code = BitConverter.ToInt32(data, 1);
-        result.maxHP = BitConverter.ToInt32(data, 5);
-
-        return result;
-    }
-    public static byte[] SerializeRoomInfo(object obj)
-    {
-        RoomInfo roomInfo = (RoomInfo)obj;
-        byte[] result = new byte[ 1 + 4 + 4];
-        BitConverter.GetBytes(roomInfo.isHost).CopyTo(result, 0);
-        BitConverter.GetBytes(roomInfo.code).CopyTo(result, 1);
-        BitConverter.GetBytes(roomInfo.maxHP).CopyTo(result, 5);
+        BitConverter.GetBytes(gameInfo.code).CopyTo(result, 9);
+        BitConverter.GetBytes(gameInfo.maxHP).CopyTo(result, 13);
+        BitConverter.GetBytes(gameInfo.isHost).CopyTo(result, 17);
 
         return result;
     }

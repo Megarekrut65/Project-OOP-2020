@@ -1,2 +1,5 @@
 Avatar=0
-Points=205
+Points=149
+Room code=2447
+Max hp=20
+Status=host

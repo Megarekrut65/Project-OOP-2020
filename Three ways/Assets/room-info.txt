@@ -1,4 +1,0 @@
-Status=host
-Room code=9313
-Max hp=2
-

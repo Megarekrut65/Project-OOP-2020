@@ -1,3 +1,2 @@
-New points=35
+New points=-56
 Coins=4
-
