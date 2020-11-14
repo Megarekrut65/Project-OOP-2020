@@ -37,13 +37,13 @@ public class InfoBoard : MonoBehaviour
         return "null";
     }
     public void SetData(string nickName, GameInfo info)
-    {
-        if(isSeted) return;
-        isSeted = true;
-        this.info = info;
+    {   
         nickNameText.text = nickName;
         points.text = info.points.ToString();
         avatar.text = GetAvatarName(info.indexOfAvatar);
+        if(isSeted) return;
+        isSeted = true;
+        this.info = info;
         waiting.SetActive(false);
         data.SetActive(true);
     }
