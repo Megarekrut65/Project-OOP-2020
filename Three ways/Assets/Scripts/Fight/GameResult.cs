@@ -52,7 +52,7 @@ public class GameResult
         {
             return (15 + coefficient * rnd.Next(points))/5;
         }
-        return (10 + coefficient * rnd.Next(0, points))/10;
+        return (10 + coefficient * rnd.Next(points))/10;
     }
     public static GameResult CountWin(int pointsWin, int points, int levelWin = 0, int level = 0)
     {
@@ -78,11 +78,11 @@ public class GameResult
         int newPoints = 0;
         if(pointsLose <= points)
         {
-            newPoints -= (points - pointsLose)/3 - 6/coefficient;
+            newPoints -= ((points - pointsLose)/3 + 6/coefficient);
         }
         else
         {
-            newPoints -= (pointsLose - points)/2 - 8/coefficient;
+            newPoints -= ((pointsLose - points)/2 + 8/coefficient);
         }
         return new GameResult(newPoints, CountCoins(false, coefficient, newPoints));
     }

@@ -105,7 +105,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if(roomCode.text.Length == 0) OnJoinRoomFailed(32758, " Room code is too short");
         else 
         {
-            RoomInfo roomInfo = new RoomInfo();
+            RoomInfo roomInfo = new RoomInfo(numberOfRoom);
             roomInfo.WriteInfo(roomPath, false);
             PhotonNetwork.JoinRoom(roomCode.text);
         }

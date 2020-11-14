@@ -24,12 +24,10 @@ public class SyncPlayersInfo : MonoBehaviour, IPunObservable
         board = GameObject.Find("LeftBoard");
         CorrectPathes.MakeCorrect(ref path);
         gameInfo = new GameInfo(path);
-        ReadRoom();
     }
     void SetOther()
     {
         board = GameObject.Find("RightBoard");
-        roomInfo = new RoomInfo();
     }
     void Start()
     {
@@ -37,6 +35,7 @@ public class SyncPlayersInfo : MonoBehaviour, IPunObservable
         photonView = GetComponent<PhotonView>();
         if(photonView.IsMine) SetMine();
         else SetOther();
+        ReadRoom();
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -53,7 +52,8 @@ public class SyncPlayersInfo : MonoBehaviour, IPunObservable
     }
     void Update()
     {
-        if(roomInfo.isHost) board.GetComponent<InfoBoard>().SetRoom(roomInfo);
+        if(roomInfo.isHost) mainCamera.GetComponent<EventHandler>().maxHP = roomInfo.maxHP; 
+        board.GetComponent<InfoBoard>().SetRoom(roomInfo.code);
         board.GetComponent<InfoBoard>().SetData(photonView.Owner.NickName, gameInfo);
         if(photonView.IsMine)
         {

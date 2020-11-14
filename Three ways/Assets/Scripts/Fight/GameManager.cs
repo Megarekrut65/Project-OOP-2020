@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public void StartGame()
     {
-        gameRoom.SetActive(true);
+        gameRoom.GetComponent<Animator>().SetBool("move", true);
         SetPlayer();
         mainCamera.GetComponent<EventHandler>().Begin();
     }

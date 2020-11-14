@@ -1,2 +1,2 @@
-Avatar=2
-Points=112
+Avatar=0
+Points=205
