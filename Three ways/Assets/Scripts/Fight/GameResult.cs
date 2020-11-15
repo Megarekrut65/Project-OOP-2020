@@ -50,9 +50,9 @@ public class GameResult
         Random rnd = new Random();
         if(isWin) 
         {
-            return (15 + coefficient * rnd.Next(0, points + 1))/5;
+            return (25 + coefficient * rnd.Next(0, 2*points + 1))/5;
         }
-        return (10 + coefficient * rnd.Next(0, points + 1))/10;
+        return (10 + coefficient * rnd.Next(0, 2*points + 1))/10;
     }
     public static GameResult CountWin(int pointsWin, int points, int levelWin = 0, int level = 0)
     {

@@ -1,7 +1,8 @@
-NickName=Mega
-Password=qwertyu
-EMail=bandalak28@gmail.com
-Coins=52
-Points=1400
+NickName=Karina
+Password=2222
+EMail=ka@nail
+Coins=0
+Points=100
 Avatar=0
 PurchasedAvatars=0,
+asedAvatars=0,
