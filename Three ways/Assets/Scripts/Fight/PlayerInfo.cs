@@ -42,7 +42,7 @@ public class PlayerInfo
         indexesOfPurchasedAvatars.Add(currentIndexOfAvatar);
         correctRead = false;
     }
-    PlayerInfo(string nickName, string password, string eMail,
+    public PlayerInfo(string nickName, string password, string eMail,
     string coins, string points, string avatar, string purchasedAvatars)
     {
         this.nickName = nickName.Substring(9);

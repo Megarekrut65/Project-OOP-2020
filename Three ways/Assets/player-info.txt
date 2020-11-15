@@ -1,7 +1,7 @@
-NickName=Player7735
-Password=1111
-EMail=@gmail.com
+NickName=Mega
+Password=qwertyu
+EMail=bandalak28@gmail.com
 Coins=52
-Points=140
+Points=1400
 Avatar=0
 PurchasedAvatars=0,
