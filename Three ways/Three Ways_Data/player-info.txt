@@ -1,7 +1,8 @@
-NickName=Player8008
+NickName=Player1972
 Password=1111
 EMail=@gmail.com
-Coins=12
-Points=136
-Avatar=1
+Coins=2
+Points=90
+Avatar=2
 PurchasedAvatars=0,
+

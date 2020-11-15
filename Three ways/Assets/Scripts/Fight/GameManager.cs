@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject rightBoard;
     public GameObject waitRoom;
     public GameObject startingGame;
+    public GameObject question;
     public GameObject gameRoom;
     public GameObject playerInfo;
     private Vector3 pos = Vector3.zero;  
@@ -57,13 +58,22 @@ public class GameManager : MonoBehaviourPunCallbacks
         SetPlayer();
         mainCamera.GetComponent<EventHandler>().Begin();
     }
-    public void Leave()
+    public void AnswerYes()
     {
         PhotonNetwork.LeaveRoom();
     }
+    public void AnswerNo()
+    {
+        question.SetActive(false);
+    }
+    public void Leave()
+    {
+        if(isStarted) question.SetActive(true);
+        else SceneManager.LoadScene("Lobby");
+    }
     public override void OnLeftRoom()//call when current player left the room
     {
-        SceneManager.LoadScene("EndFight");
+        if(isStarted) mainCamera.GetComponent<EventHandler>().ForcedExit(true);
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
@@ -71,6 +81,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)//call when other player left the room
     {
+        if(isStarted) mainCamera.GetComponent<EventHandler>().ForcedExit(false);
         Debug.LogFormat("Player {0} left room", otherPlayer.NickName);
     }
     //serializes and deserializes

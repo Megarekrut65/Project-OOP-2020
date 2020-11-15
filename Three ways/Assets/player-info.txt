@@ -1,7 +1,7 @@
 NickName=Player7735
 Password=1111
 EMail=@gmail.com
-Coins=48
-Points=121
+Coins=52
+Points=140
 Avatar=0
 PurchasedAvatars=0,

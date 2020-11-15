@@ -123,6 +123,12 @@ public class EventHandler : MonoBehaviour
         if(leftHP.value <= 0) Lose();
         if(rightHP.value <= 0) Win();
     }
+    public void ForcedExit(bool mine)
+    {
+        if(mine) Lose();
+        else Win();
+        SceneManager.LoadScene("EndFight");
+    }
     IEnumerator FightEnd()
     {
         StopCoroutine("ShowControlers");

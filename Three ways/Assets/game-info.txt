@@ -1,6 +1,5 @@
 Avatar=0
-Points=121
-Room code=5102
-Max hp=5
-Status=host
-
+Points=140
+Room code=6063
+Max hp=0
+Status=other
