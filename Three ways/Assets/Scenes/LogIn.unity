@@ -706,7 +706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputNickName: {fileID: 1050998776}
   inputPassword: {fileID: 481384700}
-  nameOfScene: Lobby
+  nameOfScene: Main
   errors: {fileID: 879708062}
   avatars:
   - {fileID: 1133590538}

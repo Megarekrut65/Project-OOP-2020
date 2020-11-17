@@ -6,7 +6,6 @@ using Photon.Pun;
 public class SyncPlayersInfo : MonoBehaviour, IPunObservable
 {
     private GameInfo gameInfo;
-    private RoomInfo roomInfo;
     private GameObject board;
     private GameObject mainCamera;
     private PhotonView photonView;

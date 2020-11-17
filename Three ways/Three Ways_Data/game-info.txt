@@ -1,6 +1,0 @@
-Avatar=2
-Points=90
-Room code=6063
-Max hp=20
-Status=host
-

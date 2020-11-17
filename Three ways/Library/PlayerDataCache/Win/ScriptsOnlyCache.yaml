@@ -2,19 +2,26 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - Avatar
+    - AvatarsAnimations
     - Errors
     - EventHandler
     - GameManager
     - GameOver
     - InfoBoard
     - LobbyManager
+    - LogInAccount
+    - LogInErrors
     - OpenScene
     - Person
     - ReadAvatars
+    - RegAccount
+    - RegErrors
     - SelectedButton
     - SelectedWay
+    - SendingEMail
     - StartingGame
     - SyncPlayersInfo
+    - WaitCircle
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
     - Photon.Pun.Demo.Asteroids.Bullet
@@ -98,13 +105,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11844}
     - Class: 114
-      Script: {instanceID: 12876}
+      Script: {instanceID: 12878}
     - Class: 114
-      Script: {instanceID: 13054}
+      Script: {instanceID: 13056}
     - Class: 114
-      Script: {instanceID: 14862}
+      Script: {instanceID: 14876}
     - Class: 114
-      Script: {instanceID: 15586}
+      Script: {instanceID: 15602}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -163,29 +170,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12604}
     - Class: 114
-      Script: {instanceID: 12852}
+      Script: {instanceID: 12854}
     - Class: 114
-      Script: {instanceID: 12862}
+      Script: {instanceID: 12864}
     - Class: 114
-      Script: {instanceID: 13054}
+      Script: {instanceID: 13056}
     - Class: 114
-      Script: {instanceID: 13482}
+      Script: {instanceID: 13484}
     - Class: 114
-      Script: {instanceID: 13526}
+      Script: {instanceID: 13528}
     - Class: 114
-      Script: {instanceID: 14278}
+      Script: {instanceID: 14288}
     - Class: 114
-      Script: {instanceID: 14862}
+      Script: {instanceID: 14876}
     - Class: 114
-      Script: {instanceID: 15386}
+      Script: {instanceID: 15402}
     - Class: 114
-      Script: {instanceID: 15432}
+      Script: {instanceID: 15448}
     - Class: 114
-      Script: {instanceID: 15440}
+      Script: {instanceID: 15456}
     - Class: 114
-      Script: {instanceID: 15454}
+      Script: {instanceID: 15470}
     - Class: 114
-      Script: {instanceID: 15586}
+      Script: {instanceID: 15602}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -240,17 +247,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12604}
     - Class: 114
-      Script: {instanceID: 13054}
+      Script: {instanceID: 13056}
     - Class: 114
-      Script: {instanceID: 13066}
+      Script: {instanceID: 13068}
     - Class: 114
-      Script: {instanceID: 13302}
+      Script: {instanceID: 13304}
     - Class: 114
-      Script: {instanceID: 14298}
+      Script: {instanceID: 14308}
     - Class: 114
-      Script: {instanceID: 14862}
+      Script: {instanceID: 14876}
     - Class: 114
-      Script: {instanceID: 15586}
+      Script: {instanceID: 15602}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -258,6 +265,75 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/LogIn.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11804}
+    - Class: 114
+      Script: {instanceID: 11806}
+    - Class: 114
+      Script: {instanceID: 11808}
+    - Class: 114
+      Script: {instanceID: 11844}
+    - Class: 114
+      Script: {instanceID: 12146}
+    - Class: 114
+      Script: {instanceID: 12668}
+    - Class: 114
+      Script: {instanceID: 13056}
+    - Class: 114
+      Script: {instanceID: 13602}
+    - Class: 114
+      Script: {instanceID: 14188}
+    - Class: 114
+      Script: {instanceID: 14288}
+    - Class: 114
+      Script: {instanceID: 14308}
+    - Class: 114
+      Script: {instanceID: 14876}
+    - Class: 114
+      Script: {instanceID: 15470}
+    - Class: 114
+      Script: {instanceID: 15602}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -321,41 +397,41 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12146}
     - Class: 114
-      Script: {instanceID: 12862}
+      Script: {instanceID: 12864}
     - Class: 114
-      Script: {instanceID: 13054}
+      Script: {instanceID: 13056}
     - Class: 114
-      Script: {instanceID: 13180}
+      Script: {instanceID: 13182}
     - Class: 114
-      Script: {instanceID: 13482}
+      Script: {instanceID: 13484}
     - Class: 114
-      Script: {instanceID: 13594}
+      Script: {instanceID: 13596}
     - Class: 114
-      Script: {instanceID: 13708}
+      Script: {instanceID: 13714}
     - Class: 114
-      Script: {instanceID: 14024}
+      Script: {instanceID: 14032}
     - Class: 114
-      Script: {instanceID: 14132}
+      Script: {instanceID: 14140}
     - Class: 114
-      Script: {instanceID: 14258}
+      Script: {instanceID: 14268}
     - Class: 114
-      Script: {instanceID: 14276}
+      Script: {instanceID: 14286}
     - Class: 114
-      Script: {instanceID: 14278}
+      Script: {instanceID: 14288}
     - Class: 114
-      Script: {instanceID: 14620}
+      Script: {instanceID: 14630}
     - Class: 114
-      Script: {instanceID: 14656}
+      Script: {instanceID: 14666}
     - Class: 114
-      Script: {instanceID: 14668}
+      Script: {instanceID: 14678}
     - Class: 114
-      Script: {instanceID: 14862}
+      Script: {instanceID: 14876}
     - Class: 114
-      Script: {instanceID: 15440}
+      Script: {instanceID: 15456}
     - Class: 114
-      Script: {instanceID: 15586}
+      Script: {instanceID: 15602}
     - Class: 114
-      Script: {instanceID: 15630}
+      Script: {instanceID: 15646}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -387,6 +463,75 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
     - Class: 225
+      Script: {instanceID: 0}
+    Assets/Scenes/Registration.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11804}
+    - Class: 114
+      Script: {instanceID: 11806}
+    - Class: 114
+      Script: {instanceID: 11808}
+    - Class: 114
+      Script: {instanceID: 11844}
+    - Class: 114
+      Script: {instanceID: 12146}
+    - Class: 114
+      Script: {instanceID: 12604}
+    - Class: 114
+      Script: {instanceID: 13056}
+    - Class: 114
+      Script: {instanceID: 13638}
+    - Class: 114
+      Script: {instanceID: 13728}
+    - Class: 114
+      Script: {instanceID: 14308}
+    - Class: 114
+      Script: {instanceID: 14710}
+    - Class: 114
+      Script: {instanceID: 14852}
+    - Class: 114
+      Script: {instanceID: 14876}
+    - Class: 114
+      Script: {instanceID: 15470}
+    - Class: 114
+      Script: {instanceID: 15602}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
     Assets/Scenes/SelectingAvatars.unity:
     - Class: 1
@@ -430,15 +575,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12604}
     - Class: 114
-      Script: {instanceID: 13054}
+      Script: {instanceID: 13056}
     - Class: 114
-      Script: {instanceID: 14278}
+      Script: {instanceID: 14288}
     - Class: 114
-      Script: {instanceID: 14862}
+      Script: {instanceID: 14876}
     - Class: 114
-      Script: {instanceID: 15586}
+      Script: {instanceID: 15602}
     - Class: 114
-      Script: {instanceID: 15610}
+      Script: {instanceID: 15626}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -874,6 +1019,12 @@ ScriptsOnlyBuild:
     className: RectMask2D
   - hash:
       serializedVersion: 2
+      Hash: c5679e52109104048b485f0c44e7e06f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LogInAccount
+  - hash:
+      serializedVersion: 2
       Hash: 6980e81ddc615a861309d2d659cc3760
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1153,6 +1304,12 @@ ScriptsOnlyBuild:
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
+    className: AvatarsAnimations
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
     className: IgnoreUiRaycastWhenInactive
   - hash:
       serializedVersion: 2
@@ -1172,6 +1329,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonRealtime.dll
     namespaceName: Photon.Realtime
     className: ConnectionHandler
+  - hash:
+      serializedVersion: 2
+      Hash: aa112d035c5ed9cdfab085ebefcb311d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RegAccount
   - hash:
       serializedVersion: 2
       Hash: 19c703fb20b3231dbd1a21248e8bb11b
@@ -1202,6 +1365,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
     className: CurrentRoomPropertiesListedInLobbyProperty
+  - hash:
+      serializedVersion: 2
+      Hash: 83bc2388b8ea319bcad9451e4f994305
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RegErrors
   - hash:
       serializedVersion: 2
       Hash: d329540117e6b6c523bded68046af505
@@ -1340,6 +1509,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.PunBasics
     className: PlayerUI
+  - hash:
+      serializedVersion: 2
+      Hash: eb754f2bb021aa51b626d75dd6d92247
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LogInErrors
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1516,6 +1691,12 @@ ScriptsOnlyBuild:
     className: Asteroid
   - hash:
       serializedVersion: 2
+      Hash: e642550e20746cdb2788b3304cfd46b8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WaitCircle
+  - hash:
+      serializedVersion: 2
       Hash: 7829e932aec962afd9bcfad28ffff27d
     assemblyName: PhotonUnityNetworking.Utilities.dll
     namespaceName: Photon.Pun.UtilityScripts
@@ -1556,6 +1737,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AudioTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 61b368edf37403f9b77e4cbac682f495
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SendingEMail
   - hash:
       serializedVersion: 2
       Hash: 5421466ed6291c1ab2d1650a128005b2
@@ -1923,5 +2110,7 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Fight.unity
   - Assets/Scenes/EndFight.unity
   - Assets/Scenes/SelectingAvatars.unity
+  - Assets/Scenes/LogIn.unity
+  - Assets/Scenes/Registration.unity
   playerPath: C:/Users/User81/source/repos/Megarekrut65/Project-OOP-2020/Three ways/Three
     Ways.exe

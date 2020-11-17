@@ -1,8 +1,0 @@
-NickName=Karina
-Password=2222
-EMail=ka@nail
-Coins=0
-Points=100
-Avatar=0
-PurchasedAvatars=0,
-asedAvatars=0,
