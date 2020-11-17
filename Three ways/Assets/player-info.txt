@@ -1,0 +1,7 @@
+NickName=Foton
+Password=1111
+EMail=bandalak28@gmail.com
+Coins=6
+Points=112
+Avatar=0
+PurchasedAvatars=0,

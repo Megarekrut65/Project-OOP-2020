@@ -1,7 +1,8 @@
-NickName=Player5337
+NickName=Sasha
 Password=1111
-EMail=@gmail.com
-Coins=19
-Points=112
-Avatar=2
+EMail=bandalak28@gmail.com
+Coins=1
+Points=97
+Avatar=1
 PurchasedAvatars=0,
+

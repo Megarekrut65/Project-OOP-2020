@@ -22,20 +22,15 @@ public class SendingEMail : MonoBehaviour
         //GetComponent<AudioSource>().Play();
         this.player = player;
         regObjects.SetActive(false);
-        return;
         sender = new Sender(player.eMail);
         sender.SendEMail(player.nickName);
     }
     public void ResendEMail()
     {
-        return;
         sender.SendEMail(player.nickName);
     }
     public void CheckCodeButton()
     {
-        player.AppendToPlayersFile(dataPath);
-        SceneManager.LoadScene("LogIn", LoadSceneMode.Single);
-        return;
         //GetComponent<AudioSource>().Play();
         if (sender.CheckCode(inputCode.text))
         {
@@ -45,7 +40,7 @@ public class SendingEMail : MonoBehaviour
         else
         {
             errors.SetActive(true);
-            errors.GetComponent<LogInErrors>().SetError("Code is inccorect!");
+            errors.GetComponent<RegErrors>().SetError("Code is inccorect!");
         }
     }
 }

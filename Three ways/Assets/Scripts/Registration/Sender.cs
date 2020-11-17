@@ -50,7 +50,7 @@ public class Sender
     public void SendEMail(string nickname)
     {
         if (code == 0) return;
-        string title = "Code Three Ways";
+        string title = "Three Ways";
         string message = "Hello, " + nickname + 
         ". You registered in the game 'Three Ways'. So, There is your code: " + 
         code.ToString() + " to confirm the account.";

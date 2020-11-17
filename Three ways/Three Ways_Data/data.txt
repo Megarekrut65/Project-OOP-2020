@@ -1,0 +1,7 @@
+NickName=Sasha
+Password=1111
+EMail=bandalak28@gmail.com
+Coins=0
+Points=100
+Avatar=0
+PurchasedAvatars=0,
