@@ -29,7 +29,7 @@ public class InfoBoard : MonoBehaviour
     {
         switch(index)
         {
-            case 0: return "Prehistoric person";
+            case 0: return "Neanderthal";
             case 1: return "Knight";
             case 2: return "Musketeer";
         }

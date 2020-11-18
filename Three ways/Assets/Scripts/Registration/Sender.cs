@@ -52,7 +52,7 @@ public class Sender
         if (code == 0) return;
         string title = "Three Ways";
         string message = "Hello, " + nickname + 
-        ". You registered in the game 'Three Ways'. So, There is your code: " + 
+        ". You registered in the game 'Three Ways'. So, there is your code: " + 
         code.ToString() + " to confirm the account.";
         Send(message, title);
     }
