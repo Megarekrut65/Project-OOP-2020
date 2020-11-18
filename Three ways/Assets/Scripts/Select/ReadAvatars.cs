@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ReadAvatars : MonoBehaviour
 {
-    private PlayerInfo player;
+    public PlayerInfo player;
     public GameObject[] objects;
     public Image[] attacks; 
     public Image[] protects; 
@@ -17,15 +18,33 @@ public class ReadAvatars : MonoBehaviour
     private int minIndex = 0;
     private int maxIndex = 2;
     public string infoPath = "player-info.txt";
-    
-    private PlayerInfo CreateAccount()
-    {
-        PlayerInfo newPlayer = new PlayerInfo(
-            "Player" + UnityEngine.Random.Range(1000,9999).ToString(),
-            "1111", "@gmail.com");
-            newPlayer.CreateInfoFile(infoPath);
+    public GameObject nextButton;
+    public GameObject buying;
+    public Text buyPrice;
 
-            return newPlayer;
+    int GetPrice()
+    {
+        int price = 0;
+        switch (currentIndex)
+        {
+            case 0: price = 100;
+                break;
+            case 1: price = 800;
+                break;
+            case 2: price = 1500;
+                break;
+            default:
+                break;
+        }
+        return price;
+    }
+    public void BuyAvatar()
+    {
+        if(player.BuyAvatar(GetPrice(), currentIndex))
+        {
+            SetAll();
+            SaveAvatar();
+        }
     }
     public void SaveAvatar()
     {
@@ -38,7 +57,7 @@ public class ReadAvatars : MonoBehaviour
         player = new PlayerInfo(infoPath);
         if(!player.correctRead)
         {       
-            player = CreateAccount();
+            SceneManager.LoadScene("LogIn", LoadSceneMode.Single);
         } 
         EditAvatars();
     }
@@ -48,7 +67,6 @@ public class ReadAvatars : MonoBehaviour
         {
             objects[i].SetActive(false);
         }
-        objects[currentIndex].SetActive(true);
         SetAll();
     }
     void SetAll()
@@ -58,6 +76,17 @@ public class ReadAvatars : MonoBehaviour
         attack.sprite = attacks[currentIndex].sprite;
         protect.sprite = protects[currentIndex].sprite;
         avatarName.text = avatarNames[currentIndex];
+        if(player.WasBought(currentIndex)) 
+        {
+            nextButton.SetActive(true);
+            buying.SetActive(false);
+        }
+        else
+        {
+            nextButton.SetActive(false);
+            buying.SetActive(true);
+            buyPrice.text = "$" + GetPrice().ToString();
+        }
     }
     public void Right()
     {

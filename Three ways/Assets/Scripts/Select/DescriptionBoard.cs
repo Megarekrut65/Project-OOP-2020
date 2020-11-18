@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class DescriptionBoard : MonoBehaviour, 
 IPointerDownHandler, IPointerUpHandler
@@ -13,6 +14,10 @@ IPointerDownHandler, IPointerUpHandler
     public Text properties;
     public GameObject mainCamera;
     public GameObject theCanvas;
+    public GameObject updateButton;
+    private Weapons currentWeapon;
+    private int currentSteel;
+    private int currentAvatar;
 
     public void OnPointerDown(PointerEventData eventData)
     {   
@@ -21,29 +26,58 @@ IPointerDownHandler, IPointerUpHandler
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-
+        //it must be here with OnPointerDown
     }
-    public void SetData(int indexOfSteel)
+    public void UpdateWeapon()
     {
-        theCanvas.GetComponent<Canvas>().sortingOrder = 20;
-        int indexOfAvatar = mainCamera.GetComponent<ReadAvatars>().currentIndex;
-        switch(indexOfSteel)
+        if(mainCamera.GetComponent<ReadAvatars>().player.BuyWeapon(currentWeapon.CountPrice(currentSteel), currentAvatar, currentSteel))
+        {
+            SetDescriptions();
+            SetNumbers();
+            mainCamera.GetComponent<ReadAvatars>().SaveAvatar();
+        }
+    }
+    void SetDescriptions()
+    {
+        switch(currentSteel)
         {
             case 0:
             {
-                SetTitleSword(indexOfAvatar);
-                SetPropertiesSword(indexOfAvatar);
+                SetTitleSword(currentAvatar);
+                SetPropertiesSword(currentAvatar);
             }
             break;
             case 1:
             {
-                SetTitleShield(indexOfAvatar);
-                SetPropertiesShield(indexOfAvatar);
+                SetTitleShield(currentAvatar);
+                SetPropertiesShield(currentAvatar);
             }
             break;
             default:
             break;
         }
+    }
+    public void SetNumbers()
+    {
+        lvl.text = "Level: " + currentWeapon.GetLvl(currentSteel);
+        price.text = "$" + currentWeapon.CountPrice(currentSteel);
+    }
+    public void SetData(int indexOfSteel)
+    {
+        currentSteel = indexOfSteel;
+        currentAvatar = mainCamera.GetComponent<ReadAvatars>().currentIndex;
+        currentWeapon = mainCamera.GetComponent<ReadAvatars>().player.GetWeapon(currentAvatar);
+        theCanvas.GetComponent<Canvas>().sortingOrder = 20;
+        if(mainCamera.GetComponent<ReadAvatars>().player.WasBought(currentAvatar))
+        {
+            updateButton.SetActive(true);
+        }
+        else
+        {
+            updateButton.SetActive(false);
+        }
+        SetDescriptions();
+        SetNumbers();
     }
     void SetTitleSword(int index)
     {
@@ -61,7 +95,7 @@ IPointerDownHandler, IPointerUpHandler
     }
     void SetPropertiesSword(int index)
     {
-        int chance = 1;
+        int chance = Convert.ToInt32(currentWeapon.CountChance(0));
         string line = "";
         string propertieLine = "With a " + chance.ToString() + "% chance,";
         switch(index)
@@ -105,7 +139,7 @@ IPointerDownHandler, IPointerUpHandler
     }
     void SetPropertiesShield(int index)
     {
-        int chance = 1;
+        int chance = Convert.ToInt32(currentWeapon.CountChance(1));
         string line = "";
         string propertieLine = "With a " + chance.ToString() + "% chance,";
         switch(index)

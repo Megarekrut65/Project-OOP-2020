@@ -8,16 +8,45 @@ public class PlayerInfo
     public string nickName;
     private string password;
     public string eMail;
-    private int coins;
+    public int coins;
     public int points;
     public int currentIndexOfAvatar;
-    public List<Weapons> dataOfPurchasedAvatars;
+    private List<Weapons> dataOfPurchasedAvatars;
     public bool correctRead;
 
+    public Weapons GetWeapon(int indexOfAvatar)
+    {
+        if(indexOfAvatar < dataOfPurchasedAvatars.Count)
+        {
+            return dataOfPurchasedAvatars[indexOfAvatar];
+        }
+
+        return new Weapons(indexOfAvatar);
+    }
     public void AddResult(GameResult result)
     {
         points += result.newPoints;
         coins += result.coins;
+    }
+    public bool BuyWeapon(int price, int indexOfAvatar, int indexOfSteel)
+    {
+        if(price < coins)
+        {
+            coins -= price;
+            dataOfPurchasedAvatars[indexOfAvatar].AddLvl(indexOfSteel);
+            return true;
+        }
+        return false;
+    }
+    public bool BuyAvatar(int price, int index)
+    {
+        if(price < coins)
+        {
+            coins -= price;
+            dataOfPurchasedAvatars.Add(new Weapons(index, 1, 1));
+            return true;
+        }
+        return false;
     }
     public PlayerInfo()
     {
@@ -57,12 +86,21 @@ public class PlayerInfo
     {
         ReadPlayerFromFile(infoPath);
     }
+    public bool WasBought(int index)
+    {
+        foreach (Weapons weapon in dataOfPurchasedAvatars)
+        {
+            if(weapon.indexOfAvatar == index) return true;
+        }
+
+        return false;
+    }
     string ListToString()
     {
         string result = "PurchasedAvatars=";
-        foreach (Weapons index in dataOfPurchasedAvatars)
+        foreach (Weapons weapon in dataOfPurchasedAvatars)
         {
-            result += index.CreateString() + ",";
+            result += weapon.CreateString() + ",";
         }
         return result;
     }
