@@ -1534,10 +1534,10 @@ RectTransform:
   m_Father: {fileID: 955442077}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.012543189, y: 0.6443737}
-  m_AnchorMax: {x: 0.64500004, y: 0.7492631}
+  m_AnchorMin: {x: 0.17962956, y: 0.64000005}
+  m_AnchorMax: {x: 0.81745684, y: 0.7492631}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0.000011016593}
+  m_SizeDelta: {x: 0, y: -0.7963435}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &463171270
 MonoBehaviour:
@@ -1745,9 +1745,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.17254902, g: 0.36862746, b: 0.8352942, a: 1}
-    m_HighlightedColor: {r: 0.26900145, g: 0.44898868, b: 0.8773585, a: 1}
-    m_PressedColor: {r: 0.27058825, g: 0.44705886, b: 0.87843144, a: 1}
-    m_SelectedColor: {r: 0.27058825, g: 0.44705886, b: 0.87843144, a: 1}
+    m_HighlightedColor: {r: 0.38812745, g: 0.5438567, b: 0.9245283, a: 1}
+    m_PressedColor: {r: 0.38823533, g: 0.54509807, b: 0.92549026, a: 1}
+    m_SelectedColor: {r: 0.38823533, g: 0.54509807, b: 0.92549026, a: 1}
     m_DisabledColor: {r: 0.17254902, g: 0.36862746, b: 0.8352942, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1994,6 +1994,7 @@ MonoBehaviour:
   price: {fileID: 1555973360}
   properties: {fileID: 1434846993}
   mainCamera: {fileID: 2129672623}
+  theCanvas: {fileID: 1533670433}
 --- !u!61 &1237252632
 BoxCollider2D:
   m_ObjectHideFlags: 0

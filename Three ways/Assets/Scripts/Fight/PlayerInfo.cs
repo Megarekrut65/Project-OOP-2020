@@ -11,7 +11,7 @@ public class PlayerInfo
     private int coins;
     public int points;
     public int currentIndexOfAvatar;
-    public List<int> indexesOfPurchasedAvatars;
+    public List<Weapons> dataOfPurchasedAvatars;
     public bool correctRead;
 
     public void AddResult(GameResult result)
@@ -27,7 +27,7 @@ public class PlayerInfo
         coins = 0;
         points = 0;
         currentIndexOfAvatar = 0;
-        indexesOfPurchasedAvatars = new List<int>();
+        dataOfPurchasedAvatars = new List<Weapons>();
         correctRead = false;
     }
     public PlayerInfo(string nickName, string password, string eMail)
@@ -38,8 +38,8 @@ public class PlayerInfo
         coins = 0;
         points = 100;
         currentIndexOfAvatar = 0;
-        indexesOfPurchasedAvatars = new List<int>();
-        indexesOfPurchasedAvatars.Add(currentIndexOfAvatar);
+        dataOfPurchasedAvatars = new List<Weapons>();
+        dataOfPurchasedAvatars.Add(new Weapons(currentIndexOfAvatar, 1, 1));
         correctRead = false;
     }
     public PlayerInfo(string nickName, string password, string eMail,
@@ -60,23 +60,22 @@ public class PlayerInfo
     string ListToString()
     {
         string result = "PurchasedAvatars=";
-        foreach (int index in indexesOfPurchasedAvatars)
+        foreach (Weapons index in dataOfPurchasedAvatars)
         {
-            result += index.ToString() + ",";
+            result += index.CreateString() + ",";
         }
         return result;
     }
     void StringToList(string line)
     {
-        indexesOfPurchasedAvatars = new List<int>();
+        dataOfPurchasedAvatars = new List<Weapons>();
         string[] parts = line.Split("=".ToCharArray());
         if(parts.Length != 2) return;
         string[] avatars = parts[1].Split(",".ToCharArray());
         for(int i = 0; i < avatars.Length; i++)
         {
-            int index;
-            bool isInt = Int32.TryParse(avatars[i], out index);
-            if(isInt) indexesOfPurchasedAvatars.Add(index);
+            if(avatars[i].Length > 0) 
+                    dataOfPurchasedAvatars.Add(new Weapons(avatars[i]));
         }
     }
     void WritePlayerToFile(ref StreamWriter writer)

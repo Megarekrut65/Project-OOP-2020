@@ -1,5 +1,0 @@
-Avatar=0
-Points=112
-Room code=7260
-Max hp=20
-Status=host
