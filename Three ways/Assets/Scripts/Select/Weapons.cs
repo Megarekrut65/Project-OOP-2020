@@ -90,6 +90,19 @@ public class Weapons
         return startPrice + maxLvl;
     }
     //need make function for inform about max lvl
+    public bool IsMaxLvl(int indexOfSteel)
+    {
+        switch(indexOfSteel)
+        {
+            case 0: if(lvlOfSword == maxLvl) return true;
+            break;
+            case 1: if(lvlOfShield == maxLvl) return true;
+            break;
+            default:
+            break;
+        }
+        return false;
+    }
     public void AddLvl(int indexOfSteel)
     {
         switch(indexOfSteel)

@@ -15,6 +15,7 @@ IPointerDownHandler, IPointerUpHandler
     public GameObject mainCamera;
     public GameObject theCanvas;
     public GameObject updateButton;
+    public GameObject updating;
     private Weapons currentWeapon;
     private int currentSteel;
     private int currentAvatar;
@@ -35,6 +36,11 @@ IPointerDownHandler, IPointerUpHandler
             SetDescriptions();
             SetNumbers();
             mainCamera.GetComponent<ReadAvatars>().SaveAvatar();
+        }
+        else
+        {
+            updating.GetComponent<Animation>().Play("updating-have-not-money");
+            updateButton.GetComponent<Animation>().Play("update-have-not-money");
         }
     }
     void SetDescriptions()
@@ -59,8 +65,18 @@ IPointerDownHandler, IPointerUpHandler
     }
     public void SetNumbers()
     {
-        lvl.text = "Level: " + currentWeapon.GetLvl(currentSteel);
-        price.text = "$" + currentWeapon.CountPrice(currentSteel);
+        if(!currentWeapon.IsMaxLvl(currentSteel))
+        {
+            lvl.text = "Level: " + currentWeapon.GetLvl(currentSteel);
+            price.text = "$" + currentWeapon.CountPrice(currentSteel);
+        } 
+        else 
+        {
+            lvl.text = "Level: " + currentWeapon.GetLvl(currentSteel) + "MAX";
+            price.text = "";
+            updateButton.SetActive(false);
+        }
+        
     }
     public void SetData(int indexOfSteel)
     {

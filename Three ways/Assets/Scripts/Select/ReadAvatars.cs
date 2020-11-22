@@ -21,6 +21,7 @@ public class ReadAvatars : MonoBehaviour
     public GameObject nextButton;
     public GameObject buying;
     public Text buyPrice;
+    public GameObject coinsText;
 
     int GetPrice()
     {
@@ -42,14 +43,19 @@ public class ReadAvatars : MonoBehaviour
     {
         if(player.BuyAvatar(GetPrice(), currentIndex))
         {
-            SetAll();
+            coinsText.GetComponent<Animation>().Play("coins-buy");
             SaveAvatar();
+        }
+        else
+        {
+            buying.GetComponent<Animation>().Play("buying-have-not-money");
         }
     }
     public void SaveAvatar()
     {
         player.currentIndexOfAvatar = currentIndex;
         player.CreateInfoFile(infoPath);
+        SetAll();
     }
     void Start()
     {
@@ -87,6 +93,7 @@ public class ReadAvatars : MonoBehaviour
             buying.SetActive(true);
             buyPrice.text = "$" + GetPrice().ToString();
         }
+        coinsText.GetComponent<Text>().text = "$" + player.coins;
     }
     public void Right()
     {

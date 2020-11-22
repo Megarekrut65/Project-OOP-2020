@@ -1,7 +1,7 @@
 NickName=band
 Password=1111
 EMail=bandalak28@gmail.com
-Coins=45485
+Coins=50
 Points=100
-Avatar=2
-PurchasedAvatars={index:0;lvlSword:15;lvlShield:15},{index:1;lvlSword:15;lvlShield:15},{index:2;lvlSword:15;lvlShield:15},
+Avatar=1
+PurchasedAvatars={index:0;lvlSword:3;lvlShield:1},{index:1;lvlSword:1;lvlShield:1},
