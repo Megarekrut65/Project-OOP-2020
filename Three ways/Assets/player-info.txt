@@ -1,7 +1,10 @@
-NickName=band
+NickName=Player7231
 Password=1111
-EMail=bandalak28@gmail.com
-Coins=50
-Points=100
-Avatar=1
-PurchasedAvatars={index:0;lvlSword:3;lvlShield:1},{index:1;lvlSword:1;lvlShield:1},
+EMail=@gmail.com
+Coins=106
+Points=97
+Avatar=0
+PurchasedAvatars={index:0;lvlSword:2;lvlShield:3},
+
+,{index:1;lvlSword:2;lvlShield:3},
+

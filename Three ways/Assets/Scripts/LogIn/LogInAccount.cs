@@ -80,8 +80,18 @@ public class LogInAccount : MonoBehaviour
         IncorrectData("Nickname","not found!");
         return false;       
     }
+    private void CreateAccount()
+    {
+        PlayerInfo newPlayer = new PlayerInfo(
+            "Player" + UnityEngine.Random.Range(1000,9999).ToString(),
+            "1111", "@gmail.com");
+            newPlayer.CreateInfoFile(infoPath);
+    }
     public void OKButton()
     {
+        CreateAccount();
+        SceneManager.LoadScene(nameOfScene, LoadSceneMode.Single);          
+        return;
         string nickname = "NickName=" + inputNickName.text;
         string password = "Password=" + inputPassword.text;
         if(FindPlayer(nickname, password))

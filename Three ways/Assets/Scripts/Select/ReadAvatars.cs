@@ -17,7 +17,9 @@ public class ReadAvatars : MonoBehaviour
     public int currentIndex = 0;
     private int minIndex = 0;
     private int maxIndex = 2;
-    public string infoPath = "player-info.txt";
+    private string infoPath = "player-info.txt";
+    private string dataPath = "data.txt";
+    private string newDataPath = "new-data.txt";
     public GameObject nextButton;
     public GameObject buying;
     public Text buyPrice;
@@ -54,12 +56,12 @@ public class ReadAvatars : MonoBehaviour
     public void SaveAvatar()
     {
         player.currentIndexOfAvatar = currentIndex;
-        player.CreateInfoFile(infoPath);
+        player.EditPlayerInPlayersFile(dataPath, newDataPath, infoPath);
         SetAll();
     }
     void Start()
     {
-        CorrectPathes.MakeCorrect(ref infoPath);
+        CorrectPathes.MakeCorrect(ref infoPath, ref dataPath, ref newDataPath);
         player = new PlayerInfo(infoPath);
         if(!player.correctRead)
         {       

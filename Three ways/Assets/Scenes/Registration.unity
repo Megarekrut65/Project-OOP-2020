@@ -685,6 +685,7 @@ GameObject:
   - component: {fileID: 363474064}
   - component: {fileID: 363474063}
   - component: {fileID: 363474066}
+  - component: {fileID: 363474067}
   m_Layer: 5
   m_Name: Check
   m_TagString: Untagged
@@ -819,6 +820,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 1
   m_AspectRatio: 3.6258183
+--- !u!111 &363474067
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363474061}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 6920b254afca80240a8d53c1a43b742a, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 6920b254afca80240a8d53c1a43b742a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &406536465
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +848,7 @@ GameObject:
   - component: {fileID: 406536468}
   - component: {fileID: 406536467}
   - component: {fileID: 406536469}
+  - component: {fileID: 406536470}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -914,6 +932,22 @@ MonoBehaviour:
   m_EffectColor: {r: 0.15404324, g: 0, b: 0.6037736, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!111 &406536470
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406536465}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 9445f1c81e015bd4aa214c00906278d6, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 9445f1c81e015bd4aa214c00906278d6, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &426689022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2993,6 +3027,7 @@ GameObject:
   - component: {fileID: 1700347784}
   - component: {fileID: 1700347783}
   - component: {fileID: 1700347786}
+  - component: {fileID: 1700347787}
   m_Layer: 5
   m_Name: CreateButton
   m_TagString: Untagged
@@ -3127,6 +3162,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 1
   m_AspectRatio: 5.333714
+--- !u!111 &1700347787
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700347781}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: b595812e3bd724a46bef7a6d626918b2, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: b595812e3bd724a46bef7a6d626918b2, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1715514685
 GameObject:
   m_ObjectHideFlags: 0
@@ -3452,6 +3503,7 @@ GameObject:
   - component: {fileID: 1893118474}
   - component: {fileID: 1893118473}
   - component: {fileID: 1893118477}
+  - component: {fileID: 1893118478}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -3599,3 +3651,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 1
   m_AspectRatio: 3.6639159
+--- !u!111 &1893118478
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893118471}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: bb3b5466dde0da7419075fc80fa3c9ff, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: bb3b5466dde0da7419075fc80fa3c9ff, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

@@ -8,8 +8,6 @@ public class Person : MonoBehaviour, IPunObservable
 {
     private PhotonView photonView;
     private GameEvent gameEvent;
-    public string infoPath = "player-info.txt";
-    private PlayerInfo player;
     private Text nickNameText;
     private Slider hpSlider;
     private Text hpText;
@@ -23,6 +21,7 @@ public class Person : MonoBehaviour, IPunObservable
     private float progress;
     private bool isRun;
     private bool wasHit;
+    
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if(stream.IsWriting)

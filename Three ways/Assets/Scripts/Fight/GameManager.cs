@@ -92,17 +92,20 @@ public class GameManager : MonoBehaviourPunCallbacks
         result.attackIndex = BitConverter.ToInt32(data, 1);
         result.protectIndex = BitConverter.ToInt32(data, 5);
         result.hp = BitConverter.ToInt32(data, 9);
-
+        result.isAttackChance = BitConverter.ToBoolean(data, 13);
+        result.isProtectChance = BitConverter.ToBoolean(data, 14);
         return result;
     }
     public static byte[] SerializeGameEvent(object obj)
     {
         GameEvent gameEvent = (GameEvent)obj;
-        byte[] result = new byte[ 1 + 4 + 4 + 4];
+        byte[] result = new byte[ 1 + 4 + 4 + 4 + 1 + 1];
         BitConverter.GetBytes(gameEvent.isSelected).CopyTo(result, 0);
         BitConverter.GetBytes(gameEvent.attackIndex).CopyTo(result, 1);
         BitConverter.GetBytes(gameEvent.protectIndex).CopyTo(result, 5);
         BitConverter.GetBytes(gameEvent.hp).CopyTo(result, 9);
+        BitConverter.GetBytes(gameEvent.isAttackChance).CopyTo(result, 13);
+        BitConverter.GetBytes(gameEvent.isProtectChance).CopyTo(result, 14);
 
         return result;
     }

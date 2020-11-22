@@ -23,6 +23,9 @@ public class EventHandler : MonoBehaviour
     private Slider leftHP;
     private Slider rightHP;
     private string resultPath = "result-info.txt";
+    private string infoPath = "player-info.txt";
+    private PlayerInfo playerInfo;
+    private Weapons weapons;
     public int minePoints = 0;
     public int otherPoints = 0;
 
@@ -47,7 +50,9 @@ public class EventHandler : MonoBehaviour
     }
     void Start()
     {
-        CorrectPathes.MakeCorrect(ref resultPath);
+        CorrectPathes.MakeCorrect(ref resultPath, ref infoPath);
+        playerInfo = new PlayerInfo(infoPath);
+        weapons = playerInfo.GetCurrentWeapon();
         isSeted = false;
     }
     public void Begin()
@@ -81,6 +86,8 @@ public class EventHandler : MonoBehaviour
         selectedRight.text += "\n" +right.hp.ToString();
         selectedRight.text += "\n" +right.attackIndex.ToString();
         selectedRight.text += "\n" +right.protectIndex.ToString();
+        if(left.isAttackChance) selectedLeft.text += "\nChance";
+        if(right.isAttackChance) selectedRight.text += "\nChance";
     }
     void CheckFight()
     {
@@ -101,6 +108,8 @@ public class EventHandler : MonoBehaviour
             left.isSelected = true;
             left.attackIndex = attackControler.GetComponent<SelectedWay>().index;
             left.protectIndex = protectControler.GetComponent<SelectedWay>().index;
+            left.isAttackChance = MyChance.ThereIs(weapons.CountChance(0));
+            left.isProtectChance = MyChance.ThereIs(weapons.CountChance(1));
         }
     }
     void Win()
@@ -159,6 +168,8 @@ public struct GameEvent
     public int hp;
     public int attackIndex;//1-top, 2-centre, 3-botton
     public int protectIndex;
+    public bool isAttackChance;
+    public bool isProtectChance;
 
     public GameEvent(int hp = 5)
     {
@@ -166,5 +177,7 @@ public struct GameEvent
         this.hp = hp;
         attackIndex = 0;
         protectIndex = 0;
+        isAttackChance = false;
+        isProtectChance = false;
     }
 }

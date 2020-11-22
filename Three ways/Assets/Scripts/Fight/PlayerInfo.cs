@@ -14,6 +14,10 @@ public class PlayerInfo
     private List<Weapons> dataOfPurchasedAvatars;
     public bool correctRead;
 
+    public Weapons GetCurrentWeapon()
+    {
+        return GetWeapon(currentIndexOfAvatar);
+    }
     public Weapons GetWeapon(int indexOfAvatar)
     {
         if(indexOfAvatar < dataOfPurchasedAvatars.Count)
@@ -64,7 +68,7 @@ public class PlayerInfo
         this.nickName = nickName;
         this.password = password;
         this.eMail = eMail;
-        coins = 0;
+        coins = 550;
         points = 100;
         currentIndexOfAvatar = 0;
         dataOfPurchasedAvatars = new List<Weapons>();
