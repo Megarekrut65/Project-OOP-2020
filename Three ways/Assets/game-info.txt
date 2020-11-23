@@ -1,0 +1,5 @@
+Avatar=1
+Points=100
+Room code=9304
+Max hp=0
+Status=other

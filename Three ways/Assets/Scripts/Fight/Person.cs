@@ -120,6 +120,7 @@ public class Person : MonoBehaviour, IPunObservable
     }
     void Attack(bool isChance, int indexOfEnemy)
     {
+        sword.GetComponent<AudioSource>().Play();
         animator.SetBool("damage", true );
         if(photonView.IsMine) EditMineHP(-1);
         else EditHP(-1);
@@ -165,6 +166,7 @@ public class Person : MonoBehaviour, IPunObservable
     }
     void Protect(bool isChance, int indexOfEnemy)
     {
+        shield.GetComponent<AudioSource>().Play();
         animator.SetBool("block", true );
         if(isChance && indexOfEnemy == 0) Attack(false, 0);
         if(gameEvent.isProtectChance) ProtectSpecialSkill();
