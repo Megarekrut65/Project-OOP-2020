@@ -21,7 +21,9 @@ public class Person : MonoBehaviour, IPunObservable
     private float progress;
     private bool isRun;
     private bool wasHit;
-    
+    public GameObject sword;
+    public GameObject shield;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if(stream.IsWriting)
@@ -142,6 +144,16 @@ public class Person : MonoBehaviour, IPunObservable
             else mainCamera.GetComponent<EventHandler>().NextPerson();
         }
     }
+    void SetSword()
+    {
+        if(gameEvent.isAttackChance) sword.GetComponent<SpriteRenderer>().color = Color.red;
+        else sword.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+    void SetShield()
+    {
+        if(gameEvent.isProtectChance) shield.GetComponent<SpriteRenderer>().color = Color.green;
+        else shield.GetComponent<SpriteRenderer>().color = Color.white;
+    }
     IEnumerator EventExchange()
     {
         while(true)
@@ -155,6 +167,8 @@ public class Person : MonoBehaviour, IPunObservable
                 mainCamera.GetComponent<EventHandler>().right = gameEvent;
             }
             yield return new WaitForSeconds(0.01f);
+            SetSword();
+            SetShield();
         }       
     }
 }

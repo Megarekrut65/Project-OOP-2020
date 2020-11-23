@@ -13,7 +13,7 @@ public class EventHandler : MonoBehaviour
     public GameEvent right;
     private Text selectedLeft;
     private Text selectedRight;
-    private float waitForNext = 3f;
+    private float waitForNext = 2.8f;
     public int maxHP = 5;
     private bool needWait;
     private bool wasFight;
@@ -33,6 +33,9 @@ public class EventHandler : MonoBehaviour
     {
         left.isSelected = false;
         yield return new WaitForSeconds(waitForNext); 
+        left.isAttackChance = false;
+        left.isProtectChance = false;
+        yield return new WaitForSeconds(0.2f); 
         gameCanvas.GetComponent<Canvas>().sortingOrder = 20;
         attackControler.SetActive(true);
         attackControler.GetComponent<SelectedWay>().Refresh();
