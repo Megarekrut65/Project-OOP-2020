@@ -617,6 +617,8 @@ MonoBehaviour:
   step: 0.05
   sword: {fileID: 3575717739798673380}
   shield: {fileID: 8163765325254215874}
+  index: 1
+  isStuned: 0
 --- !u!114 &-9207964107183858586
 MonoBehaviour:
   m_ObjectHideFlags: 0

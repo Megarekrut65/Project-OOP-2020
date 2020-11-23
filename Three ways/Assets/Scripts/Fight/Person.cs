@@ -23,6 +23,8 @@ public class Person : MonoBehaviour, IPunObservable
     private bool wasHit;
     public GameObject sword;
     public GameObject shield;
+    public int index = 0;
+    public bool isStuned = false;
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -68,47 +70,115 @@ public class Person : MonoBehaviour, IPunObservable
         else SetOtherPlayer();
         SetSame(); 
     }
-    public void Hitting()
+    public bool Hitting()
     {
+        if(isStuned) return false;
         startPostion = minePostion;
         endPosition = enemyPosition;
         progress = 0;
         isRun = true;
         animator.SetBool("run", isRun );
         wasHit = false;
+
+        return true;
     }
     public void SetIdle()
     {
         animator.SetBool("block", false );
+        animator.SetBool("block-skill", false );
         animator.SetBool("damage", false );
     }
-    public void GetHit(int enemyAttack)
+    void AttackSkillTwo()
     {
-        if(enemyAttack != gameEvent.protectIndex)
+        if(photonView.IsMine) mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().EditHP(1);
+        else mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().EditMineHP(1);
+    }
+    void AttackSpecialSkill(int indexOfEnemy)
+    {
+        switch (indexOfEnemy)
         {
-            animator.SetBool("damage", true );
-            if(photonView.IsMine)
-            { 
-                mainCamera.GetComponent<EventHandler>().left.hp--; 
-                hpSlider.value = mainCamera.GetComponent<EventHandler>().left.hp;
-                hpText.text = mainCamera.GetComponent<EventHandler>().left.hp.ToString();
-            }
-            else
+            case 0: //empty
+                break;
+            case 1: AttackSkillTwo();
+                break;
+            case 2: Attack(false, 3);
+                break;
+            default:
+                break;
+        }
+    }
+    public void EditMineHP(int value)
+    {
+        mainCamera.GetComponent<EventHandler>().left.hp += value; 
+        hpSlider.value = mainCamera.GetComponent<EventHandler>().left.hp;
+        hpText.text = mainCamera.GetComponent<EventHandler>().left.hp.ToString();
+    }
+    public void EditHP(int value)
+    {
+        hpSlider.value = gameEvent.hp + value;
+        hpText.text = (gameEvent.hp + value).ToString();
+    }
+    void Attack(bool isChance, int indexOfEnemy)
+    {
+        animator.SetBool("damage", true );
+        if(photonView.IsMine) EditMineHP(-1);
+        else EditHP(-1);
+        GetStun(false);
+        if(isChance) AttackSpecialSkill(indexOfEnemy);
+    }
+    void DieAvatar()
+    {
+        animator.SetBool("die", true );
+    }
+    public void GetStun(bool stun)
+    {
+        isStuned = stun;
+        animator.SetBool("stun", isStuned );
+    }
+    void ProtectSpecialSkill()
+    {
+        switch (index)
+        {
+            case 0:
             {
-                hpSlider.value = gameEvent.hp - 1;
-                hpText.text = (gameEvent.hp - 1).ToString();
+                if (photonView.IsMine) 
+                mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().GetHit(4, false, index);
+                else  mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().GetHit(4, false, index);
             }
+                break;
+            case 1:
+            {
+                if (photonView.IsMine) 
+                mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().GetStun(true);
+                else  mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().GetStun(true);
+            }
+                break;
+            case 2:
+            {
+                if(photonView.IsMine) EditMineHP(1);
+                else EditHP(1);
+            }
+                break;
+            default:
+                break;
         }
-        else
-        {
-            animator.SetBool("block", true );
-        }
+    }
+    void Protect(bool isChance, int indexOfEnemy)
+    {
+        animator.SetBool("block", true );
+        if(isChance && indexOfEnemy == 0) Attack(false, 0);
+        if(gameEvent.isProtectChance) ProtectSpecialSkill();
+    }
+    public void GetHit(int enemyAttack, bool isChance, int indexOfEnemy)
+    {
+        if(enemyAttack != gameEvent.protectIndex) Attack(isChance, indexOfEnemy);  
+        else Protect(isChance, indexOfEnemy);
     }
     public void Fight()
     {
         if(photonView.IsMine) 
-        mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().GetHit(gameEvent.attackIndex);
-        else  mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().GetHit(gameEvent.attackIndex);
+        mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().GetHit(gameEvent.attackIndex, gameEvent.isAttackChance, index);
+        else  mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().GetHit(gameEvent.attackIndex, gameEvent.isAttackChance, index);
     }
     public void StopHit()
     {
@@ -122,6 +192,7 @@ public class Person : MonoBehaviour, IPunObservable
     }
     void Start()
     {
+        gameEvent = new GameEvent();
         isRun = false;
         animator = GetComponent<Animator>();
         photonView = GetComponent<PhotonView>();
@@ -158,6 +229,7 @@ public class Person : MonoBehaviour, IPunObservable
     {
         while(true)
         {
+            if(gameEvent.hp <= 0) DieAvatar();
             if(photonView.IsMine)
             {
                 gameEvent = mainCamera.GetComponent<EventHandler>().left;

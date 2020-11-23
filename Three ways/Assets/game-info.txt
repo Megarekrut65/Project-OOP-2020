@@ -1,0 +1,5 @@
+Avatar=1
+Points=89
+Room code=1670
+Max hp=0
+Status=other

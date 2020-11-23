@@ -80,6 +80,7 @@ IPointerDownHandler, IPointerUpHandler
     }
     public void SetData(int indexOfSteel)
     {
+        updating.GetComponent<Animation>().Play("updating-start");
         currentSteel = indexOfSteel;
         currentAvatar = mainCamera.GetComponent<ReadAvatars>().currentIndex;
         currentWeapon = mainCamera.GetComponent<ReadAvatars>().player.GetWeapon(currentAvatar);

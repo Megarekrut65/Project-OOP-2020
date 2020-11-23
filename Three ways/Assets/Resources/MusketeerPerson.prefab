@@ -451,6 +451,7 @@ MonoBehaviour:
   step: 0.05
   sword: {fileID: 6175099776713718688}
   shield: {fileID: 1131252796310213453}
+  index: 2
 --- !u!114 &4615095654844141611
 MonoBehaviour:
   m_ObjectHideFlags: 0

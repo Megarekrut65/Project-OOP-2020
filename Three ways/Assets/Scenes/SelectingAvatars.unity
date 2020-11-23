@@ -202,7 +202,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 200
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -441,7 +441,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 200
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -504,9 +504,9 @@ GameObject:
   - component: {fileID: 212608720}
   - component: {fileID: 212608723}
   - component: {fileID: 212608722}
-  - component: {fileID: 212608721}
   - component: {fileID: 212608724}
   - component: {fileID: 212608725}
+  - component: {fileID: 212608721}
   m_Layer: 5
   m_Name: Right
   m_TagString: Untagged
@@ -528,8 +528,8 @@ RectTransform:
   m_Father: {fileID: 1939082667}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.88400006, y: 0.2321438}
-  m_AnchorMax: {x: 0.984, y: 0.771}
+  m_AnchorMin: {x: 0.88400006, y: 0.26200002}
+  m_AnchorMax: {x: 0.984, y: 0.73700005}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 1
-  m_AspectRatio: 0.37115628
+  m_AspectRatio: 0.42105234
 --- !u!114 &212608722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1671,7 +1671,7 @@ RectTransform:
   m_AnchorMin: {x: 0.17962956, y: 0.64000005}
   m_AnchorMax: {x: 0.81745684, y: 0.7492631}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -0.7963435}
+  m_SizeDelta: {x: 0, y: -0.82778126}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &463171270
 MonoBehaviour:
@@ -1699,6 +1699,7 @@ Animation:
   m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 7400000, guid: 47838f98e0ad3394cb127e8b9c7470e6, type: 2}
+  - {fileID: 7400000, guid: e14e38308888e7c41aa654fbb220ba00, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -1931,7 +1932,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 200
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1982,11 +1983,11 @@ RectTransform:
   - {fileID: 81672576}
   m_Father: {fileID: 463171269}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.24296284}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.36969268, y: 0}
   m_AnchorMax: {x: 0.64500004, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -0.0000038146973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &856064878
 MonoBehaviour:
@@ -2109,7 +2110,7 @@ Animation:
   - {fileID: 7400000, guid: e91abbb611be5f0438f6a46e431f5ef3, type: 2}
   - {fileID: 7400000, guid: 77b288389121da04e935e516fe7820a3, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 0
+  m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!1 &955442076
@@ -2303,7 +2304,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 200
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2382,7 +2383,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 200
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2825,7 +2826,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 200
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2904,7 +2905,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 200
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2931,9 +2932,9 @@ GameObject:
   - component: {fileID: 1505977695}
   - component: {fileID: 1505977698}
   - component: {fileID: 1505977697}
-  - component: {fileID: 1505977696}
   - component: {fileID: 1505977699}
   - component: {fileID: 1505977700}
+  - component: {fileID: 1505977696}
   m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
@@ -2955,10 +2956,10 @@ RectTransform:
   m_Father: {fileID: 1939082667}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.019633988, y: 0.2321438}
-  m_AnchorMax: {x: 0.118732035, y: 0.771}
-  m_AnchoredPosition: {x: -0.5999756, y: -0.5}
-  m_SizeDelta: {x: -2.055542, y: 0}
+  m_AnchorMin: {x: 0.019633988, y: 0.26200002}
+  m_AnchorMax: {x: 0.117000006, y: 0.73700005}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1505977696
 MonoBehaviour:
@@ -2973,7 +2974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 1
-  m_AspectRatio: 0.35510004
+  m_AspectRatio: 0.40996227
 --- !u!114 &1505977697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3260,7 +3261,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 200
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3444,7 +3445,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 200
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4089,6 +4090,7 @@ GameObject:
   - component: {fileID: 2129672625}
   - component: {fileID: 2129672624}
   - component: {fileID: 2129672627}
+  - component: {fileID: 2129672628}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4193,8 +4195,103 @@ MonoBehaviour:
   protect: {fileID: 1359499407}
   avatarName: {fileID: 111506011}
   currentIndex: 0
-  infoPath: player-info.txt
   nextButton: {fileID: 390996453}
   buying: {fileID: 1413827360}
   buyPrice: {fileID: 766189413}
   coinsText: {fileID: 1054607160}
+--- !u!82 &2129672628
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129672623}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: cfa6b522f50c568459f01fad772c02c0, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

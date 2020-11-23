@@ -73,8 +73,8 @@ public class EventHandler : MonoBehaviour
         } 
         else
         {
-            rightPerson.GetComponent<Person>().Hitting();
             wasFight = true;
+            if(!rightPerson.GetComponent<Person>().Hitting()) NextPerson();
         }
     }
     void SetTemp()
@@ -97,22 +97,36 @@ public class EventHandler : MonoBehaviour
         if(!needWait&&left.isSelected && right.isSelected)
         {
             wasFight = false;
-            leftPerson.GetComponent<Person>().Hitting(); 
             needWait = true; 
+            if(!leftPerson.GetComponent<Person>().Hitting()) NextPerson();
         }
+    }
+    void SettingFight()
+    {
+        attackControler.GetComponent<SelectedWay>().isSelected = false;
+        protectControler.GetComponent<SelectedWay>().isSelected = false;
+        left.isSelected = true;
+        left.attackIndex = attackControler.GetComponent<SelectedWay>().index;
+        left.protectIndex = protectControler.GetComponent<SelectedWay>().index;
+        left.isAttackChance = MyChance.ThereIs(weapons.CountChance(0));
+        left.isProtectChance = MyChance.ThereIs(weapons.CountChance(1));
     }
     void CheckSelectings()
     {
+        if(leftPerson.GetComponent<Person>().isStuned)
+        {
+            attackControler.GetComponent<SelectedWay>().Select(5);
+            protectControler.GetComponent<SelectedWay>().Select(5);
+        }
         if(attackControler.GetComponent<SelectedWay>().isSelected &&
         protectControler.GetComponent<SelectedWay>().isSelected)
         {
-            attackControler.GetComponent<SelectedWay>().isSelected = false;
-            protectControler.GetComponent<SelectedWay>().isSelected = false;
-            left.isSelected = true;
-            left.attackIndex = attackControler.GetComponent<SelectedWay>().index;
-            left.protectIndex = protectControler.GetComponent<SelectedWay>().index;
-            left.isAttackChance = MyChance.ThereIs(weapons.CountChance(0));
-            left.isProtectChance = MyChance.ThereIs(weapons.CountChance(1));
+            SettingFight();
+        }
+        if(leftPerson.GetComponent<Person>().isStuned)
+        {
+            left.isAttackChance = false;
+            left.isProtectChance = false;
         }
     }
     void Win()
