@@ -29,6 +29,6 @@ public class GameOver : MonoBehaviour
     {  
         File.Delete(resultPath);
         File.Delete(gamePath);
-        SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene("Main");
     }
 }

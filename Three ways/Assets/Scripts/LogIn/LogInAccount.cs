@@ -86,6 +86,7 @@ public class LogInAccount : MonoBehaviour
             "Player" + UnityEngine.Random.Range(1000,9999).ToString(),
             "1111", "@gmail.com");
             newPlayer.CreateInfoFile(infoPath);
+            newPlayer.AppendToPlayersFile(dataPath);
     }
     public void OKButton()
     {

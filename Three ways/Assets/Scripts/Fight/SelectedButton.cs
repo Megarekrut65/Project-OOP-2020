@@ -11,6 +11,7 @@ IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {   
         transform.localScale = 1.1f * transform.localScale;
+        controler.GetComponent<AudioSource>().Play();
     }
     public void OnPointerUp(PointerEventData eventData)
     {

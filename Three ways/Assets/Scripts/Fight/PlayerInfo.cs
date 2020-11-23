@@ -68,7 +68,7 @@ public class PlayerInfo
         this.nickName = nickName;
         this.password = password;
         this.eMail = eMail;
-        coins = 550;
+        coins = 5500;
         points = 100;
         currentIndexOfAvatar = 0;
         dataOfPurchasedAvatars = new List<Weapons>();
@@ -108,17 +108,20 @@ public class PlayerInfo
         }
         return result;
     }
-    void StringToList(string line)
+    bool StringToList(string line)
     {
         dataOfPurchasedAvatars = new List<Weapons>();
         string[] parts = line.Split("=".ToCharArray());
-        if(parts.Length != 2) return;
+        if(parts.Length != 2) return false;
         string[] avatars = parts[1].Split(",".ToCharArray());
-        for(int i = 0; i < avatars.Length; i++)
+        if(avatars.Length <= 1) return false;
+        for(int i = 0; i < avatars.Length - 1; i++)
         {
-            if(avatars[i].Length > 0) 
+            if(avatars[i].Length > 10) 
                     dataOfPurchasedAvatars.Add(new Weapons(avatars[i]));
+            else return false;
         }
+        return true;
     }
     void WritePlayerToFile(ref StreamWriter writer)
     {
@@ -165,7 +168,7 @@ public class PlayerInfo
         if (reader.EndOfStream) return;
         currentIndexOfAvatar = Convert.ToInt32(reader.ReadLine().Substring(7));
         if (reader.EndOfStream) return;
-        StringToList(reader.ReadLine());
+        if(!StringToList(reader.ReadLine())) return;
         correctRead = true;
     }
     void ReadPlayerFromFile(string path)

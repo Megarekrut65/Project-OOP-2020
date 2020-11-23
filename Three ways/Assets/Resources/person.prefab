@@ -799,12 +799,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e7d1c6c27fc8b49bdac5f8f7b6cfc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoPath: infoPath.txt
   startPostion: {x: 0, y: 0}
   endPosition: {x: 0, y: 0}
   minePostion: {x: 0, y: 0}
   enemyPosition: {x: 0, y: 0}
   step: 0.05
+  sword: {fileID: 910175344424489262}
+  shield: {fileID: 2329708393019189066}
+  index: 0
+  isStuned: 0
 --- !u!1 &8350064285288401728
 GameObject:
   m_ObjectHideFlags: 0

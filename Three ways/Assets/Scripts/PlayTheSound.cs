@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class PlayTheSound : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void PlaySound()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GetComponent<AudioSource>().Play();
     }
 }
