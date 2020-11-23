@@ -165,6 +165,8 @@ public class EventHandler : MonoBehaviour
     }
     void CheckHealth()
     {
+        if(leftHP.value <= 0) leftPerson.GetComponent<Person>().DieAvatar();
+        if(rightHP.value <= 0) rightPerson.GetComponent<Person>().DieAvatar();
         if(leftHP.value <= 0 || rightHP.value <= 0)
         {
             StartCoroutine("FightEnd");

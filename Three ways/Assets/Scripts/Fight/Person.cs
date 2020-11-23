@@ -126,7 +126,7 @@ public class Person : MonoBehaviour, IPunObservable
         GetStun(false);
         if(isChance) AttackSpecialSkill(indexOfEnemy);
     }
-    void DieAvatar()
+    public void DieAvatar()
     {
         animator.SetBool("die", true );
     }
@@ -192,7 +192,6 @@ public class Person : MonoBehaviour, IPunObservable
     }
     void Start()
     {
-        gameEvent = new GameEvent();
         isRun = false;
         animator = GetComponent<Animator>();
         photonView = GetComponent<PhotonView>();
@@ -229,7 +228,6 @@ public class Person : MonoBehaviour, IPunObservable
     {
         while(true)
         {
-            if(gameEvent.hp <= 0) DieAvatar();
             if(photonView.IsMine)
             {
                 gameEvent = mainCamera.GetComponent<EventHandler>().left;
