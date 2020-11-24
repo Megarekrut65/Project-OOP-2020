@@ -11,19 +11,24 @@ public class GameOver : MonoBehaviour
     public Text theText;
     private string resultPath = "result-info.txt";
     private string infoPath = "player-info.txt";
+    private string dataPath = "data.txt";
+    private string newDataPath = "newData.txt";
     private string gamePath = "game-info.txt";
     private GameResult result;
     private PlayerInfo player;
 
     void Start()
     {
-        CorrectPathes.MakeCorrect(ref resultPath, ref infoPath, ref gamePath);
+        string[] list = {resultPath, infoPath, dataPath, newDataPath, gamePath};
+        CorrectPathes.MakeCorrect(ref list);
+        resultPath = list[0];
+        gamePath = list[4];
         result = new GameResult();
         result.ReadResult(resultPath);
         theText.text = result.GetString();
-        player = new PlayerInfo(infoPath);
+        player = new PlayerInfo(list[1]);
         player.AddResult(result);
-        player.CreateInfoFile(infoPath);
+        player.EditPlayerInPlayersFile(list[2], list[3], list[1]);
     }
     public void ClickNext()
     {  

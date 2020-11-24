@@ -25,7 +25,6 @@ public class EventHandler : MonoBehaviour
     private string resultPath = "result-info.txt";
     private string infoPath = "player-info.txt";
     private PlayerInfo playerInfo;
-    private Weapons weapons;
     public int minePoints = 0;
     public int otherPoints = 0;
 
@@ -55,7 +54,9 @@ public class EventHandler : MonoBehaviour
     {
         CorrectPathes.MakeCorrect(ref resultPath, ref infoPath);
         playerInfo = new PlayerInfo(infoPath);
-        weapons = playerInfo.GetCurrentWeapon();
+        Weapons weapons = playerInfo.GetCurrentWeapon();
+        attackControler.GetComponent<SelectedWay>().chance = weapons.CountChance(0);
+        protectControler.GetComponent<SelectedWay>().chance = weapons.CountChance(1);
         isSeted = false;
     }
     public void Begin()
@@ -112,8 +113,8 @@ public class EventHandler : MonoBehaviour
     {
         left.attackIndex = attackControler.GetComponent<SelectedWay>().index;
         left.protectIndex = protectControler.GetComponent<SelectedWay>().index;
-        left.isAttackChance = MyChance.ThereIs(weapons.CountChance(0));
-        left.isProtectChance = MyChance.ThereIs(weapons.CountChance(1));
+        left.isAttackChance = attackControler.GetComponent<SelectedWay>().isChance;
+        left.isProtectChance = protectControler.GetComponent<SelectedWay>().isChance;
     }
     void SettingFight()
     {
@@ -128,8 +129,6 @@ public class EventHandler : MonoBehaviour
             SetNotStun();
         }
         left.isSelected = true;
-        Debug.Log(left.isAttackChance.ToString() + weapons.CountChance(0).ToString());
-        Debug.Log(left.isProtectChance.ToString() +  weapons.CountChance(1).ToString());
     }
     void CheckSelectings()
     {

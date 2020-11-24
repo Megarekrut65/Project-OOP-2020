@@ -37,6 +37,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -954,7 +956,7 @@ ScriptsOnlyBuild:
     className: Avatar
   - hash:
       serializedVersion: 2
-      Hash: bae69e86c2f4968fdcdbfe1463486db6
+      Hash: 2397396d1fbd8bf60644be9f858c3edd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SelectedWay
