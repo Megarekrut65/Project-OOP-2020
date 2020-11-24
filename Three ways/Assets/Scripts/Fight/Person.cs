@@ -73,14 +73,17 @@ public class Person : MonoBehaviour, IPunObservable
     public bool Hitting()
     {
         if(isStuned) return false;
-        startPostion = minePostion;
-        endPosition = enemyPosition;
-        progress = 0;
-        isRun = true;
-        animator.SetBool("run", isRun );
-        wasHit = false;
+        else
+        {
+            startPostion = minePostion;
+            endPosition = enemyPosition;
+            progress = 0;
+            isRun = true;
+            animator.SetBool("run", isRun );
+            wasHit = false;
 
-        return true;
+            return true; 
+        }
     }
     public void SetIdle()
     {
@@ -118,13 +121,20 @@ public class Person : MonoBehaviour, IPunObservable
         hpSlider.value = gameEvent.hp + value;
         hpText.text = (gameEvent.hp + value).ToString();
     }
-    void Attack(bool isChance, int indexOfEnemy)
+    public void AttackSound()
     {
         sword.GetComponent<AudioSource>().Play();
+    }
+    public void ProtectSound()
+    {
+        shield.GetComponent<AudioSource>().Play();
+    }
+    void Attack(bool isChance, int indexOfEnemy)
+    {
         animator.SetBool("damage", true );
         if(photonView.IsMine) EditMineHP(-1);
         else EditHP(-1);
-        GetStun(false);
+        //GetStun(false);
         if(isChance) AttackSpecialSkill(indexOfEnemy);
     }
     public void DieAvatar()
@@ -149,9 +159,9 @@ public class Person : MonoBehaviour, IPunObservable
                 break;
             case 1:
             {
-                if (photonView.IsMine) 
+                /*if (photonView.IsMine) 
                 mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().GetStun(true);
-                else  mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().GetStun(true);
+                else  mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().GetStun(true);*/
             }
                 break;
             case 2:
@@ -166,7 +176,6 @@ public class Person : MonoBehaviour, IPunObservable
     }
     void Protect(bool isChance, int indexOfEnemy)
     {
-        shield.GetComponent<AudioSource>().Play();
         animator.SetBool("block", true );
         if(isChance && indexOfEnemy == 0) Attack(false, 0);
         if(gameEvent.isProtectChance) ProtectSpecialSkill();
@@ -178,6 +187,7 @@ public class Person : MonoBehaviour, IPunObservable
     }
     public void Fight()
     {
+        AttackSound();
         if(photonView.IsMine) 
         mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().GetHit(gameEvent.attackIndex, gameEvent.isAttackChance, index);
         else  mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().GetHit(gameEvent.attackIndex, gameEvent.isAttackChance, index);
@@ -194,6 +204,7 @@ public class Person : MonoBehaviour, IPunObservable
     }
     void Start()
     {
+        gameEvent = new GameEvent();
         isRun = false;
         animator = GetComponent<Animator>();
         photonView = GetComponent<PhotonView>();

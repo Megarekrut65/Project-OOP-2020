@@ -191,7 +191,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8975835698964802302}
   m_Bounds:
-    m_Center: {x: 0.054435134, y: -0.04269004, z: 0}
+    m_Center: {x: 0.054436088, y: -0.10053456, z: 0}
     m_Extent: {x: 0.63056487, y: 0.24268997, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -434,8 +434,8 @@ MonoBehaviour:
   - {fileID: 1522832615690623759}
   - {fileID: 125455708424428739}
   m_Bounds:
-    m_Center: {x: 0.00000035762787, y: 0.0016196966, z: 0}
-    m_Extent: {x: 0.79499984, y: 1.8983799, z: 0}
+    m_Center: {x: -0.041845083, y: 0.10881841, z: 0}
+    m_Extent: {x: 0.6492381, y: 1.9406185, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!82 &2564491954681816645
@@ -450,7 +450,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ad26be762c21ad640a1f0d6490b79164, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -663,7 +663,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5659295152226507249}
   m_Bounds:
-    m_Center: {x: -0.00000023841858, y: 0.25177562, z: 0}
+    m_Center: {x: -0.00000023841858, y: 0.23192322, z: 0}
     m_Extent: {x: 1.7650001, y: 1.2182254, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -766,8 +766,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 2330438208716576774}
   m_Bounds:
-    m_Center: {x: -0.005074799, y: 0.005000472, z: 0}
-    m_Extent: {x: 0.60019505, y: 0.3298801, z: 0}
+    m_Center: {x: 0.0048810244, y: -0.0047340095, z: 0}
+    m_Extent: {x: 0.6008676, y: 0.33187652, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4616084143256359311
@@ -935,7 +935,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8975835698964802302}
   m_Bounds:
-    m_Center: {x: -0.0015799999, y: -0.0018549562, z: 0}
+    m_Center: {x: -0.0015790462, y: -0.059699476, z: 0}
     m_Extent: {x: 1.0684202, y: 0.9481451, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1098,8 +1098,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 9064318901428109983}
   m_Bounds:
-    m_Center: {x: 0.0033499002, y: 0.00000047683716, z: 0}
-    m_Extent: {x: 0.39332974, y: 1.0349998, z: 0}
+    m_Center: {x: -0.059016973, y: -0.015960336, z: 0}
+    m_Extent: {x: 0.43902478, y: 1.0307764, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7028247395699512259
@@ -1201,8 +1201,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 2914221281744797488}
   m_Bounds:
-    m_Center: {x: 0.009483933, y: 0.0051454306, z: 0}
-    m_Extent: {x: 0.6064552, y: 0.3298551, z: 0}
+    m_Center: {x: -0.004066944, y: 0.003514707, z: 0}
+    m_Extent: {x: 0.60690665, y: 0.33774838, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7176661591387115550
@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5963973252854025398}
   m_Bounds:
-    m_Center: {x: 0, y: 0.00018644333, z: 0}
+    m_Center: {x: 0, y: -0.01966548, z: 0}
     m_Extent: {x: 1.8400007, y: 3.215186, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1438,8 +1438,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 43234311789089838}
   m_Bounds:
-    m_Center: {x: -0.12029481, y: -0.054814577, z: 0}
-    m_Extent: {x: 1.1870555, y: 1.1618454, z: 0}
+    m_Center: {x: -0.23886144, y: -0.059594154, z: 0}
+    m_Extent: {x: 1.1929922, y: 1.165983, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!82 &9008663527623090096
@@ -1454,7 +1454,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c3099113cdc1d0744b0df3acb685e5ea, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1637,7 +1637,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5068971331619710352}
   m_Bounds:
-    m_Center: {x: -0.003160119, y: 0.0050300956, z: 0}
-    m_Extent: {x: 1.0031599, y: 0.62168986, z: 0}
+    m_Center: {x: 0.011824369, y: 0.030678451, z: 0}
+    m_Extent: {x: 1.0198998, y: 0.5429329, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1

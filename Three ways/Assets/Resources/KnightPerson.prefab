@@ -234,8 +234,8 @@ MonoBehaviour:
   - {fileID: 5528633934391637171}
   - {fileID: 6015680246598439480}
   m_Bounds:
-    m_Center: {x: 0, y: -0.0020097494, z: 0}
-    m_Extent: {x: 1.07, y: 0.9479901, z: 0}
+    m_Center: {x: -0.033286333, y: -0.011229873, z: 0}
+    m_Extent: {x: 1.0464033, y: 0.9729837, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1062273240631767005
@@ -338,8 +338,8 @@ MonoBehaviour:
   - {fileID: 6076239837181751408}
   - {fileID: 7024865992578968939}
   m_Bounds:
-    m_Center: {x: 0.0029996634, y: 0.0009095669, z: 0}
-    m_Extent: {x: 0.39298016, y: 1.02618, z: 0}
+    m_Center: {x: -0.006008476, y: -0.00005710125, z: 0}
+    m_Extent: {x: 0.40570194, y: 1.028013, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &2339695662752601991
@@ -532,8 +532,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3730247148706140612}
   m_Bounds:
-    m_Center: {x: -0.00026685, y: 0.0015954971, z: 0}
-    m_Extent: {x: 0.8647349, y: 2.5034056, z: 0}
+    m_Center: {x: 0.08522338, y: -0.024457455, z: 0}
+    m_Extent: {x: 0.9387658, y: 2.476918, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!82 &3020413415252774286
@@ -548,7 +548,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ad26be762c21ad640a1f0d6490b79164, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -941,8 +941,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 4719811023384702041}
   m_Bounds:
-    m_Center: {x: 0.0000009536743, y: 0.00000023841858, z: 0}
-    m_Extent: {x: 1.5550002, y: 2.1950002, z: 0}
+    m_Center: {x: -0.010402918, y: -0.022096872, z: 0}
+    m_Extent: {x: 1.5557828, y: 2.2137456, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &6056780780066194931
@@ -1311,8 +1311,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 4037173498707613301}
   m_Bounds:
-    m_Center: {x: 0.17929, y: -0.13470489, z: 0}
-    m_Extent: {x: 0.60664994, y: 0.3197049, z: 0}
+    m_Center: {x: 0.21024907, y: -0.08547503, z: 0}
+    m_Extent: {x: 0.60339844, y: 0.33918715, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &8163765325254215874
@@ -1415,8 +1415,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6076239837181751408}
   m_Bounds:
-    m_Center: {x: -0.000009536743, y: -0.00001001358, z: 0}
-    m_Extent: {x: 1.4449904, y: 1.9999907, z: 0}
+    m_Center: {x: -0.008114219, y: 0.023088694, z: 0}
+    m_Extent: {x: 1.496203, y: 2.0252767, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!82 &2126165679363450904
@@ -1431,7 +1431,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c3099113cdc1d0744b0df3acb685e5ea, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -1,2 +1,0 @@
-New points=17
-Coins=22

@@ -101,32 +101,42 @@ public class EventHandler : MonoBehaviour
             if(!leftPerson.GetComponent<Person>().Hitting()) NextPerson();
         }
     }
-    void SettingFight()
+    void SetStun()
     {
-        attackControler.GetComponent<SelectedWay>().isSelected = false;
-        protectControler.GetComponent<SelectedWay>().isSelected = false;
-        left.isSelected = true;
+        left.attackIndex = 5;
+        left.protectIndex = 5;
+        left.isAttackChance = false;
+        left.isProtectChance = false;
+    }
+    void SetNotStun()
+    {
         left.attackIndex = attackControler.GetComponent<SelectedWay>().index;
         left.protectIndex = protectControler.GetComponent<SelectedWay>().index;
         left.isAttackChance = MyChance.ThereIs(weapons.CountChance(0));
         left.isProtectChance = MyChance.ThereIs(weapons.CountChance(1));
     }
-    void CheckSelectings()
+    void SettingFight()
     {
+        attackControler.GetComponent<SelectedWay>().isSelected = false;
+        protectControler.GetComponent<SelectedWay>().isSelected = false;
         if(leftPerson.GetComponent<Person>().isStuned)
         {
-            attackControler.GetComponent<SelectedWay>().Select(5);
-            protectControler.GetComponent<SelectedWay>().Select(5);
+            SetStun();
         }
+        else
+        {  
+            SetNotStun();
+        }
+        left.isSelected = true;
+        Debug.Log(left.isAttackChance.ToString() + weapons.CountChance(0).ToString());
+        Debug.Log(left.isProtectChance.ToString() +  weapons.CountChance(1).ToString());
+    }
+    void CheckSelectings()
+    {
         if(attackControler.GetComponent<SelectedWay>().isSelected &&
         protectControler.GetComponent<SelectedWay>().isSelected)
         {
             SettingFight();
-        }
-        if(leftPerson.GetComponent<Person>().isStuned)
-        {
-            left.isAttackChance = false;
-            left.isProtectChance = false;
         }
     }
     void Win()
