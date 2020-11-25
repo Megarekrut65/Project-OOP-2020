@@ -1,0 +1,5 @@
+Avatar=2
+Points=178
+Room code=1376
+Max hp=20
+Status=host

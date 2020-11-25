@@ -35,10 +35,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     void PlayerSetting()
     {
         player = new PlayerInfo(infoPath);
-        if(!player.correctRead)
-        {       
-            player = CreateAccount();
-        } 
     }
     public void SetDisconnect()
     {
@@ -52,15 +48,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = "1";
     }
-    private PlayerInfo CreateAccount()
-    {
-        PlayerInfo newPlayer = new PlayerInfo(
-            "Player" + UnityEngine.Random.Range(1000,9999).ToString(),
-            "1111", "@gmail.com");
-            newPlayer.CreateInfoFile(infoPath);
-
-            return newPlayer;
-    }
     public override void OnLeftRoom()
     {
         Debug.Log("Left Room");
@@ -73,17 +60,26 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         waiting.SetActive(false);
         Debug.Log("Connected to Master");   
     }
-    void CreateGameInfo(int code, bool isHost)
+    bool CreateGameInfo(int code, bool isHost)
     {
-        GameInfo gameInfo = new GameInfo(player.currentIndexOfAvatar, player.points, code, Convert.ToInt32(maxHP.text), isHost);
+        int maxHPNumber = Convert.ToInt32(maxHP.text);
+        if(maxHPNumber < 1)
+        {
+            errorsBoard.SetActive(true);
+            errorsBoard.GetComponent<Errors>().SetError("Error" + ": Max hp can't be less than one");
+            return false;
+        }
+        GameInfo gameInfo = new GameInfo(player.currentIndexOfAvatar, player.points, code, maxHPNumber, isHost);
         gameInfo.CreateInfoFile(gamePath); 
+
+        return true;
     }
     public void CreateRoom()
     {
         if(!isConnect) return;
         waiting.SetActive(true);
         waitingText.text = "Creating...";
-        CreateGameInfo(numberOfRoom, true);
+        if(!CreateGameInfo(numberOfRoom, true)) return;
         Debug.Log("Creating...");  
         PhotonNetwork.CreateRoom(numberOfRoom.ToString(), new Photon.Realtime.RoomOptions{MaxPlayers = 2});
     }
@@ -107,7 +103,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if(roomCode.text.Length == 0) OnJoinRoomFailed(32758, " Room code is too short");
         else 
         {
-            CreateGameInfo(Convert.ToInt32(roomCode.text),false);
+            maxHP.text = "20";
+            CreateGameInfo(Convert.ToInt32(roomCode.text), false);
             PhotonNetwork.JoinRoom(roomCode.text);
         }
     }
