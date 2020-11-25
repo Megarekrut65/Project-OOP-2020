@@ -7,10 +7,22 @@ public class CheckingAccount : MonoBehaviour
 {
     private PlayerInfo player;
     private string infoPath = "player-info.txt";
+
     void Start()
     {
         CorrectPathes.MakeCorrect(ref infoPath);
         player = new PlayerInfo(infoPath);
         if(!player.correctRead) SceneManager.LoadScene("LogIn", LoadSceneMode.Single);
+    }
+    public void SoundButton()
+    {
+        if(GetComponent<SoundMode>().EditSound())
+        {
+            Debug.Log("Sound<(");
+        }
+        else
+        {
+            Debug.Log("Sound<X");
+        }
     }
 }

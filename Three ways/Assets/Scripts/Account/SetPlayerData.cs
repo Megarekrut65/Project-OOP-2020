@@ -14,6 +14,7 @@ public class SetPlayerData : MonoBehaviour
     private string newDataPath = "newData.txt";
     public PlayerInfo player;
     public GameObject deleting;
+    public GameObject editing;
     public GameObject account;
     void Start()
     {
@@ -32,6 +33,11 @@ public class SetPlayerData : MonoBehaviour
     {
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
+    public void EditPlayer()
+    {
+        player.EditPlayerInPlayersFile(dataPath, newDataPath, infoPath);
+        account.SetActive(true);
+    }
     public void DeleteAccount()
     {
         player.DeletePlayer(dataPath, newDataPath, infoPath);
@@ -44,6 +50,7 @@ public class SetPlayerData : MonoBehaviour
     }
     public void EditButton()
     {
-
+        editing.SetActive(true);
+        account.SetActive(false);
     }
 }

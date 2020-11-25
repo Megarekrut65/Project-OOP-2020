@@ -21,5 +21,6 @@ public class DeleteAccount : MonoBehaviour
             error.GetComponent<ErrorMessage>().SetError("Invalid password entered!");
             gameObject.SetActive(false);
         }
+        password.text = "";
     }
 }

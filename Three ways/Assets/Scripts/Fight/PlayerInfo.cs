@@ -252,4 +252,14 @@ public class PlayerInfo
     {
         return (this.password == password);
     }
+    public bool EditPassword(string oldPassword, string newPassword)
+    {
+        if(CorrectPassword(oldPassword)) 
+        {
+            password = newPassword;
+            return true;
+        }
+        
+        return false;
+    }
 }
