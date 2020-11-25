@@ -56,8 +56,18 @@ public class Sender
         code.ToString() + " to confirm the account.";
         Send(message, title);
     }
+    public void SendForgotPassword(string nickname)
+    {
+        if (code == 0) return;
+        string title = "Three Ways";
+        string message = "Hello, " + nickname + 
+        ". If you want to change the password for the account here is your code: " + 
+        code.ToString() + ", else ignore this message...";
+        Send(message, title);
+    }
     public bool CheckCode(string code)
     {
+        if(code.Length != 4) return false;
         return (this.code == Convert.ToInt32(code));
     }
 }

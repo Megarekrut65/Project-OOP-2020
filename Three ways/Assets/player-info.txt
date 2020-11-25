@@ -1,7 +1,0 @@
-NickName=Player9337
-Password=1111
-EMail=@gmail.com
-Coins=5500
-Points=100
-Avatar=0
-PurchasedAvatars={index:0;lvlSword:1;lvlShield:1},

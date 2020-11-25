@@ -17,7 +17,7 @@ public class LogInAccount : MonoBehaviour
     PlayerInfo player;
     public GameObject[] avatars;
 
-    void IncorrectData(string obj, string message)
+    public void IncorrectData(string obj, string message)
     {
         inputNickName.text = "";
         inputPassword.text = "";
@@ -90,9 +90,9 @@ public class LogInAccount : MonoBehaviour
     }
     public void OKButton()
     {
-        CreateAccount();
+        /*CreateAccount();
         SceneManager.LoadScene(nameOfScene, LoadSceneMode.Single);          
-        return;
+        return;*/
         string nickname = "NickName=" + inputNickName.text;
         string password = "Password=" + inputPassword.text;
         if(FindPlayer(nickname, password))

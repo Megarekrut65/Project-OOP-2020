@@ -39,6 +39,11 @@ public class EditPassword : MonoBehaviour
     }
     public void Edit()
     {
+        if(newPassword.text.Length <= 3)
+        {
+            SetErrors("The new password is too short!");
+            return;
+        }
         if(newPassword.text == newPasswordAgain.text)
         {
             EditPass();

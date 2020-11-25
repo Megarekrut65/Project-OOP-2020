@@ -20,9 +20,10 @@ public class PlayerInfo
     }
     public Weapons GetWeapon(int indexOfAvatar)
     {
-        if(indexOfAvatar < dataOfPurchasedAvatars.Count)
+        foreach (Weapons weapon in dataOfPurchasedAvatars)
         {
-            return dataOfPurchasedAvatars[indexOfAvatar];
+            if(weapon.indexOfAvatar == indexOfAvatar)
+                return weapon;
         }
 
         return new Weapons(indexOfAvatar);
@@ -37,7 +38,12 @@ public class PlayerInfo
         if(price < coins)
         {
             coins -= price;
-            dataOfPurchasedAvatars[indexOfAvatar].AddLvl(indexOfSteel);
+            foreach (Weapons weapon in dataOfPurchasedAvatars)
+            {
+                if(weapon.indexOfAvatar == indexOfAvatar)
+                    weapon.AddLvl(indexOfSteel);
+            }
+            
             return true;
         }
         return false;
@@ -147,7 +153,7 @@ public class PlayerInfo
         WritePlayerToFile(ref writer);
         writer.Close();
     }
-    void RefreshFile(string path)
+    public void RefreshFile(string path)
     {
         FileStream file = new FileStream(path, FileMode.OpenOrCreate);
         StreamReader reader = new StreamReader(file);
