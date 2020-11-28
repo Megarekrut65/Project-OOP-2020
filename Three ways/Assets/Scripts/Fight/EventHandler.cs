@@ -30,6 +30,7 @@ public class EventHandler : MonoBehaviour
 
     IEnumerator ShowControlers()
     {
+        CheckHealth();
         left.isSelected = false;
         yield return new WaitForSeconds(waitForNext); 
         left.isAttackChance = false;
@@ -75,7 +76,7 @@ public class EventHandler : MonoBehaviour
         else
         {
             wasFight = true;
-            if(!rightPerson.GetComponent<Person>().Hitting()) NextPerson();
+            rightPerson.GetComponent<Person>().Hitting();
         }
     }
     void SetTemp()
@@ -99,36 +100,22 @@ public class EventHandler : MonoBehaviour
         {
             wasFight = false;
             needWait = true; 
-            if(!leftPerson.GetComponent<Person>().Hitting()) NextPerson();
+            leftPerson.GetComponent<Person>().Hitting();
         }
     }
-    void SetStun()
-    {
-        left.attackIndex = 5;
-        left.protectIndex = 5;
-        left.isAttackChance = false;
-        left.isProtectChance = false;
-    }
-    void SetNotStun()
+    void SetLeft()
     {
         left.attackIndex = attackControler.GetComponent<SelectedWay>().index;
         left.protectIndex = protectControler.GetComponent<SelectedWay>().index;
         left.isAttackChance = attackControler.GetComponent<SelectedWay>().isChance;
         left.isProtectChance = protectControler.GetComponent<SelectedWay>().isChance;
+        left.isSelected = true;
     }
     void SettingFight()
     {
         attackControler.GetComponent<SelectedWay>().isSelected = false;
         protectControler.GetComponent<SelectedWay>().isSelected = false;
-        if(leftPerson.GetComponent<Person>().isStuned)
-        {
-            SetStun();
-        }
-        else
-        {  
-            SetNotStun();
-        }
-        left.isSelected = true;
+        SetLeft();
     }
     void CheckSelectings()
     {
@@ -174,6 +161,8 @@ public class EventHandler : MonoBehaviour
     }
     void CheckHealth()
     {
+        leftHP.value = left.hp;
+        rightHP.value = right.hp;
         if(leftHP.value <= 0) leftPerson.GetComponent<Person>().DieAvatar();
         if(rightHP.value <= 0) rightPerson.GetComponent<Person>().DieAvatar();
         if(leftHP.value <= 0 || rightHP.value <= 0)
@@ -184,7 +173,6 @@ public class EventHandler : MonoBehaviour
     void Update()
     {
         if(!isSeted) return;
-        CheckHealth();
         SetTemp();
         CheckSelectings();
         CheckFight();

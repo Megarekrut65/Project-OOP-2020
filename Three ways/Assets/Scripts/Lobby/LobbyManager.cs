@@ -46,7 +46,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.NickName = player.nickName;
         //PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.GameVersion = "1";
+        PhotonNetwork.GameVersion = "2";
     }
     public override void OnLeftRoom()
     {

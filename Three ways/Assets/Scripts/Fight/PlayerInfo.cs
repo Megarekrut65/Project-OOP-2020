@@ -74,7 +74,7 @@ public class PlayerInfo
         this.nickName = nickName;
         this.password = password;
         this.eMail = eMail;
-        coins = 5500;
+        coins = 55000;
         points = 100;
         currentIndexOfAvatar = 0;
         dataOfPurchasedAvatars = new List<Weapons>();
@@ -141,6 +141,7 @@ public class PlayerInfo
     }
     public void CreateInfoFile(string path)
     {
+        RefreshFile(path);
         FileStream file = new FileStream(path, FileMode.OpenOrCreate);
         StreamWriter writer = new StreamWriter(file);
         WritePlayerToFile(ref writer);
@@ -155,9 +156,7 @@ public class PlayerInfo
     }
     public void RefreshFile(string path)
     {
-        FileStream file = new FileStream(path, FileMode.OpenOrCreate);
-        StreamReader reader = new StreamReader(file);
-        reader.Close();
+        File.Delete(path);
     }
     void ReadPlayer(ref StreamReader reader)
     {
@@ -188,7 +187,6 @@ public class PlayerInfo
     public void EditPlayerInPlayersFile(string path, string newPath, string infoPath)
     {
         CreateInfoFile(infoPath);
-        RefreshFile(newPath);
         FileStream file = new FileStream(path, FileMode.OpenOrCreate);
         StreamReader reader = new StreamReader(file);
         while (!reader.EndOfStream)

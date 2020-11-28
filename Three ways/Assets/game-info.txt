@@ -1,5 +1,5 @@
-Avatar=0
-Points=100
-Room code=5254
+Avatar=1
+Points=139
+Room code=5971
 Max hp=20
 Status=host

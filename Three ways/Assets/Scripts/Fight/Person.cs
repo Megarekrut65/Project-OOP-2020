@@ -70,20 +70,14 @@ public class Person : MonoBehaviour, IPunObservable
         else SetOtherPlayer();
         SetSame(); 
     }
-    public bool Hitting()
+    public void Hitting()
     {
-        if(isStuned) return false;
-        else
-        {
-            startPostion = minePostion;
-            endPosition = enemyPosition;
-            progress = 0;
-            isRun = true;
-            animator.SetBool("run", isRun );
-            wasHit = false;
-
-            return true; 
-        }
+        startPostion = minePostion;
+        endPosition = enemyPosition;
+        progress = 0;
+        isRun = true;
+        animator.SetBool("run", isRun );
+        wasHit = false;
     }
     public void SetIdle()
     {
@@ -91,20 +85,24 @@ public class Person : MonoBehaviour, IPunObservable
         animator.SetBool("block-skill", false );
         animator.SetBool("damage", false );
     }
-    void AttackSkillTwo()
-    {
-        if(photonView.IsMine) mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().EditHP(1);
-        else mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().EditMineHP(1);
-    }
     void AttackSpecialSkill(int indexOfEnemy)
     {
+        if(isStuned) 
+        {
+            SetStun(false);
+            return;
+        }
         switch (indexOfEnemy)
         {
             case 0: //empty
                 break;
-            case 1: AttackSkillTwo();
+            case 1: Attack(false, 1);
                 break;
-            case 2: Attack(false, 3);
+            case 2: 
+            {
+                Attack(false, 2);
+                Attack(false, 2);
+            }
                 break;
             default:
                 break;
@@ -143,10 +141,14 @@ public class Person : MonoBehaviour, IPunObservable
     public void SetStun(bool stun)
     {
         isStuned = stun;
-        animator.SetBool("stun", isStuned );
     }
     void ProtectSpecialSkill()
     {
+        if(isStuned) 
+        {
+            SetStun(false);
+            return;
+        }
         switch (index)
         {
             case 0:

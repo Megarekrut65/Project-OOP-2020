@@ -126,13 +126,13 @@ IPointerDownHandler, IPointerUpHandler
             case 1:
             {
                 line = "This weapon was a favorite among the gladiators who fought in arenas for entertainment.\n";
-                propertieLine += " it steals from the enemy health equal to that inflicted.";
+                propertieLine += " it deals twice as much damage.";
             }
             break;
             case 2: 
             {
                 line = "A fast and sharp sword that pierces the enemy with quick blows.\n";
-                propertieLine += " it deals twice as much damage.";
+                propertieLine += " it deals triple as much damage.";
             }
             break;
             default:
@@ -170,7 +170,7 @@ IPointerDownHandler, IPointerUpHandler
             case 1:
             {
                 line = "Large and heavy shield.\n";
-                propertieLine += " it stuns the enemy.";
+                propertieLine += " cancel one skill of the enemy.";
             }
             break;
             case 2: 
