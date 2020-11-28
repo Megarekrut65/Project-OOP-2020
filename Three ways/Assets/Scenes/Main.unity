@@ -436,7 +436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 28fae02dfee18b046bc19bae0b37818a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -742,6 +742,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ffa10c6ba776a4a97e2f778eee1db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundOn: {fileID: 6281998500607454895, guid: c60ff577b0632694ca1fa95df5b70a33, type: 3}
+  soundOff: {fileID: 7316610348573740690, guid: d35e484dc68511d44abb94da64d8d5a7, type: 3}
+  sound: {fileID: 1670653813}
 --- !u!1 &778232435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,7 +1432,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4bf7b03b2979e194a86014eb0231ad6b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1504,9 +1507,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420030}
-        m_TargetAssemblyTypeName: CheckingAccount, Assembly-CSharp
-        m_MethodName: SoundButton
+      - m_Target: {fileID: 519420034}
+        m_TargetAssemblyTypeName: SoundMode, Assembly-CSharp
+        m_MethodName: EditSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

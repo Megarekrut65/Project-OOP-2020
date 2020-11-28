@@ -3,15 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using UnityEngine.UI;
+
 public class SoundMode : MonoBehaviour
 {
     private string soundPath = "sound.txt";
     private bool soundActive;
+    public Image soundOn;
+    public Image soundOff;
+    public Image sound;
     void Start()
     {
         CorrectPathes.MakeCorrect(ref soundPath);
         soundActive = false;
         ReadSound();
+    }
+    void TurnOn()
+    {
+        if(sound != null ) sound.sprite = soundOn.sprite;
+        soundActive = true;
+        AudioListener.pause = false;
+    }
+    void TurnOff()
+    {
+        if(sound != null ) sound.sprite = soundOff.sprite;
+        soundActive = false;
+        AudioListener.pause = true;
     }
     void ReadSound()
     {
@@ -27,13 +44,11 @@ public class SoundMode : MonoBehaviour
         }
         if (reader.ReadLine().Substring(5) == "true") 
         {
-            AudioListener.pause = false;
-            soundActive = true;
+            TurnOn();
         }
         else 
         {
-            AudioListener.pause = true;
-            soundActive = false;
+            TurnOff();
         }
         reader.Close();
     }
@@ -45,19 +60,16 @@ public class SoundMode : MonoBehaviour
         else writer.WriteLine("Mode=false");
         writer.Close();
     }
-    public bool EditSound()
+    public void EditSound()
     {
         if(soundActive)
         {
-            soundActive = false;
-            AudioListener.pause = true;
+            TurnOff();
         }
         else
         {
-            soundActive = true;
-            AudioListener.pause = false;
+            TurnOn();
         }
         WriteSound();
-        return soundActive;
     }
 }
