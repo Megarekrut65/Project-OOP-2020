@@ -134,14 +134,13 @@ public class Person : MonoBehaviour, IPunObservable
         animator.SetBool("damage", true );
         if(photonView.IsMine) EditMineHP(-1);
         else EditHP(-1);
-        //GetStun(false);
         if(isChance) AttackSpecialSkill(indexOfEnemy);
     }
     public void DieAvatar()
     {
         animator.SetBool("die", true );
     }
-    public void GetStun(bool stun)
+    public void SetStun(bool stun)
     {
         isStuned = stun;
         animator.SetBool("stun", isStuned );
@@ -159,9 +158,9 @@ public class Person : MonoBehaviour, IPunObservable
                 break;
             case 1:
             {
-                /*if (photonView.IsMine) 
-                mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().GetStun(true);
-                else  mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().GetStun(true);*/
+                if (photonView.IsMine) 
+                mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().SetStun(true);
+                else  mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().SetStun(true);
             }
                 break;
             case 2:
