@@ -1,7 +1,7 @@
-NickName=Player6063
+NickName=Player4184
 Password=1111
 EMail=@gmail.com
-Coins=31641
-Points=39
+Coins=55019
+Points=36
 Avatar=0
-PurchasedAvatars={index:0;lvlSword:15;lvlShield:15},{index:1;lvlSword:1;lvlShield:1},{index:2;lvlSword:1;lvlShield:1},
+PurchasedAvatars={index:0;lvlSword:1;lvlShield:1},

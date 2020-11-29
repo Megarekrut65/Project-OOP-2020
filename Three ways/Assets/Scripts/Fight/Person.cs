@@ -87,11 +87,6 @@ public class Person : MonoBehaviour, IPunObservable
     }
     int AttackSpecialSkill(int indexOfEnemy)
     {
-        if(isStuned) 
-        {
-            SetStun(false);
-            return -1;
-        }
         switch (indexOfEnemy)
         {
             case 0: return -1;
@@ -183,9 +178,15 @@ public class Person : MonoBehaviour, IPunObservable
     public void Fight()
     {
         AttackSound();
+        bool chance = gameEvent.isAttackChance;
+        if(isStuned&&gameEvent.isAttackChance)
+        {
+            isStuned = false;
+            chance  = false;
+        }
         if(photonView.IsMine) 
-        mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().GetHit(gameEvent.attackIndex, gameEvent.isAttackChance, index);
-        else  mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().GetHit(gameEvent.attackIndex, gameEvent.isAttackChance, index);
+        mainCamera.GetComponent<EventHandler>().rightPerson.GetComponent<Person>().GetHit(gameEvent.attackIndex, chance, index);
+        else  mainCamera.GetComponent<EventHandler>().leftPerson.GetComponent<Person>().GetHit(gameEvent.attackIndex, chance, index);
     }
     public void StopHit()
     {
