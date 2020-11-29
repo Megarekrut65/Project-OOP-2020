@@ -1050,6 +1050,7 @@ MonoBehaviour:
   question: {fileID: 1181046441}
   gameRoom: {fileID: 89105915}
   playerInfo: {fileID: 2206703699264702953, guid: 65152b3ba2ae3514c896137f56413f56, type: 3}
+  gameCanvas: {fileID: 1682307722}
 --- !u!1 &284239460
 GameObject:
   m_ObjectHideFlags: 0

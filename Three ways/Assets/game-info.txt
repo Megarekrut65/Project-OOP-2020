@@ -1,5 +1,5 @@
 Avatar=0
-Points=89
+Points=39
 Room code=1111
 Max hp=20
 Status=other

@@ -173,7 +173,7 @@ public class Person : MonoBehaviour, IPunObservable
     {
         animator.SetBool("block", true );
         if(isChance && indexOfEnemy == 0) Attack(false, 0);
-        if(gameEvent.isProtectChance) ProtectSpecialSkill();
+        else if(gameEvent.isProtectChance) ProtectSpecialSkill();
     }
     public void GetHit(int enemyAttack, bool isChance, int indexOfEnemy)
     {

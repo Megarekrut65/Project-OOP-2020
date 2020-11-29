@@ -20,6 +20,8 @@ public class EventHandler : MonoBehaviour
     public GameObject rightPerson;
     private Slider leftHP;
     private Slider rightHP;
+    private Text leftHpText;
+    private Text rightHpText;
     private string resultPath = "result-info.txt";
     private string infoPath = "player-info.txt";
     private PlayerInfo playerInfo;
@@ -47,6 +49,8 @@ public class EventHandler : MonoBehaviour
         right = new GameEvent(maxHP);  
         leftHP = GameObject.Find("LeftHP").GetComponent<Slider>();
         rightHP = GameObject.Find("RightHP").GetComponent<Slider>();
+        leftHpText = GameObject.Find("LeftHPText").GetComponent<Text>();
+        rightHpText = GameObject.Find("RightHPText").GetComponent<Text>();
     }
     void Start()
     {
@@ -150,6 +154,8 @@ public class EventHandler : MonoBehaviour
     {
         leftHP.value = left.hp;
         rightHP.value = right.hp;
+        leftHpText.text = left.hp.ToString();
+        rightHpText.text = right.hp.ToString();
         if(leftHP.value <= 0) leftPerson.GetComponent<Person>().DieAvatar();
         if(rightHP.value <= 0) rightPerson.GetComponent<Person>().DieAvatar();
         if(leftHP.value <= 0 || rightHP.value <= 0)
