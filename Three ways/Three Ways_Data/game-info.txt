@@ -1,5 +1,0 @@
-Avatar=0
-Points=100
-Room code=5971
-Max hp=20
-Status=other

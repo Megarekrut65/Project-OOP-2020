@@ -1,7 +1,7 @@
-NickName=Player2473
+NickName=Player7071
 Password=1111
 EMail=@gmail.com
-Coins=3589
-Points=139
-Avatar=1
-PurchasedAvatars={index:0;lvlSword:1;lvlShield:1},{index:2;lvlSword:15;lvlShield:15},{index:1;lvlSword:15;lvlShield:15},
+Coins=370790
+Points=153
+Avatar=0
+PurchasedAvatars={index:0;lvlSword:15;lvlShield:15},{index:1;lvlSword:15;lvlShield:15},{index:2;lvlSword:15;lvlShield:15},

@@ -75,12 +75,16 @@ public class ReadAvatars : MonoBehaviour
         {
             objects[i].SetActive(false);
         }
+        SetCurrentAvatar();
         SetAll();
     }
-    void SetAll()
+    void SetCurrentAvatar()
     {
         objects[currentIndex].SetActive(true);
         objects[currentIndex].GetComponent<Avatar>().SetSet();
+    }
+    void SetAll()
+    {    
         attack.sprite = attacks[currentIndex].sprite;
         protect.sprite = protects[currentIndex].sprite;
         avatarName.text = avatarNames[currentIndex];
@@ -103,6 +107,7 @@ public class ReadAvatars : MonoBehaviour
         {
             objects[currentIndex].SetActive(false);
             currentIndex++;
+            SetCurrentAvatar();
             SetAll();     
         }
     }
@@ -112,6 +117,7 @@ public class ReadAvatars : MonoBehaviour
         {
             objects[currentIndex].SetActive(false);
             currentIndex--;
+            SetCurrentAvatar();
             SetAll();   
         }
     }

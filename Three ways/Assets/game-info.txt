@@ -1,5 +1,0 @@
-Avatar=1
-Points=139
-Room code=5971
-Max hp=20
-Status=host

@@ -11,8 +11,6 @@ public class EventHandler : MonoBehaviour
     public GameObject gameCanvas;
     public GameEvent left;
     public GameEvent right;
-    private Text selectedLeft;
-    private Text selectedRight;
     private float waitForNext = 2.8f;
     public int maxHP = 5;
     private bool needWait;
@@ -48,8 +46,6 @@ public class EventHandler : MonoBehaviour
         right = new GameEvent(maxHP);  
         leftHP = GameObject.Find("LeftHP").GetComponent<Slider>();
         rightHP = GameObject.Find("RightHP").GetComponent<Slider>();
-        selectedLeft = GameObject.Find("LeftCheck").GetComponent<Text>();
-        selectedRight = GameObject.Find("RightCheck").GetComponent<Text>();
     }
     void Start()
     {
@@ -78,21 +74,6 @@ public class EventHandler : MonoBehaviour
             wasFight = true;
             rightPerson.GetComponent<Person>().Hitting();
         }
-    }
-    void SetTemp()
-    {
-        if(left.isSelected) selectedLeft.text = "+";
-        else selectedLeft.text = "-";
-        if(right.isSelected) selectedRight.text = "+";
-        else selectedRight.text = "-";
-        selectedLeft.text += "\n" + left.hp.ToString();
-        selectedLeft.text += "\n" +left.attackIndex.ToString();
-        selectedLeft.text += "\n" +left.protectIndex.ToString();
-        selectedRight.text += "\n" +right.hp.ToString();
-        selectedRight.text += "\n" +right.attackIndex.ToString();
-        selectedRight.text += "\n" +right.protectIndex.ToString();
-        if(left.isAttackChance) selectedLeft.text += "\nChance";
-        if(right.isAttackChance) selectedRight.text += "\nChance";
     }
     void CheckFight()
     {
@@ -127,12 +108,16 @@ public class EventHandler : MonoBehaviour
     }
     void Win()
     {
-        GameResult result = GameResult.CountWin(minePoints, otherPoints);
+        Weapons weapons = playerInfo.GetCurrentWeapon();
+        int lvl = (weapons.GetLvl(0) + weapons.GetLvl(1))/2;
+        GameResult result = GameResult.CountWin(minePoints, otherPoints, lvl);
         result.WriteResult(resultPath);
     }
     void Lose()
     {
-        GameResult result = GameResult.CountLose(minePoints, otherPoints);
+        Weapons weapons = playerInfo.GetCurrentWeapon();
+        int lvl = (weapons.GetLvl(0) + weapons.GetLvl(1))/2;
+        GameResult result = GameResult.CountLose(minePoints, otherPoints, lvl);
         result.WriteResult(resultPath);
     }
     void CheckWiner()
@@ -173,7 +158,6 @@ public class EventHandler : MonoBehaviour
     void Update()
     {
         if(!isSeted) return;
-        SetTemp();
         CheckSelectings();
         CheckFight();
     }

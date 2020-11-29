@@ -33,33 +33,33 @@ public class Weapons
         int add = 0;
         switch(indexOfAvatar)
         {
-            case 0: add = 3; 
+            case 0: add = 12 - 5/lvlOfSword; 
             break;
-            case 1: add = 1;
+            case 1: add = 4;
             break;
-            case 2: add = 4;
+            case 2: add = 8 - 4/lvlOfSword;
             break;
             default:
             break;
         }
 
-        return (lvlOfShield * 3 + add);
+        return (lvlOfShield * 2 + add );
     }
     int CountSwordChance()
     {
         int add = 0;
         switch(indexOfAvatar)
         {
-            case 0: add = 6; 
+            case 0: add = 16 - 10/lvlOfSword; 
             break;
-            case 1: add = 4;
+            case 1: add = 9 - 5/lvlOfSword;
             break;
-            case 2: add = 3;
+            case 2: add = 0;
             break;
             default:
             break;
         }
-        return (lvlOfSword * 2 + add);
+        return (lvlOfSword + add + 5);
     }
     public int CountChance(int indexOfSteel)
     {
@@ -89,7 +89,6 @@ public class Weapons
         }
         return startPrice + maxLvl;
     }
-    //need make function for inform about max lvl
     public bool IsMaxLvl(int indexOfSteel)
     {
         switch(indexOfSteel)

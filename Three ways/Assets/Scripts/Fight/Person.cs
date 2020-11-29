@@ -85,27 +85,19 @@ public class Person : MonoBehaviour, IPunObservable
         animator.SetBool("block-skill", false );
         animator.SetBool("damage", false );
     }
-    void AttackSpecialSkill(int indexOfEnemy)
+    int AttackSpecialSkill(int indexOfEnemy)
     {
         if(isStuned) 
         {
             SetStun(false);
-            return;
+            return -1;
         }
         switch (indexOfEnemy)
         {
-            case 0: //empty
-                break;
-            case 1: Attack(false, 1);
-                break;
-            case 2: 
-            {
-                Attack(false, 2);
-                Attack(false, 2);
-            }
-                break;
-            default:
-                break;
+            case 0: return -1;
+            case 1: return -2;
+            case 2: return -3;
+            default: return -1;
         }
     }
     public void EditMineHP(int value)
@@ -129,10 +121,12 @@ public class Person : MonoBehaviour, IPunObservable
     }
     void Attack(bool isChance, int indexOfEnemy)
     {
+        int damage = -1;
+        if(isChance) damage = AttackSpecialSkill(indexOfEnemy);
         animator.SetBool("damage", true );
-        if(photonView.IsMine) EditMineHP(-1);
-        else EditHP(-1);
-        if(isChance) AttackSpecialSkill(indexOfEnemy);
+        if(photonView.IsMine) EditMineHP(damage);
+        else EditHP(damage);
+        
     }
     public void DieAvatar()
     {
