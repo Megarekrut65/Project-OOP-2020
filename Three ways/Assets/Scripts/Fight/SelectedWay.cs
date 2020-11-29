@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectedWay : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class SelectedWay : MonoBehaviour
     public GameObject nextSelect;
     public bool needNext = false;
     public GameObject gameCanvas;
+    public Slider timeSlider;
+    private const int time = 60;
+    public GameObject gameManager;
 
     void Start()
     {
@@ -18,8 +22,18 @@ public class SelectedWay : MonoBehaviour
         isSelected = false;
         isChance = false;
     }
+    IEnumerator RunTime()
+    {
+        while(true)
+        {
+            if(timeSlider.value <= 0) gameManager.GetComponent<GameManager>().AnswerYes();
+            yield return new WaitForSeconds(1f);
+            timeSlider.value--;
+        }
+    }
     public void Select(int index)
     {
+        timeSlider.value = time;
         this.index = index;
         isChance = MyChance.ThereIs(chance);
         isSelected = true;
@@ -36,6 +50,8 @@ public class SelectedWay : MonoBehaviour
     }
     public void Refresh()
     {
+        StartCoroutine("RunTime");
+        timeSlider.value = time;
         index = 0;
         isSelected = false;
     }

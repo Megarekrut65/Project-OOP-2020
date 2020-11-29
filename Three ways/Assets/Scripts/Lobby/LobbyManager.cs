@@ -24,13 +24,17 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public GameObject creating;
     public GameObject joining;
     public GameObject lobbyMenu;
+    public Toggle isPrivate;
+    private bool findRandom;
 
     void Start()
-    {
+    {       
         SetDisconnect();
         CorrectPathes.MakeCorrect(ref infoPath, ref roomPath, ref gamePath);
         PlayerSetting();
         SettingPhoton();
+        findRandom = false;
+        StartCoroutine("FindRoom");
     }
     void PlayerSetting()
     {
@@ -57,7 +61,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         isConnect = true;
         numberOfRoom = UnityEngine.Random.Range(1000,9999);
         roomCodeText.text = "Room code: " + numberOfRoom.ToString();
-        waiting.SetActive(false);
+        SetWaiting("", false);
         Debug.Log("Connected to Master");   
     }
     bool CreateGameInfo(int code, bool isHost)
@@ -77,15 +81,52 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void CreateRoom()
     {
         if(!isConnect) return;
-        waiting.SetActive(true);
-        waitingText.text = "Creating...";
+        SetWaiting("Creating...", true);
         if(!CreateGameInfo(numberOfRoom, true)) return;
         Debug.Log("Creating...");  
-        PhotonNetwork.CreateRoom(numberOfRoom.ToString(), new Photon.Realtime.RoomOptions{MaxPlayers = 2});
+        PhotonNetwork.CreateRoom(numberOfRoom.ToString(), new Photon.Realtime.RoomOptions{MaxPlayers = 2, IsVisible = !isPrivate.isOn});
+    }
+    IEnumerator CloseWait()
+    {
+        yield return new WaitForSeconds(2f);
+        waiting.SetActive(false);
+        StopCoroutine("CloseWait");
+    }
+    void SetWaiting(string text, bool active)
+    {
+        if(active)
+        {
+            waiting.SetActive(active);
+            waitingText.text = text;
+        }
+        else
+        {
+            StartCoroutine("CloseWait");
+        }
+    }
+    IEnumerator FindRoom()
+    {
+        while(true)
+        {
+            if(isConnect&&findRandom) 
+            {
+                PhotonNetwork.JoinRandomRoom();    
+            }  
+            yield return new WaitForSeconds(10f);       
+        }
+    }
+    public void OnRandomRoom()
+    {
+        if(!isConnect) return;
+        SetWaiting("Finding random room...", true);
+        Debug.Log("Finding...");
+        maxHP.text = "20";
+        CreateGameInfo(1111, false);
+        findRandom = true;   
     }
     public override void OnCreatedRoom()
     {
-        waiting.SetActive(false);
+        SetWaiting("", false);
         Debug.Log("Created!");
     }
     public override void OnCreateRoomFailed(short returnCode, string message)
@@ -97,8 +138,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void JoinToRoom()
     {
         if(!isConnect) return;
-        waiting.SetActive(true);
-        waitingText.text = "Joining...";
+        SetWaiting("Joining...", true);
         Debug.Log("Joining...");
         if(roomCode.text.Length == 0) OnJoinRoomFailed(32758, " Room code is too short");
         else 
@@ -110,7 +150,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
-        waiting.SetActive(false);
+        findRandom = false;
+        SetWaiting("", false);
         Debug.Log("Joined the room");
         PhotonNetwork.LoadLevel("Fight"); 
     }
@@ -135,8 +176,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if(needConnect && !isConnect) 
         {
-            waiting.SetActive(true);
-            waitingText.text = "Connecting...";
+            SetWaiting("Connecting...", true);
             needConnect = false;
             PhotonNetwork.ConnectUsingSettings();
         }

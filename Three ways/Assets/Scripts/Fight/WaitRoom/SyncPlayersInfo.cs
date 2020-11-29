@@ -42,7 +42,7 @@ public class SyncPlayersInfo : MonoBehaviour, IPunObservable
     void Update()
     {
         if(gameInfo.isHost) mainCamera.GetComponent<EventHandler>().maxHP = gameInfo.maxHP; 
-        board.GetComponent<InfoBoard>().SetRoom(gameInfo.code);
+        if(gameInfo.isHost) board.GetComponent<InfoBoard>().SetRoom(gameInfo.code);
         board.GetComponent<InfoBoard>().SetData(photonView.Owner.NickName, gameInfo);
         if(photonView.IsMine)
         {

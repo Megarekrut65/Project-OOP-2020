@@ -25,6 +25,7 @@ public class EventHandler : MonoBehaviour
     private PlayerInfo playerInfo;
     public int minePoints = 0;
     public int otherPoints = 0;
+    public GameObject gameManager;
 
     IEnumerator ShowControlers()
     {
@@ -134,14 +135,15 @@ public class EventHandler : MonoBehaviour
     {
         if(mine) Lose();
         else Win();
-        SceneManager.LoadScene("EndFight");
+        if(mine) SceneManager.LoadScene("EndFight", LoadSceneMode.Single);
+        else gameManager.GetComponent<GameManager>().EndFight();
     }
     IEnumerator FightEnd()
     {
         StopCoroutine("ShowControlers");
         yield return new WaitForSeconds(3f);
         CheckWiner();
-        SceneManager.LoadScene("EndFight");
+        gameManager.GetComponent<GameManager>().EndFight();
         StopCoroutine("FightEnd");
     }
     void CheckHealth()

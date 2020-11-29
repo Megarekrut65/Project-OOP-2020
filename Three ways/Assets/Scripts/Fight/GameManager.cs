@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject playerInfo;
     private Vector3 pos = Vector3.zero;  
     private bool isStarted;
+    private bool endFight = false;
+    public GameObject gameCanvas;
 
     void SetPlayer()
     {
@@ -65,23 +67,48 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void AnswerNo()
     {
         question.SetActive(false);
+        gameCanvas.GetComponent<Canvas>().sortingOrder = 0;
+    }
+    public void EndFight()
+    {
+        endFight = true;
+        PhotonNetwork.LeaveRoom();
     }
     public void Leave()
     {
-        if(isStarted) question.SetActive(true);
-        else SceneManager.LoadScene("Lobby");
+        if(isStarted) 
+        {
+            question.SetActive(true);
+            gameCanvas.GetComponent<Canvas>().sortingOrder = 30;
+        }
+        else 
+        {
+            PhotonNetwork.LeaveRoom();
+            SceneManager.LoadScene("Lobby", LoadSceneMode.Single);
+        }
     }
     public override void OnLeftRoom()//call when current player left the room
     {
+        if(endFight) 
+        {
+            SceneManager.LoadScene("EndFight", LoadSceneMode.Single);
+            return;
+        }
         if(isStarted) mainCamera.GetComponent<EventHandler>().ForcedExit(true);
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.LogFormat("Player {0} entered room", newPlayer.NickName);
     }
+    void EditBoard()
+    {
+        rightBoard.GetComponent<InfoBoard>().PlayerLeave();
+    }
     public override void OnPlayerLeftRoom(Player otherPlayer)//call when other player left the room
     {
+        if(endFight) return;
         if(isStarted) mainCamera.GetComponent<EventHandler>().ForcedExit(false);
+        else EditBoard();
         Debug.LogFormat("Player {0} left room", otherPlayer.NickName);
     }
     //serializes and deserializes
