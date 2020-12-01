@@ -1,5 +1,0 @@
-Avatar=0
-Points=36
-Room code=1111
-Max hp=20
-Status=other
