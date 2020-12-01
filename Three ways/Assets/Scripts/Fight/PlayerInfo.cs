@@ -187,6 +187,8 @@ public class PlayerInfo
     public void EditPlayerInPlayersFile(string path, string newPath, string infoPath)
     {
         CreateInfoFile(infoPath);
+        FileStream newFile = new FileStream(newPath, FileMode.OpenOrCreate);
+        newFile.Close();
         FileStream file = new FileStream(path, FileMode.OpenOrCreate);
         StreamReader reader = new StreamReader(file);
         while (!reader.EndOfStream)
@@ -221,7 +223,8 @@ public class PlayerInfo
     public void DeletePlayer(string path, string newPath, string infoPath)
     {
         File.Delete(infoPath);
-        RefreshFile(newPath);
+        FileStream newFile = new FileStream(newPath, FileMode.OpenOrCreate);
+        newFile.Close();
         FileStream file = new FileStream(path, FileMode.OpenOrCreate);
         StreamReader reader = new StreamReader(file);
         while (!reader.EndOfStream)
