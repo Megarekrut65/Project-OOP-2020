@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1350
     height: 669
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 4474
+  controlID: 139
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 4479
+  controlID: 61
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 4480
+  controlID: 62
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -401,9 +401,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 9e420000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 046fffff666fffff7e6fffff5271ffff6271ffff7072fffff873ffff0274ffff1a74ffff2a74ffff3274ffff1075ffff9478ffff127affff467dffffc892ffff0e93ffffae95ffffc695ffff9a97ffffaa97ffffb898ffff3e9affff489affff609affff709affff789affffba9affff1a9effff9eb3ffffb6b3ffff8ab5ffff9ab5ffffa8b6ffff30b8ffff3ab8ffff52b8ffff62b8ffff6ab8ffff38b9ffff24bbffff70c4ffff88c4ffff5cc6ffff6cc6ffff7ac7ffff02c9ffff0cc9ffff24c9ffff34c9ffff3cc9ffff04caffff72caffff84ccffff7ed0ffff34d1ffff4cd1ffff20d3ffff30d3ffff3ed4ffffc6d5ffffd0d5ffffe8d5fffff0d5ffff02d6ffffc6d6ffff78d7ffff92dbffff08dfffff20dffffff0e0fffffce0ffff06e2ffff8ae3ffff90e3ffffa4e3ffffa8e3ffffb6e3ffff7ce6ffff16e8ffffd8e9ffff50ebffff10ecffff22f1ffff3af1ffff0af3ffff16f3ffff20f4ffffa4f5ffffaaf5ffffbef5ffffcaf5ffffcef5ffff4afbffffd26f00000a700000907a0000a27c0000187d00008c7d00009e7f000014800000308c00005e8c00006a8d0000428e0000b88e0000e29e00006ea7000080a90000f6a90000c6b3000076b400006ec5000056c7000068c90000dec90000dcd000000ed100006ef80000a0f80000a8f9000080fa0000b01b0100441c0100501c010022310100386e01004a6e0100846e0100f86e0100067301002673010088730100107701003c770100b4770100ca770100ea770100
+      m_ExpandedIDs: a0d8ffffb8d8ffff88daffff94daffff9edbffff22ddffff28ddffff3cddffff48ddffff4cddffffc0edffffd8edffffacefffffbcefffffcaf0ffff52f2ffff5cf2ffff74f2ffff84f2ffff8cf2ffff78f3ffff5afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -632,12 +632,12 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/Fight
     m_Globs: []
   m_ViewMode: 1
   m_StartGridSize: 60
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts/Fight
   m_LastFoldersGridSize: 60
   m_LastProjectPath: C:\Users\User81\source\repos\Megarekrut65\Project-OOP-2020\Three
     ways
@@ -645,9 +645,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 14}
-    m_SelectedIDs: 8e420000
-    m_LastClickedID: 17038
-    m_ExpandedIDs: 000000001c42000000ca9a3b
+    m_SelectedIDs: 82520000
+    m_LastClickedID: 21122
+    m_ExpandedIDs: 00000000084400006644000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -675,7 +675,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001c42000000ca9a3b
+    m_ExpandedIDs: 0000000008440000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -702,7 +702,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
