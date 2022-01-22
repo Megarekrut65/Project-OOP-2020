@@ -71,28 +71,36 @@ public class LogInAccount : MonoBehaviour
                 else
                 {
                     reader.Close();
-                    IncorrectData("Password","is incorrect!");
+                    //IncorrectData("Password","is incorrect!");
                     return false;
                 }
             }
         }
         reader.Close();
-        IncorrectData("Nickname","not found!");
+        //IncorrectData("Nickname","not found!");
         return false;       
     }
     private void CreateAccount()
     {
+        string nickname = "NickName=" + inputNickName.text;
+        string password = "Password=" + "1111";
+        if(FindPlayer(nickname, password))
+        {            
+            SceneManager.LoadScene(nameOfScene, LoadSceneMode.Single);        
+            return;  
+        }      
         PlayerInfo newPlayer = new PlayerInfo(
-            "Player" + UnityEngine.Random.Range(1000,9999).ToString(),
+            inputNickName.text.Length > 0?inputNickName.text:"Player"+ UnityEngine.Random.Range(1000,9999).ToString(),
             "1111", "@gmail.com");
+            
             newPlayer.CreateInfoFile(infoPath);
             newPlayer.AppendToPlayersFile(dataPath);
     }
     public void OKButton()
     {
-        /*CreateAccount();
+        CreateAccount();
         SceneManager.LoadScene(nameOfScene, LoadSceneMode.Single);          
-        return;*/
+        return;
         string nickname = "NickName=" + inputNickName.text;
         string password = "Password=" + inputPassword.text;
         if(FindPlayer(nickname, password))
